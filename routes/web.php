@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\Http\Controllers\Front\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,5 +18,8 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 Route::group(['prefix' => LaravelLocalization::setLocale() , 'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function() {
 
     Auth::routes();
+    Route::get('/', 'App\Http\Controllers\Front\HomeController@index')-> name('index');
+ //   Route::get('/home', 'App\Http\Controllers\Front\HomeController@index') ->name('home');
+
     
 });

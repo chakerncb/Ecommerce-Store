@@ -4,17 +4,19 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>ShopGrids - Bootstrap 5 eCommerce HTML Template.</title>
+    <title>Chaker_Shop</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
+    {{-- <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" /> --}}
 
     <!-- ========================= CSS here ========================= -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/css/LineIcons.3.0.css" />
-    <link rel="stylesheet" href="assets/css/tiny-slider.css" />
-    <link rel="stylesheet" href="assets/css/glightbox.min.css" />
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="{{URL::asset('assets/css/bootstrap.min.css')}}" />
+    <link rel="stylesheet" href="{{URL::asset('assets/css/LineIcons.3.0.css')}}" />
+    <link rel="stylesheet" href="{{URL::asset('assets/css/tiny-slider.css')}}" />
+    <link rel="stylesheet" href="{{URL::asset('assets/css/glightbox.min.css')}}" />
+    <link rel="stylesheet" href="{{URL::asset('assets/css/main.css')}}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 
 </head>
 
@@ -40,70 +42,169 @@
 
     <!-- Start Header Area -->
     <header class="header navbar-area">
-        <!-- Start Topbar -->
-        <div class="topbar">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-4 col-md-4 col-12">
-                        <div class="top-left">
-                            <ul class="menu-top-link">
-                                <li>
-                                    <div class="select-position">
-                                        <select id="select4">
-                                            <option value="0" selected>$ USD</option>
-                                            <option value="1">€ EURO</option>
-                                            <option value="2">$ CAD</option>
-                                            <option value="3">₹ INR</option>
-                                            <option value="4">¥ CNY</option>
-                                            <option value="5">৳ BDT</option>
-                                        </select>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="select-position">
-                                        <select id="select5">
-                                            <option value="0" selected>English</option>
-                                            <option value="1">Español</option>
-                                            <option value="2">Filipino</option>
-                                            <option value="3">Français</option>
-                                            <option value="4">العربية</option>
-                                            <option value="5">हिन्दी</option>
-                                            <option value="6">বাংলা</option>
-                                        </select>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-12">
-                        <div class="top-middle">
-                            <ul class="useful-links">
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="about-us.html">About Us</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-12">
-                        <div class="top-end">
-                            <div class="user">
-                                <i class="lni lni-user"></i>
-                                Hello
+                <!-- Start Header Middle -->
+                <div class="header-middle">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-3 col-md-3 col-7">
+                                <!-- Start Header Logo -->
+                                <a class="navbar-brand" href="index.html">
+                                    <img src="assets/images/logo/logo.svg" alt="Logo">
+                                </a>
+                                <!-- End Header Logo -->
                             </div>
-                            <ul class="user-login">
-                                <li>
-                                    <a href="login.html">Sign In</a>
-                                </li>
-                                <li>
-                                    <a href="register.html">Register</a>
-                                </li>
-                            </ul>
+                            <div class="col-lg-5 col-md-7 d-xs-none">
+                                <!-- Start Main Menu Search -->
+                                <div class="main-menu-search"> 
+                                    <!-- navbar search start -->
+                                    <div class="navbar-search search-style-5">
+                                         <div class="search-select">
+                                          {{--  <div class="select-position">
+                                                <select id="select1">
+                                                    <option selected>All</option>
+                                                    <option value="1">option 01</option>
+                                                    <option value="2">option 02</option>
+                                                    <option value="3">option 03</option>
+                                                    <option value="4">option 04</option>
+                                                    <option value="5">option 05</option>
+                                                </select>
+                                            </div> --}}
+                                        </div>
+                                        <div class="search-input">
+                                            <input type="text" placeholder="Search">
+                                        </div>
+                                        <div class="search-btn">
+                                            <button><i class="lni lni-search-alt"></i></button>
+                                        </div>
+                                    </div>
+                                    <!-- navbar search Ends -->
+                                </div>
+                                <!-- End Main Menu Search -->
+                            </div>
+                            <div class="col-lg-4 col-md-2 col-5">
+                                <div class="middle-right-area">
+                                    <div class="nav-hotline">
+                                        <i class="lni lni-phone"></i>
+                                        <h3>Hotline:
+                                            <span>(+213) 07 777 722 18</span>
+                                        </h3>
+                                    </div>
+                                    <div class="navbar-cart">
+
+                                     {{--   <div class="wishlist">
+                                            <a href="javascript:void(0)">
+                                                <i class="lni lni-heart"></i>
+                                                <span class="total-items">0</span>
+                                            </a> 
+                                        </div>--}}
+
+                                        <div class="dropdown show">
+                                            <a class="m-2" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="lni lni-world"></i>
+                                            </a>
+                                          
+                                            <div class="dropdown-menu p-2" aria-labelledby="dropdownMenuLink">
+                                                @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                                <a class="nav-link" rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                                    {{ $properties['native'] }}
+                                                </a>
+                                         @endforeach
+                                            </div>
+                                          </div>
+                                        
+
+                                        <div class="m-2 cart-items">
+                                            <a href="javascript:void(0)" class="main-btn">
+                                                <i class="lni lni-cart"></i>
+                                                <span class="total-items">2</span>
+                                            </a>
+                                            <!-- Shopping Item -->
+                                            <div class="shopping-item">
+                                                <div class="dropdown-cart-header">
+                                                    <span>2 Items</span>
+                                                    <a href="cart.html">View Cart</a>
+                                                </div>
+                                                <ul class="shopping-list">
+                                                    <li>
+                                                        <a href="javascript:void(0)" class="remove" title="Remove this item"><i
+                                                                class="lni lni-close"></i></a>
+                                                        <div class="cart-img-head">
+                                                            <a class="cart-img" href="product-details.html"><img
+                                                                    src="assets/images/header/cart-items/item1.jpg" alt="#"></a>
+                                                        </div>
+        
+                                                        <div class="content">
+                                                            <h4><a href="product-details.html">
+                                                                    Apple Watch Series 6</a></h4>
+                                                            <p class="quantity">1x - <span class="amount">$99.00</span></p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:void(0)" class="remove" title="Remove this item"><i
+                                                                class="lni lni-close"></i></a>
+                                                        <div class="cart-img-head">
+                                                            <a class="cart-img" href="product-details.html"><img
+                                                                    src="assets/images/header/cart-items/item2.jpg" alt="#"></a>
+                                                        </div>
+                                                        <div class="content">
+                                                            <h4><a href="product-details.html">Wi-Fi Smart Camera</a></h4>
+                                                            <p class="quantity">1x - <span class="amount">$35.00</span></p>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <div class="bottom">
+                                                    <div class="total">
+                                                        <span>Total</span>
+                                                        <span class="total-amount">$134.00</span>
+                                                    </div>
+                                                    <div class="button">
+                                                        <a href="checkout.html" class="btn animate">Checkout</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--/ End Shopping Item -->
+                                        </div>
+                                        
+                                        <div class="m-2 wishlist">
+                                            @guest
+                                            @if (Route::has('login'))
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                                </li>
+                                            @endif
+                
+                                            @if (Route::has('register'))
+                                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                            @endif
+                                        @else
+                                                <div class="dropdown show">
+                                                    <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="lni lni-user"></i>
+                                                    </a>
+                                                  
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                                        onclick="event.preventDefault();
+                                                                      document.getElementById('logout-form').submit();">
+                                                         {{ __('Logout') }}
+                                                     </a>
+                 
+                                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                         @csrf
+                                                     </form>
+                                                    </div>
+                                                  </div>
+                                        @endguest
+                                        </div>
+                                        
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <!-- End Topbar -->
+                <!-- End Header Middle -->
     
         @yield('content')
 
@@ -260,10 +361,13 @@
     </a>
 
     <!-- ========================= JS here ========================= -->
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/tiny-slider.js"></script>
-    <script src="assets/js/glightbox.min.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="{{URL::asset('assets/js/bootstrap.min.js')}}"></script>
+    <script src="{{URL::asset('assets/js/tiny-slider.js')}}"></script>
+    <script src="{{URL::asset('assets/js/glightbox.min.js')}}"></script>
+    <script src="{{URL::asset('assets/js/main.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script type="text/javascript">
         //========= Hero Slider 
         tns({

@@ -31,6 +31,57 @@ p {
   padding: 0;
 }
 
+
+
+.header .navbar-cart .dropdown {
+  margin-right: 15px;
+  background: #fff;
+}
+
+.header .navbar-cart .dropdown a {
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  display: inline-block;
+  border: 1px solid #eee;
+  color: #555;
+  font-size: 18px;
+  text-align: center;
+  position: relative;
+
+}
+
+.header .navbar-cart .dropdown .nav-link {
+  border: none;
+  padding: 10px;
+  background: none;
+  color: #555;
+  font-size: 18px;
+  display: list-item;
+  
+}
+
+
+.header .navbar-cart .dropdown .nav-link:hover {
+  color: #0167F3;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .navbar-toggler:focus,
 a:focus,
 input:focus,
@@ -1699,7 +1750,7 @@ top: -1px;
 }
 
 .header .navbar-cart .wishlist {
-  margin-right: 12px;
+  margin-right: 1px;
 }
 
 .header .navbar-cart .wishlist a {
