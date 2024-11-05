@@ -165,24 +165,29 @@
                                             <!--/ End Shopping Item -->
                                         </div>
                                         
-                                        <div class="m-2 wishlist">
+                                            <ul class="user-login flex-md-row">
                                             @guest
                                             @if (Route::has('login'))
-                                                <li class="nav-item">
+
                                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                                </li>
                                             @endif
                 
                                             @if (Route::has('register'))
                                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                            @endif
+                                             @endif
+                                        </ul>
+
                                         @else
+                                        <div class="m-2 wishlist">
+
                                                 <div class="dropdown show">
                                                     <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         <i class="lni lni-user"></i>
                                                     </a>
                                                   
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                        <a class="dropdown-item"">{{ Auth::user()->name }}</a>
+                                                        <hr>
                                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                                         onclick="event.preventDefault();
                                                                       document.getElementById('logout-form').submit();">

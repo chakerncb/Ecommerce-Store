@@ -15,11 +15,12 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::group(['prefix' => LaravelLocalization::setLocale() , 'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function() {
 
-    Route::group(['prefix' => 'admin' , 'namespace' => 'App\Http\Controllers\Admin'] , function() {
-        Route::get('/' , 'AdminAuthController@index') -> name('admin.index') -> middleware('auth:admin');
+    Route::group(['prefix' => 'admin' , 'namespace' => 'App\Http\Controllers'] , function() {
+        Route::get('/dashboard' , 'Admin\AdminHomeController@index') -> name('admin.index') -> middleware('auth:admin');
 
-        Route::get('login' , 'AdminAuthController@adminLogin');
-        Route::post('login' , 'AdminAuthController@CheckAdminLogin') -> name('admin.login');
+        Route::get('/login' , 'Auth\AdminLoginController@adminLogin');
+        Route::post('/login' , 'Auth\AdminLoginController@CheckAdminLogin') -> name('admin.login');
+        Route::Post('/logout' , 'Auth\AdminLoginController@logout') -> name('admin.logout');
     });
     
 });

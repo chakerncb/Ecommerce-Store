@@ -1087,6 +1087,9 @@
           <ul
             class="flex flex-col gap-5 border-b border-stroke px-6 py-7.5 dark:border-strokedark"
           >
+          <li>
+            {{-- {{Auth::guard('admin')->user()->name}} --}}
+          </li>
             <li>
               <a
                 href="profile.html"
@@ -1179,15 +1182,15 @@
                 fill=""
               />
             </svg>
-            <a href="{{ route('logout') }}"
-                onclick="event.preventDefault();
-                              document.getElementById('logout-form').submit();">
-                  {{ __('Logout') }}
-              </a>
-
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                  @csrf
-              </form>
+            <a href="{{ route('admin.logout') }}"
+            onclick="event.preventDefault();
+                      document.getElementById('logout-form').submit();">
+             {{ __('Logout') }}
+         </a>
+         
+         <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
+             @csrf
+         </form>
           </button>
         </div>
         <!-- Dropdown End -->
