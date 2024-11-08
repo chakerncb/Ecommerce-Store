@@ -35,4 +35,30 @@ return [
 
     'You are logged in!' => 'Vous êtes connecté !',
 
+
+    // email verification messages :
+
+    'email_required' => 'Le champ email est requis',
+    'email_email' => 'L\'email doit être une adresse email valide',
+    'password_required' => 'Le champ mot de passe est requis',
+    'password_min' => 'Le mot de passe doit comporter au moins 6 caractères',
+    'password_confirmed' => 'La confirmation du mot de passe ne correspond pas',
+    'name_required' => 'Le champ nom est requis',
+    'mobile_required' => 'Le champ mobile est requis',
+    'mobile_numeric' => 'Le mobile doit être un nombre',
+    'mobile_digits' => 'Le mobile doit comporter 11 chiffres',
+
+    'enter_email' => 'Entrez votre adresse e-mail',
+    'enter_password' => 'Entrez votre mot de passe',
+    'enter_confirm' => 'Entrez votre mot de passe de confirmation',
+    'enter_name' => 'Entrez votre nom',
+    'enter_mobile' => 'Entrez votre mobile',
+    'enter_confirm_password' => 'Entrez votre mot de passe de confirmation',
+    'enter_reset_password' => 'Entrez votre nouveau mot de passe',
+    'enter_confirm_reset_password' => 'Entrez votre confirmation de nouveau mot de passe',
+    'enter_verify_email' => 'Entrez votre adresse e-mail',
+    'rewrite_password' => 'Réécrire le mot de passe',
+        
+    
+
 ];

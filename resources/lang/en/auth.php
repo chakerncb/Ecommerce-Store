@@ -32,6 +32,22 @@ return [
     'verify_resend_sent' => 'A fresh verification link has been sent to your email address.',
     'verify_resend_request' => 'click here to request another',
 
-    'You are logged in!' => 'You are logged in!'
+    'You are logged in!' => 'You are logged in!',
+
+    // email verification messages :
+
+    'email_required' => 'The email field is required',
+    'email_email' => 'The email must be a valid email address',
+    'password_required' => 'The password field is required',
+    'password_min' => 'The password must be at least 6 characters',
+    'password_confirmed' => 'The password confirmation does not match',
+    'name_required' => 'The name field is required',
+    'mobile_required' => 'The mobile field is required',
+    'mobile_numeric' => 'The mobile must be a number',
+    'mobile_digits' => 'The mobile must be 11 digits',
+
+    'enter_email' => 'Enter your email address',
+    'enter_password' => 'Enter your password',
+    'enter_confirm' => 'Enter your confirm password',
 
 ];

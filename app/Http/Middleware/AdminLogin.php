@@ -16,11 +16,11 @@ class AdminLogin extends Middleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle($request, Closure $next, ...$guards)
-    {
-        if (Auth::guard('admin')->check()) {
-            return redirect()->route('admin.index');
-        }
-        return $next($request);
-    }
+    // public function handle($request, Closure $next, ...$guards)
+    // {
+    //     if (Auth::guard('admin')->check()) {
+    //         return redirect()->route('admin.index');
+    //     }
+    //     return $next($request);
+    // }
 }

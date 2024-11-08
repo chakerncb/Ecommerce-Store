@@ -44,7 +44,24 @@ return [
     'enter_verify_email' => 'أدخل عنوان بريدك الإلكتروني',
     'rewrite_password' => 'إعادة كتابة كلمة المرور',
     
-    'You are logged in!' => 'تم تسجيل الدخول'
+    'You are logged in!' => 'تم تسجيل الدخول',
+
+
+    // email verification messages :
+
+    'email_required' => 'البريد الإلكتروني مطلوب',
+    'email_email' => 'البريد الإلكتروني غير صحيح',
+    'password_required' => 'كلمة المرور مطلوبة',
+    'password_min' => 'يجب أن تكون كلمة المرور على الأقل 6 أحرف',
+    'password_confirmed' => 'كلمة المرور غير متطابقة',
+    'name_required' => 'الاسم مطلوب',
+    'mobile_required' => 'رقم الهاتف مطلوب',
+    'mobile_numeric' => 'رقم الهاتف يجب أن يكون أرقام فقط',
+    'mobile_digits' => 'رقم الهاتف يجب أن يكون 11 رقمًا',
+    'email_unique' => 'البريد الإلكتروني مستخدم بالفعل',
+    'email_verified' => 'تم التحقق من البريد الإلكتروني',
+    'email_verified_error' => 'لم يتم التحقق من البريد الإلكتروني', 
+    'email_verified_error_link' => 'انقر هنا لطلب آخر',
 
     
 ];

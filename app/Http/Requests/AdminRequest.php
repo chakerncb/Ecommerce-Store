@@ -25,7 +25,7 @@ class AdminRequest extends FormRequest
             'email' => 'required|email',
             'password' => 'required|min:6',
         ];
-    }
+    } 
 
     /**
      * Get the error messages for the defined validation rules.
@@ -36,10 +36,10 @@ class AdminRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'email.required' => 'Email is required',
-            'email.email' => 'Email is invalid',
-            'password.required' => 'Password is required',
-            'password.min' => 'Password must be at least 6 characters',
+            'email.required' => __('auth.email_required'),
+            'email.email' => __('auth.email_email'),
+            'password.required' => __('auth.password_required'),
+            'password.min' => __('auth.password_min'),
         ];
     }
 }

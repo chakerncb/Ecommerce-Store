@@ -22,4 +22,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale() , 'middleware' => [ '
  //   Route::get('/home', 'App\Http\Controllers\Front\HomeController@index') ->name('home');
 
     
+
+    
 });

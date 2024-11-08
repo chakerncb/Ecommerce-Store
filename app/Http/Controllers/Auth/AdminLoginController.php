@@ -20,7 +20,7 @@ class AdminLoginController extends Controller
     }
 
     public function CheckAdminLogin(AdminRequest $request)
-    {
+    { 
 
         if (Auth::guard('admin')->attempt(['email' => $request -> email, 'password' => $request -> password])) {
             return redirect()->route('admin.index');

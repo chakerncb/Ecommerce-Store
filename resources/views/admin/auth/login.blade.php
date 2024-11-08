@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign In | Admin Dashboard</title>
@@ -78,18 +78,25 @@
                     </h2>
 
                     <form method="POST" action="{{route('admin.login')}}">
+                      @csrf
                       <div class="mb-4">
                         <label
                           class="mb-2.5 block font-medium text-black dark:text-white"
-                          >Email</label
+                          >{{__('auth.email')}}</label
                         >
                         <div class="relative">
                           <input
                             type="email"
                             name="email"
-                            placeholder="Enter your email"
-                            class="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                            placeholder="{{__('auth.enter_email')}}"
+                            class="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary @error('email') is-invalid @enderror"
                           />
+
+                          @error('email')
+                          <span class="invalid-feedback text-danger" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </span>
+                           @enderror
 
                           <span class="absolute right-4 top-4">
                             <svg
@@ -113,16 +120,24 @@
 
                       <div class="mb-6">
                         <label
-                          class="mb-2.5 block font-medium text-black dark:text-white"
-                          >Password</label
+                          class="mb-2.5 block font-medium text-black dark:text-white @error('password') is-invalid @enderror"
+                          >{{__('auth.password')}}</label
                         >
+
                         <div class="relative">
                           <input
                             type="password"
                             name="password"
-                            placeholder="6+ Characters, 1 Capital letter"
+                            placeholder="{{__('auth.enter_password')}}"
                             class="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                           />
+
+                          @error('password')
+                          <span class="invalid-feedback text-danger" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </span>
+                            @enderror
+                            
 
                           <span class="absolute right-4 top-4">
                             <svg
