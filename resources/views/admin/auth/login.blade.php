@@ -5,7 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign In | Admin Dashboard</title>
-  <link rel="icon" href="favicon.ico"><link href="{{URL::asset('assets/src/style.css')}}" rel="stylesheet"></head>
+  <link rel="icon" href="favicon.ico">
+  <link href="{{URL::asset('assets/src/style.css')}}" rel="stylesheet">
+  <link rel="stylesheet" href="{{URL::asset('assets/css/bootstrap.min.css')}}" />
+  <link rel="stylesheet" href="{{URL::asset('assets/css/LineIcons.3.0.css')}}" />
+  <link rel="stylesheet" href="{{URL::asset('assets/css/tiny-slider.css')}}" />
+  <link rel="stylesheet" href="{{URL::asset('assets/css/glightbox.min.css')}}" />
+</head>
 
   <body>
         <main>
@@ -14,11 +20,6 @@
             <div
               class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
             >
-            @if (Session::has('error'))
-            <div class="alert alert-danger" role="alert">
-                {{Session::get('error')}}
-            </div>
-            @endif
               <h2 class="text-title-md2 font-bold text-black dark:text-white">
                 Sign In
               </h2>
@@ -76,6 +77,13 @@
                     >
                       Sign In to your account
                     </h2>
+                    <center>
+                      @if (Session::has('error'))
+                      <div class="alert alert-danger text-danger-emphasis" role="alert">
+                          {{Session::get('error')}}
+                      </div>
+                      @endif
+                    </center>
 
                     <form method="POST" action="{{route('admin.login')}}">
                       @csrf

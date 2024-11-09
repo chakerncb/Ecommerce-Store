@@ -21,6 +21,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale() , 'middleware' => [ '
         Route::get('/login' , 'Auth\AdminLoginController@adminLogin');
         Route::post('/login' , 'Auth\AdminLoginController@CheckAdminLogin') -> name('admin.login');
         Route::Post('/logout' , 'Auth\AdminLoginController@logout') -> name('admin.logout');
+
+        Route::get('products' , 'Admin\ProductsController@index') -> name('admin.products.index');
+        Route::get('products/create' , 'Admin\ProductsController@create') -> name('admin.products.create');
+        Route::post('products/store' , 'Admin\ProductsController@store') -> name('admin.products.store');
     });
     
 });
