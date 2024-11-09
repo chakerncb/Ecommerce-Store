@@ -23,8 +23,11 @@ class AdminUpdateRequest extends FormRequest
     {
         return [
            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:admins,email,' . auth()->guard('admin')->user()->id,
+            'email' => 'required|string|email|max:255|unique:admins,email,'.auth()->guard('admin')->user()->id,
             'password' => 'nullable|string|min:8|confirmed',
+            'current_pass' => 'required|string',
+            'new_pss' => 'required|string|min:8',
+            'confirm_pass' => 'required|string|min:8',
         ];
     }
 
@@ -47,6 +50,15 @@ class AdminUpdateRequest extends FormRequest
             'password.string' => __('auth.password_string'),
             'password.min' => __('auth.password_min'),
             'password.confirmed' => __('auth.password_confirmed'),
+            'current_pass.required' => __('auth.current_pass_required'),
+            'current_pass.string' => __('auth.current_pass_string'),
+            'new_pss.required' => __('auth.new_pss_required'),
+            'new_pss.string' => __('auth.new_pss_string'),
+            'new_pss.min' => __('auth.new_pss_min'),
+            'confirm_pass.required' => __('auth.confirm_pass_required'),
+            'confirm_pass.string' => __('auth.confirm_pass_string'),
+            'confirm_pass.min' => __('auth.confirm_pass_min'),
+
         ];
     }
 }

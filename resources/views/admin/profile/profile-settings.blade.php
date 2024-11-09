@@ -27,6 +27,21 @@
                         Personal Information
                       </h3>
                     </div>
+
+                    @if (Session::has('success'))
+                      <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4" role="alert">
+                        <p class="font-bold">Success</p>
+                        <p>{{Session::get('success')}}</p>
+                      </div>
+                      @elseif (Session::has('error'))
+                      <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4" role="alert">
+                        <p class="font-bold">Error</p>
+                        <p>{{Session::get('error')}}</p>
+                      </div>
+
+                    @endif
+
+                    
                     <div class="p-7">
                       <form method="POST" enctype="multipart/form-data" action="{{route('admin.profile.update')}}">
                         @csrf
@@ -148,6 +163,109 @@
                             @enderror
                           </div>
                         </div>
+
+                        <p class="text-sm font-medium">
+                          
+                          <span class="text-primary"><input id="reset-pass" name="reset_pass" type="checkbox"> Reset Password ?</span>
+                          
+                        </p>
+
+
+
+                        <div id="passForm" style="display: none;">
+                        <br>
+
+                        <center><h5>- Reset Password -</h5></center>
+
+                        <br>
+
+                          <div class="mb-5.5">
+                            <label
+                              class="mb-3 block text-sm font-medium text-black dark:text-white"
+                              for="emailAddress"
+                              >Current Password</label
+                            >
+                            <div class="relative">
+                              <span class="absolute left-4.5 top-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="27px" height="27px" viewBox="0 0 24 24" fill="none">
+                                  <path d="M21 8.5V6C21 4.89543 20.1046 4 19 4H5C3.89543 4 3 4.89543 3 6V11C3 12.1046 3.89543 13 5 13H10.875M19 14V12C19 10.8954 18.1046 10 17 10C15.8954 10 15 10.8954 15 12V14M14 20H20C20.5523 20 21 19.5523 21 19V15C21 14.4477 20.5523 14 20 14H14C13.4477 14 13 14.4477 13 15V19C13 19.5523 13.4477 20 14 20Z" stroke="#959EA8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                  <circle cx="7.5" cy="8.5" r="1.5" fill="#ffffff"/>
+                                  <circle cx="12" cy="8.5" r="1.5" fill="#ffffff"/>
+                                  </svg>
+                              </span>
+                              <input
+                                class="@error('Current-pass') border-red-500 @enderror  w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 font-medium text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                                type="password"
+                                name="current_pass"
+                              />
+  
+                              @error('Current-pass')
+                                <div class="text-red-500 mt-2 text-sm">
+                                    {{$message}}
+                                </div>
+                              @enderror
+                            </div>
+                          </div>
+
+                          <div class="mb-5.5">
+                            <label
+                              class="mb-3 block text-sm font-medium text-black dark:text-white"
+                              for="emailAddress"
+                              >New Password</label
+                            >
+                            <div class="relative">
+                              <span class="absolute left-4.5 top-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="27px" height="27px" viewBox="0 0 24 24" fill="none">
+                                  <path d="M21 8.5V6C21 4.89543 20.1046 4 19 4H5C3.89543 4 3 4.89543 3 6V11C3 12.1046 3.89543 13 5 13H10.875M19 14V12C19 10.8954 18.1046 10 17 10C15.8954 10 15 10.8954 15 12V14M14 20H20C20.5523 20 21 19.5523 21 19V15C21 14.4477 20.5523 14 20 14H14C13.4477 14 13 14.4477 13 15V19C13 19.5523 13.4477 20 14 20Z" stroke="#959EA8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                  <circle cx="7.5" cy="8.5" r="1.5" fill="#ffffff"/>
+                                  <circle cx="12" cy="8.5" r="1.5" fill="#ffffff"/>
+                                  </svg>
+                              </span>
+                              <input
+                                class="@error('new-pass') border-red-500 @enderror  w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 font-medium text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                                type="password"
+                                name="new_pass"
+                              />
+  
+                              @error('new-pass')
+                                <div class="text-red-500 mt-2 text-sm">
+                                    {{$message}}
+                                </div>
+                              @enderror
+                            </div>
+                          </div>
+
+
+                          <div class="mb-5.5">
+                            <label
+                              class="mb-3 block text-sm font-medium text-black dark:text-white"
+                              for="emailAddress"
+                              >Confirm Password</label
+                            >
+                            <div class="relative">
+                              <span class="absolute left-4.5 top-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="27px" height="27px" viewBox="0 0 24 24" fill="none">
+                                  <path d="M21 8.5V6C21 4.89543 20.1046 4 19 4H5C3.89543 4 3 4.89543 3 6V11C3 12.1046 3.89543 13 5 13H10.875M19 14V12C19 10.8954 18.1046 10 17 10C15.8954 10 15 10.8954 15 12V14M14 20H20C20.5523 20 21 19.5523 21 19V15C21 14.4477 20.5523 14 20 14H14C13.4477 14 13 14.4477 13 15V19C13 19.5523 13.4477 20 14 20Z" stroke="#959EA8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                  <circle cx="7.5" cy="8.5" r="1.5" fill="#ffffff"/>
+                                  <circle cx="12" cy="8.5" r="1.5" fill="#ffffff"/>
+                                  </svg>
+                              </span>
+                              <input
+                                class="@error('Confirm-pass') border-red-500 @enderror  w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 font-medium text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                                type="password"
+                                name="confirmed_pass"
+                              />
+  
+                              @error('Confirm-pass')
+                                <div class="text-red-500 mt-2 text-sm">
+                                    {{$message}}
+                                </div>
+                              @enderror
+                            </div>
+                          </div>
+                        </div>
+
+                          
                         <br>
                         <br>
 
@@ -160,18 +278,6 @@
                               class="mb-1.5 font-medium text-black dark:text-white"
                               >Edit your photo</span
                             >
-                            <span class="flex gap-2.5">
-                              <button
-                                class="text-sm font-medium hover:text-primary"
-                              >
-                                Delete
-                              </button>
-                              <button
-                                class="text-sm font-medium hover:text-primary"
-                              >
-                                Update
-                              </button>
-                            </span>
                           </div>
                         </div>
 
@@ -247,4 +353,23 @@
             </div>
           </div>
         </main>
+@endsection
+
+@section('scripts')
+
+<script>
+
+var open = document.getElementById('reset-pass');
+var passForm = document.getElementById('passForm');
+
+open.addEventListener('click', () => {
+  if (passForm.style.display === 'block') {
+    passForm.style.display = 'none';
+  } else {
+    passForm.style.display = 'block';
+  }
+});
+
+</script>
+
 @endsection
