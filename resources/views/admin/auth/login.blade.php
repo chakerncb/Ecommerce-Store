@@ -6,11 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign In | Admin Dashboard</title>
   <link rel="icon" href="favicon.ico">
-  <link href="{{URL::asset('assets/src/style.css')}}" rel="stylesheet">
   <link rel="stylesheet" href="{{URL::asset('assets/css/bootstrap.min.css')}}" />
-  <link rel="stylesheet" href="{{URL::asset('assets/css/LineIcons.3.0.css')}}" />
-  <link rel="stylesheet" href="{{URL::asset('assets/css/tiny-slider.css')}}" />
-  <link rel="stylesheet" href="{{URL::asset('assets/css/glightbox.min.css')}}" />
+  <link href="{{URL::asset('assets/src/style.css')}}" rel="stylesheet">
 </head>
 
   <body>
@@ -23,15 +20,6 @@
               <h2 class="text-title-md2 font-bold text-black dark:text-white">
                 Sign In
               </h2>
-
-              <nav>
-                <ol class="flex items-center gap-2">
-                  <li>
-                    <a class="font-medium" href="index.html">Dashboard /</a>
-                  </li>
-                  <li class="font-medium text-primary">Sign In</li>
-                </ol>
-              </nav>
             </div>
             <!-- Breadcrumb End -->
 
@@ -42,7 +30,7 @@
               <div class="flex flex-wrap items-center">
                 <div class="hidden w-full xl:block xl:w-1/2">
                   <div class="px-26 py-17.5 text-center">
-                    <a class="mb-5.5 inline-block" href="index.html">
+                    <a class="mb-5.5 inline-block">
                       <img
                         class="hidden dark:block"
                         src="{{URL::asset('assets/src/images/logo/logo.svg')}}"
@@ -56,8 +44,7 @@
                     </a>
 
                     <p class="font-medium 2xl:px-20">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                      suspendisse.
+                     Welcome back! Please login to your account.
                     </p>
 
                     <span class="mt-15 inline-block">
@@ -172,10 +159,12 @@
                       </div>
 
                       <div class="mb-5">
-                        <input
-                          type="submit"
-                          class="w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 font-medium text-white transition hover:bg-opacity-90"
-                        />
+                        <button
+                        type="submit"
+                        class="w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 font-medium text-white transition hover:bg-opacity-90"
+                        >
+                          {{__('auth.login')}}
+                        </button>
                       </div>
 
                       <button

@@ -1123,7 +1123,7 @@
           </span>
 
           <span class="h-12 w-12 rounded-full">
-            <img src="src/images/user/user-01.png" alt="User" />
+            <img src="{{URL::asset('assets/src/images/user/'.Auth::guard('admin')->user()->image)}}" alt="User" />
           </span>
 
           <svg
@@ -1200,7 +1200,7 @@
             </li>
             <li>
               <a
-                href="settings.html"
+                href="{{route('admin.profile.settings')}}"
                 class="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
               >
                 <svg

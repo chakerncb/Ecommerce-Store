@@ -29,6 +29,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale() , 'middleware' => [ '
         Route::get('product/edit/{id}' , 'Admin\ProductsController@edit') -> name('admin.products.edit');
         Route::post('product/update/{id}' , 'Admin\ProductsController@update') -> name('admin.products.update');
         Route::Post('product/delete' , 'Admin\ProductsController@delete') -> name('admin.products.delete');
+
+        /////////////////////////// Profile Routes ///////////////////////////
+        Route::get('profile' , 'Admin\AdminProfileController@index') -> name('admin.profile.settings');
+        Route::post('profile/update' , 'Admin\AdminProfileController@update') -> name('admin.profile.update');
     });
     
 });
