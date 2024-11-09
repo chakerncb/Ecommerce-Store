@@ -36,41 +36,101 @@ class ProductsController extends Controller
     }
 
     public function store(Request $request) {
-
-        return $request -> all();
    
-    //     $filename = $this -> saveImage($request -> image , 'src/images/product');
+        $filename = $this -> saveImage($request -> image , 'assets/src/images/product');
 
-    //    $product = Product::create([
-    //         'name' => $request -> name,
-    //         'price' => $request -> price,
-    //         'description' => $request -> description,
-    //         'stock' => $request -> stock,
-    //         'image' => $filename,
+       $product = Product::create([
+            'name' => $request -> name,
+            'price' => $request -> price,
+            'description' => $request -> description,
+            'stock' => $request -> stock,
+            'image' => $filename,
 
            
-    //     ]);
+        ]);
 
-    //     // return redirect() -> back() -> with(['success' => 'Product created successfully']);)
+        // return redirect() -> back() -> with(['success' => 'Product created successfully']);)
 
-    //     if(!$product) {
-    //         return response() -> json(
-    //             [
-    //                 'status' => false,
-    //                 'message' => 'Product not created'
-    //             ]
-    //         );
-    //     }
-    //      else{
+        if(!$product) {
+            return response() -> json(
+                [
+                    'status' => false,
+                    'message' => 'Product not created'
+                ]
+            );
+        }
+         else{
 
-    //     return response() -> json(
-    //         [
-    //             'status' => true,
-    //             'message' => 'Product created successfully'
-    //         ]
-    //     );
-    // }
+        return response() -> json(
+            [
+                'status' => true,
+                'message' => 'Product created successfully'
+            ]
+        );
     }
+    }
+
+
+    public function edit($product_id) {
+        $product = Product::where('product_id', $product_id)->first();
+
+        if(!$product) {
+            return response() -> json(
+                [
+                    'status' => false,
+                    'message' => 'Product not found'
+                ]
+            );
+        }
+        return view('admin.product.edit-product', compact('product'));
+    }
+
+public function update($product_id, ProductRequest $request) {
+      $product = Product::where('product_id', $product_id)->first();
+
+      if(!$product) {
+          return redirect() ->back() -> with(['error' => 'Product not found']);
+      }
+
+      $filename = $product -> image;
+
+      if($request -> hasFile('image')) {
+            $filename = $this -> saveImage($request -> image , 'assets/src/images/product');
+      }
+
+      $product -> update([
+            'name' => $request -> name,
+            'price' => $request -> price,
+            'description' => $request -> description,
+            'stock' => $request -> stock,
+            'image' => $filename,
+      ]);
+
+      return redirect() -> back() -> with(['success' => 'Product updated successfully']);
+} 
+
+public function delete(Request $request) {
+    $product_id = $request -> product_id;
+    $product = Product::where('product_id', $product_id)->first();
+
+    if(!$product) {
+        return response() -> json(
+            [
+                'status' => false,
+                'message' => 'Product not found'
+            ]
+        );
+    } else {
+        $product -> delete();
+        return response() -> json(
+            [
+                'status' => true,
+                'message' => 'Product deleted successfully',
+                'product_id' => $product_id
+            ]
+        );
+    }       
+}
 
 
 }

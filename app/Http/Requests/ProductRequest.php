@@ -23,7 +23,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'price' => 'required|numeric',
+            'price' => 'required|numeric|max:100000,99',
             'description' => 'required|string|min:10',
             'image' => 'file|mimes:jpeg,png,jpg,gif|max:2048',
         ];
@@ -40,6 +40,8 @@ class ProductRequest extends FormRequest
         return [
             'name.required' => 'Name is required',
             'price.required' => 'Price is required',
+            'price.numeric' => 'Price must be a number',
+            'price.max' => 'Price must be less than 100000.99',
             'description.required' => 'Description is required',
             'image.required' => 'Image is required',
         ];

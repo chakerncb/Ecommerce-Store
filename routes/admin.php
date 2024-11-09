@@ -22,9 +22,13 @@ Route::group(['prefix' => LaravelLocalization::setLocale() , 'middleware' => [ '
         Route::post('/login' , 'Auth\AdminLoginController@CheckAdminLogin') -> name('admin.login');
         Route::Post('/logout' , 'Auth\AdminLoginController@logout') -> name('admin.logout');
 
+        /////////////////////////// Products Routes ///////////////////////////
         Route::get('products' , 'Admin\ProductsController@index') -> name('admin.products.index');
         Route::get('products/create' , 'Admin\ProductsController@create') -> name('admin.products.create');
         Route::post('products/store' , 'Admin\ProductsController@store') -> name('admin.products.store');
+        Route::get('product/edit/{id}' , 'Admin\ProductsController@edit') -> name('admin.products.edit');
+        Route::post('product/update/{id}' , 'Admin\ProductsController@update') -> name('admin.products.update');
+        Route::Post('product/delete' , 'Admin\ProductsController@delete') -> name('admin.products.delete');
     });
     
 });

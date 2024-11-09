@@ -5,7 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     @yield('title')
-  <link rel="icon" href="favicon.ico"><link href="{{URL::asset('assets/src/style.css')}}" rel="stylesheet"></head>
+  <link rel="icon" href="favicon.ico">
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="{{URL::asset('assets/src/style.css')}}" rel="stylesheet">
+  
+</head>
 
   <body
     x-data="{ page: 'ecommerce', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
@@ -1260,7 +1265,10 @@
 {{-- Content start --}}
 @yield('content')
 {{-- Content end --}}
-
+<script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
 @yield('scripts')
 <script defer src="{{URL::asset('assets/src/bundle.js')}}"></script>
 </body>

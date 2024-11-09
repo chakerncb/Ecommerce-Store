@@ -46,14 +46,14 @@
       <p class="font-medium">Stock</p>
     </div>
     <div class="col-span-1 flex items-center">
-      <p class="font-medium">Profit</p>
+      <p class="font-medium">Action</p>
     </div>
   </div>
 
 
   @foreach ($products as $product )
       <div
-    class="grid grid-cols-6 border-t border-stroke px-4 py-4.5 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
+    class="grid row{{$product->product_id}} grid-cols-6 border-t border-stroke px-4 py-4.5 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
   >
     <div class="col-span-3 flex items-center">
       <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
@@ -75,18 +75,48 @@
       <p class="text-sm font-medium text-black dark:text-white">{{ $product->stock}}</p>
     </div>
     <div class="col-span-1 flex items-center">
-      <p class="text-sm font-medium text-meta-3">$45</p>
-    </div>
+      <div class="flex gap-2">
+        <a href="{{route('admin.products.edit' , $product->product_id)}}" class="text-primary hover:text-primary-dark">
+          <i class="bi bi-pencil-square"></i>
+        </a>
+        <a product_id="{{$product->product_id}}" id="delete_btn" class="text-red-500 hover:text-red-700">
+          <i class="bi bi-trash3"></i>
+        </a>
+      </div>
+       
+  </div>
   </div>
   @endforeach
-  
-  </div>
 </div>
+  </div>
+</main>
 
+@endsection
 
-              <!-- ====== Table Two End -->
+@section('scripts')
 
-          </div>
-        </main>
+<script>
+  $(document).on('click', '#delete_btn', function(e){
+ e.preventDefault();
+ console.log('delete');
+ var product_id = $(this).attr('product_id');
+ $.ajax({
+     type: "POST",
+     url: "{{route('admin.products.delete')}}",
+     data: {
+         product_id: product_id,
+         _token: "{{csrf_token()}}"
+     },
+     success: function (response) {
+         if(response.status == true){
+             alert(response.message);
+             $('.row'+product_id).remove();
+         }else{
+             alert(response.message);
+         }
+     }
+ });
+});
+</script>
 
 @endsection
