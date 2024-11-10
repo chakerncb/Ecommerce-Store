@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->decimal('price', 8, 2);
             $table->integer('stock');
+            $table->foreignId('category_id')->constrained('categories', 'category_id');
             $table->string('image');
             $table->timestamps();
         });

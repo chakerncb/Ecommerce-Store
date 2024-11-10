@@ -9,7 +9,7 @@
                 class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
               >
                 <h2 class="text-title-md2 font-bold text-black dark:text-white">
-                  Settings Page
+                  Account Settings 
                 </h2>
               </div>
               <!-- Breadcrumb End -->
@@ -164,18 +164,16 @@
                           </div>
                         </div>
 
-                        <p class="text-sm font-medium">
-                          
-                          <span class="text-primary"><input id="reset-pass" name="reset_pass" type="checkbox"> Reset Password ?</span>
-                          
-                        </p>
-
+                        <div class="flex items-center gap-2 p-5">
+                          <input id="reset-pass" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="link-checkbox" class="ms-2 text-sm font-medium text-blue-600 dark:text-gray-300"> Reset your password.</label>
+                        </div>
 
 
                         <div id="passForm" style="display: none;">
                         <br>
 
-                        <center><h5>- Reset Password -</h5></center>
+                        <center><b><h4>- Reset Password -</h4></b></center>
 
                         <br>
 

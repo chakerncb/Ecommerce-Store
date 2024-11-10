@@ -132,7 +132,7 @@ select {
   border-radius: 0px;
   border-width: 1px;
   border-style: solid;
-  border-color: -internal-light-dark(#767676, #858585);
+  border-color: -internal-light-dark(#ffffff, #858585);
   -o-border-image: initial;
   border-image: initial;
 }
@@ -3314,6 +3314,14 @@ top: 2px;
 .single-product .product-image {
   overflow: hidden;
   position: relative;
+  width: 100%; /* Set a fixed width */
+  height: 300px; /* Set a fixed height */
+}
+
+.single-product .product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the image covers the entire area */
 }
 
 .single-product .product-image .sale-tag {

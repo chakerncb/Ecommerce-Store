@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Traits\ImageTrait;
 use Illuminate\Http\Request;
 use App\Models\Product;
@@ -25,14 +26,23 @@ class ProductsController extends Controller
             'price',
             'description',
             'stock',
+            'category_id',
             'image'
     ) -> get();
 
-        return view('admin.product.products-list', compact('products'));
+    $categories = Category::select('category_id', 'name')->get()->keyBy('category_id');
+
+    foreach ($products as $product) {
+        $product->category_name = $categories->get($product->category_id)->name ?? 'Unknown';
     }
 
+    return view('admin.product.products-list', compact('products'));
+    }
     public function create() {
-        return view('admin.product.add-product');
+
+        $categories = Category::select('category_id', 'name') -> get();
+
+        return view('admin.product.add-product' , compact('categories'));
     }
 
     public function store(Request $request) {
@@ -44,6 +54,7 @@ class ProductsController extends Controller
             'price' => $request -> price,
             'description' => $request -> description,
             'stock' => $request -> stock,
+            'category_id' => $request -> category_id,
             'image' => $filename,
 
            
@@ -73,6 +84,7 @@ class ProductsController extends Controller
 
     public function edit($product_id) {
         $product = Product::where('product_id', $product_id)->first();
+        $categories = Category::select('category_id', 'name') -> get();
 
         if(!$product) {
             return response() -> json(
@@ -82,7 +94,7 @@ class ProductsController extends Controller
                 ]
             );
         }
-        return view('admin.product.edit-product', compact('product'));
+        return view('admin.product.edit-product', compact('product', 'categories'));
     }
 
 public function update($product_id, ProductRequest $request) {
@@ -103,6 +115,7 @@ public function update($product_id, ProductRequest $request) {
             'price' => $request -> price,
             'description' => $request -> description,
             'stock' => $request -> stock,
+            'category_id' => $request -> category_id,
             'image' => $filename,
       ]);
 
