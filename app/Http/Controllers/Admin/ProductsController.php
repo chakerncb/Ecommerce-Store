@@ -134,7 +134,9 @@ public function delete(Request $request) {
             ]
         );
     } else {
+        $this -> deleteImage("assets/src/images/product/{$product->image}");
         $product -> delete();
+    
         return response() -> json(
             [
                 'status' => true,

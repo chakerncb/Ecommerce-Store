@@ -21,4 +21,12 @@ Trait ImageTrait {
         return $file_name;
        }
 
+   
+   function deleteImage($image_path) {
+      if(file_exists($image_path)) {
+         unlink($image_path);
+      }
+
+   }
+
 }
