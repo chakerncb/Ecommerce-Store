@@ -47,7 +47,13 @@ class ProductsController extends Controller
 
     public function store(Request $request) {
    
-        $filename = $this -> saveImage($request -> image , 'assets/src/images/product');
+        $filename = 'no-image.png';
+        if ($request->hasFile('image')) {
+            $images = $request->file('image');
+            foreach ($images as $image) {
+                $filename = $this->saveImage($image, 'assets/src/images/product');
+            }
+        }
 
        $product = Product::create([
             'name' => $request -> name,
@@ -134,7 +140,9 @@ public function delete(Request $request) {
             ]
         );
     } else {
+         if($product->image != 'no-image.png') {
         $this -> deleteImage("assets/src/images/product/{$product->image}");
+    }
         $product -> delete();
     
         return response() -> json(

@@ -19,9 +19,14 @@ Route::group(['prefix' => LaravelLocalization::setLocale() , 'middleware' => [ '
 
     Auth::routes();
     Route::get('/', 'App\Http\Controllers\Front\HomeController@index')-> name('index');
- //   Route::get('/home', 'App\Http\Controllers\Front\HomeController@index') ->name('home');
+
+    Route::group(['prefix' => 'product' , 'namespace' => 'App\Http\Controllers'], function() {
+
+        Route::get('/{name}' , 'Front\ProductController@index') -> name('product.details');
+
+    });
+
 
     
-
     
 });

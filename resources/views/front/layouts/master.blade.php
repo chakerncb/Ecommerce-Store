@@ -257,13 +257,13 @@
                             <!-- Single Widget -->
                             <div class="single-footer f-contact">
                                 <h3>Get In Touch With Us</h3>
-                                <p class="phone">Phone: +1 (900) 33 169 7720</p>
+                                <p class="phone">Phone: +213 (07) 00 00 0000</p>
                                 <ul>
                                     <li><span>Monday-Friday: </span> 9.00 am - 8.00 pm</li>
                                     <li><span>Saturday: </span> 10.00 am - 6.00 pm</li>
                                 </ul>
                                 <p class="mail">
-                                    <a href="mailto:support@shopgrids.com">support@shopgrids.com</a>
+                                    <a href="mailto:support@chaker.com">support@chaker.com</a>
                                 </p>
                             </div>
                             <!-- End Single Widget -->
@@ -337,8 +337,8 @@
                         </div>
                         <div class="col-lg-4 col-12">
                             <div class="copyright">
-                                <p>Designed and Developed by<a href="https://graygrids.com/" rel="nofollow"
-                                        target="_blank">GrayGrids</a></p>
+                                <p>Designed and Developed by<a href="https://www.linkedin.com/in/chaker-necibi" rel="nofollow"
+                                        target="_blank">Chaker Necibi</a></p>
                             </div>
                         </div>
                         <div class="col-lg-4 col-12">
