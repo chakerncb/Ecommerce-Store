@@ -58,7 +58,10 @@
     <div class="col-span-3 flex items-center">
       <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
         <div class="h-12.5 w-15 rounded-md">
-          <img src="{{URL::asset('assets/src/images/product/'.$product->image)}}" alt="Product" />
+          @foreach ($product->images as $image)   
+            <img src="{{URL::asset('assets/src/images/product/'.$image->path)}}" alt="Product" />
+            @break
+          @endforeach
         </div>
         <p class="text-sm font-medium text-black dark:text-white">
           {{ $product->name }}

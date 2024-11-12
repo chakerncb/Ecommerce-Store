@@ -8,14 +8,14 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="breadcrumbs-content">
-                        <h1 class="page-title">Single Product</h1>
+                        <h1 class="page-title">{{$product->name}}</h1>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-nav">
-                        <li><a href="index.html"><i class="lni lni-home"></i> Home</a></li>
-                        <li><a href="index.html">Shop</a></li>
-                        <li>Single Product</li>
+                        <li><a href="{{route('index')}}"><i class="lni lni-home"></i> Home</a></li>
+                        <li><a href="index.html">{{$category}}</a></li>
+                        <li>{{$product->name}}</li>
                     </ul>
                 </div>
             </div>
@@ -32,14 +32,14 @@
                         <div class="product-images">
                             <main id="gallery">
                                 <div class="main-img">
-                                    <img src="{{URL::asset('assets/src/images/product/'.$product->image)}}" id="current" alt="#">
-                                </div>
+                                    @foreach ($product->images as $image)   
+                                    <img src="{{URL::asset('assets/src/images/product/'.$image->path)}}" alt="Product" />
+                                    @break
+                                  @endforeach                                </div>
                                 <div class="images">
-                                    <img src="{{URL::asset('assets/src/images/product/'.$product->image)}}" class="img" alt="#">
-                                    <img src="assets/images/product-details/02.jpg" class="img" alt="#">
-                                    <img src="assets/images/product-details/03.jpg" class="img" alt="#">
-                                    <img src="assets/images/product-details/04.jpg" class="img" alt="#">
-                                    <img src="assets/images/product-details/05.jpg" class="img" alt="#">
+                                    @foreach ($product->images as $image)   
+                                    <img src="{{URL::asset('assets/src/images/product/'.$image->path)}}" alt="Product" />
+                                  @endforeach
                                 </div>
                             </main>
                         </div>

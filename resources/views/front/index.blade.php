@@ -223,8 +223,10 @@
                     <!-- Start Single Product -->
                     <div class="single-product">
                         <div class="product-image">
-                            <img src="{{URL::asset('assets/src/images/product/'.$product->image)}}" alt="#">
-                            <div class="button">
+                            @foreach ($product->images as $image)   
+                            <img src="{{URL::asset('assets/src/images/product/'.$image->path)}}" alt="Product" />
+                            @break
+                          @endforeach                            <div class="button">
                                 <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
                             </div>
                         </div>

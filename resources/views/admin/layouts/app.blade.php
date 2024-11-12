@@ -1168,7 +1168,7 @@
           </span>
 
           <span class="h-12 w-12 rounded-full">
-            <img src="{{URL::asset('assets/src/images/user/'.Auth::guard('admin')->user()->image)}}" alt="User" />
+            <img class="h-12 w-12 rounded-full" src="{{URL::asset('assets/src/images/user/'.Auth::guard('admin')->user()->image)}}" alt="User" />
           </span>
 
           <svg

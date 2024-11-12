@@ -4,96 +4,89 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\ProductImage;
 use App\Traits\ImageTrait;
+// use Faker\Provider\Image;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Image;
 use App\Http\Requests\ProductRequest;
+
 class ProductsController extends Controller
 {
 
     use ImageTrait;
-    
+
     //
-    function __construct() {
+    function __construct()
+    {
         $this->middleware('auth:admin');
     }
 
-    public function index() {
-
-        $products = Product::select(
+    public function index()
+    {
+        $products = Product::with('images')->select(
             'product_id',
             'name',
             'price',
             'description',
             'stock',
-            'category_id',
-            'image'
-    ) -> get();
+            'category_id'
+        )->get();
 
-    $categories = Category::select('category_id', 'name')->get()->keyBy('category_id');
+        $categories = Category::select('category_id', 'name')->get()->keyBy('category_id');
 
-    foreach ($products as $product) {
-        $product->category_name = $categories->get($product->category_id)->name ?? 'Unknown';
+
+        foreach ($products as $product) {
+            $product->category_name = $categories->get($product->category_id)->name ?? 'Unknown';
+        }
+
+        return view('admin.product.products-list', compact('products'));
     }
 
-    return view('admin.product.products-list', compact('products'));
+
+    public function create()
+    {
+
+        $categories = Category::select('category_id', 'name')->get();
+
+        return view('admin.product.add-product', compact('categories'));
     }
-    public function create() {
 
-        $categories = Category::select('category_id', 'name') -> get();
 
-        return view('admin.product.add-product' , compact('categories'));
-    }
+    public function store(Request $request)
+    {
+        $product = Product::create([
+            'name' => $request->name,
+            'price' => $request->price,
+            'description' => $request->description,
+            'stock' => $request->stock,
+            'category_id' => $request->category_id
+        ]);
 
-    public function store(Request $request) {
-   
-        $filename = 'no-image.png';
-        if ($request->hasFile('image')) {
-            $images = $request->file('image');
-            foreach ($images as $image) {
-                $filename = $this->saveImage($image, 'assets/src/images/product');
+        if ($request->hasFile('images')) {
+            foreach ($request->images as $imagefile) {
+                $filename = $this->saveImage($imagefile, 'assets/src/images/product/');
+                ProductImage::create([
+                    'product_id' => $product->product_id,
+                    'path' => $filename
+                ]);
             }
         }
 
-       $product = Product::create([
-            'name' => $request -> name,
-            'price' => $request -> price,
-            'description' => $request -> description,
-            'stock' => $request -> stock,
-            'category_id' => $request -> category_id,
-            'image' => $filename,
-
-           
+        return response()->json([
+            'status' => true,
+            'message' => 'Product created successfully'
         ]);
-
-        // return redirect() -> back() -> with(['success' => 'Product created successfully']);)
-
-        if(!$product) {
-            return response() -> json(
-                [
-                    'status' => false,
-                    'message' => 'Product not created'
-                ]
-            );
-        }
-         else{
-
-        return response() -> json(
-            [
-                'status' => true,
-                'message' => 'Product created successfully'
-            ]
-        );
-    }
     }
 
 
-    public function edit($product_id) {
+    public function edit($product_id){
         $product = Product::where('product_id', $product_id)->first();
-        $categories = Category::select('category_id', 'name') -> get();
+        $categories = Category::select('category_id', 'name')->get();
 
-        if(!$product) {
-            return response() -> json(
+        if (!$product) {
+            return response()->json(
                 [
                     'status' => false,
                     'message' => 'Product not found'
@@ -103,57 +96,61 @@ class ProductsController extends Controller
         return view('admin.product.edit-product', compact('product', 'categories'));
     }
 
-public function update($product_id, ProductRequest $request) {
-      $product = Product::where('product_id', $product_id)->first();
 
-      if(!$product) {
-          return redirect() ->back() -> with(['error' => 'Product not found']);
-      }
+    public function update($product_id, ProductRequest $request)
+    {
+        $product = Product::where('product_id', $product_id)->first();
 
-      $filename = $product -> image;
+        if (!$product) {
+            return redirect()->back()->with(['error' => 'Product not found']);
+        }
 
-      if($request -> hasFile('image')) {
-            $filename = $this -> saveImage($request -> image , 'assets/src/images/product');
-      }
+        $filename = $product->image;
 
-      $product -> update([
-            'name' => $request -> name,
-            'price' => $request -> price,
-            'description' => $request -> description,
-            'stock' => $request -> stock,
-            'category_id' => $request -> category_id,
+        if ($request->hasFile('image')) {
+            $filename = $this->saveImage($request->image, 'assets/src/images/product');
+        }
+
+        $product->update([
+            'name' => $request->name,
+            'price' => $request->price,
+            'description' => $request->description,
+            'stock' => $request->stock,
+            'category_id' => $request->category_id,
             'image' => $filename,
-      ]);
+        ]);
 
-      return redirect() -> back() -> with(['success' => 'Product updated successfully']);
-} 
-
-public function delete(Request $request) {
-    $product_id = $request -> product_id;
-    $product = Product::where('product_id', $product_id)->first();
-
-    if(!$product) {
-        return response() -> json(
-            [
-                'status' => false,
-                'message' => 'Product not found'
-            ]
-        );
-    } else {
-         if($product->image != 'no-image.png') {
-        $this -> deleteImage("assets/src/images/product/{$product->image}");
+        return redirect()->back()->with(['success' => 'Product updated successfully']);
     }
-        $product -> delete();
-    
-        return response() -> json(
-            [
-                'status' => true,
-                'message' => 'Product deleted successfully',
-                'product_id' => $product_id
-            ]
-        );
-    }       
-}
+
+
+    public function delete(Request $request)
+    {
+        $product_id = $request->product_id;
+        $product = Product::where('product_id', $product_id)->first();
+
+        if (!$product) {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => 'Product not found'
+                ]
+            );
+        } else {
+            if (isset($product->image) && $product->image != 'no-image.png') {
+                $this->deleteImage("assets/src/images/product/{$product->image}");
+            }
+            $product->delete();
+
+            return response()->json(
+                [
+                    'status' => true,
+                    'message' => 'Product deleted successfully',
+                    'product_id' => $product_id
+                ]
+            );
+        }
+    }
 
 
 }
