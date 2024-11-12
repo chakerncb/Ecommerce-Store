@@ -226,7 +226,8 @@
                             @foreach ($product->images as $image)   
                             <img src="{{URL::asset('assets/src/images/product/'.$image->path)}}" alt="Product" />
                             @break
-                          @endforeach                            <div class="button">
+                          @endforeach                            
+                             <div class="button">
                                 <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
                             </div>
                         </div>

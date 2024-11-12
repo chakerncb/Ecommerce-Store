@@ -33,13 +33,14 @@
                             <main id="gallery">
                                 <div class="main-img">
                                     @foreach ($product->images as $image)   
-                                    <img src="{{URL::asset('assets/src/images/product/'.$image->path)}}" alt="Product" />
+                                    <img src="{{URL::asset('assets/src/images/product/'.$image->path)}}" alt="Product" onclick="openModal('{{URL::asset('assets/src/images/product/'.$image->path)}}')" />
                                     @break
-                                  @endforeach                                </div>
+                                    @endforeach
+                                </div>
                                 <div class="images">
                                     @foreach ($product->images as $image)   
-                                    <img src="{{URL::asset('assets/src/images/product/'.$image->path)}}" alt="Product" />
-                                  @endforeach
+                                    <img id="small-img" src="{{URL::asset('assets/src/images/product/'.$image->path)}}" alt="Product" onclick="openModal('{{URL::asset('assets/src/images/product/'.$image->path)}}')" />
+                                    @endforeach
                                 </div>
                             </main>
                         </div>
@@ -165,6 +166,12 @@
     </section>
     <!-- End Item Details -->
 
+    <!-- Image Modal -->
+    <div id="myModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+
     <!-- Review Modal -->
     <div class="modal fade review-modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -222,3 +229,21 @@
     </div>
    
     @endsection
+
+@section('scripts')
+
+
+<script>
+    function openModal(src) {
+        var modal = document.getElementById("myModal");
+        var modalImg = document.getElementById("img01");
+        modal.style.display = "block";
+        modalImg.src = src;
+    }
+
+    function closeModal() {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "none";
+    }
+</script>
+@endsection
