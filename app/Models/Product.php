@@ -31,4 +31,9 @@ class Product extends Model
         return $this->hasMany(ProductImage::class, 'product_id', 'product_id');
     }
 
+    public function features()
+    {
+        return $this->hasMany(ProductFeatures::class, 'product_id', 'product_id');
+    }
+
 }
