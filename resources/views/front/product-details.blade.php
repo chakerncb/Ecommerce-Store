@@ -141,11 +141,11 @@
                             <div class="info-body">
                                 <h4>Specifications</h4>
                                 <ul class="normal-list">
-                                    <li><span>Weight:</span> 35.5oz (1006g)</li>
-                                    <li><span>Maximum Speed:</span> 35 mph (15 m/s)</li>
-                                    <li><span>Maximum Distance:</span> Up to 9,840ft (3,000m)</li>
-                                    <li><span>Operating Frequency:</span> 2.4GHz</li>
-                                    <li><span>Manufacturer:</span> GoPro, USA</li>
+                                    @foreach ($product->features as $feature)
+                                    <li><span>{{$feature->name}}:</span> {{$feature->description}}</li>
+                                    @endforeach
+                                    
+
                                 </ul>
                                 <h4>Shipping Options:</h4>
                                 <ul class="normal-list">

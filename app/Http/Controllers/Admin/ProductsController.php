@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\ProductFeatures;
 use App\Models\ProductImage;
 use App\Traits\ImageTrait;
 // use Faker\Provider\Image;
@@ -73,6 +74,23 @@ class ProductsController extends Controller
                 ]);
             }
         }
+        else {
+            ProductImage::create([
+                'product_id' => $product->product_id,
+                'path' => 'no-image.png'
+            ]);
+        }
+
+        if ($request->has('feature_names') && $request->has('feature_descrs')) {
+            foreach ($request->feature_names as $index => $name) {
+                ProductFeatures::create([
+                    'product_id' => $product->product_id,
+                    'name' => $name,
+                    'description' => $request->feature_descrs[$index]
+                ]);
+            }
+           
+        }
 
         return response()->json([
             'status' => true,
@@ -105,10 +123,14 @@ class ProductsController extends Controller
             return redirect()->back()->with(['error' => 'Product not found']);
         }
 
-        $filename = $product->image;
-
-        if ($request->hasFile('image')) {
-            $filename = $this->saveImage($request->image, 'assets/src/images/product');
+        if ($request->hasFile('images')) {
+            foreach ($request->images as $imagefile) {
+                $filename = $this->saveImage($imagefile, 'assets/src/images/product/');
+                ProductImage::create([
+                    'product_id' => $product->product_id,
+                    'path' => $filename
+                ]);
+            }
         }
 
         $product->update([
