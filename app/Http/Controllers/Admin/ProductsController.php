@@ -57,10 +57,22 @@ class ProductsController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+            'description' => 'nullable|string',
+            'stock' => 'required|integer|min:0',
+            'category_id' => 'required|integer|exists:categories,category_id',
+            'feature_names' => 'array',
+            'feature_names.*' => 'string|max:255',
+            'feature_descrs' => 'array',
+            'feature_descrs.*' => 'string|max:255',
+        ]);
+
         $product = Product::create([
             'name' => $request->name,
             'price' => $request->price,
-            'description' => $request->description,
+            'description' => $request->description ?? '',
             'stock' => $request->stock,
             'category_id' => $request->category_id
         ]);
@@ -117,29 +129,59 @@ class ProductsController extends Controller
 
     public function update($product_id, ProductRequest $request)
     {
+
         $product = Product::where('product_id', $product_id)->first();
 
         if (!$product) {
             return redirect()->back()->with(['error' => 'Product not found']);
         }
 
+        // Handle removed features
+        if ($request->has('removed_features')) {
+            $removedFeatures = array_filter(explode(',', rtrim($request->removed_features, ',')));
+            if (!empty($removedFeatures)) {
+                ProductFeatures::whereIn('feature_id', $removedFeatures)->delete();
+            }
+        }
+
         if ($request->hasFile('images')) {
             foreach ($request->images as $imagefile) {
                 $filename = $this->saveImage($imagefile, 'assets/src/images/product/');
-                ProductImage::create([
-                    'product_id' => $product->product_id,
-                    'path' => $filename
-                ]);
+                $productImage = ProductImage::where('product_id', $product->product_id)->first();
+                if ($productImage) {
+                    $productImage->update(['path' => $filename]);
+                } else {
+                    ProductImage::create([
+                        'product_id' => $product->product_id,
+                        'path' => $filename
+                    ]);
+                }
+            }
+        }
+
+        if ($request->has('feature_names') && $request->has('feature_descrs')) {
+            foreach ($request->feature_names as $index => $name) {
+                $feature = ProductFeatures::where('product_id', $product->product_id)->where('name', $name)->first();
+                if ($feature) {
+                    $feature->update([
+                        'description' => $request->feature_descrs[$index]
+                    ]);
+                } else {
+                    ProductFeatures::create([
+                        'product_id' => $product->product_id,
+                        'name' => $name,
+                        'description' => $request->feature_descrs[$index]
+                    ]);
+                }
             }
         }
 
         $product->update([
             'name' => $request->name,
             'price' => $request->price,
-            'description' => $request->description,
+            'description' => $request->description ?? '',
             'stock' => $request->stock,
-            'category_id' => $request->category_id,
-            'image' => $filename,
+            'category_id' => $request->category_id
         ]);
 
         return redirect()->back()->with(['success' => 'Product updated successfully']);

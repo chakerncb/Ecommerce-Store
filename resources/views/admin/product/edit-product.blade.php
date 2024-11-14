@@ -44,10 +44,11 @@
                         </div>
                       </div>
                     </div>
-                            @endif
+                    @endif
                   </div>
                   <form method="POST" action="{{route('admin.products.update' , $product->product_id)}}" enctype="multipart/form-data" >
                     @csrf
+                    <input type="hidden" name="removed_features" id="removed_features" value="">
                     <div class="p-6.5">
                       <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
                         <div class="w-full xl:w-1/2">
@@ -135,6 +136,76 @@
                     </div>
                   </div>
 
+                  <div class="mb-6">
+                    <label
+                      class="mb-3 block text-sm font-medium text-black dark:text-white"
+                    >
+                      Product Features
+                    </label>
+                    <table class="w-full mb-5-4">
+                      <tr class="flex flex-row gap-4 md:flex-row md:items-center">
+                        <td class="w-full md:w-1/3">
+                          <input
+                            type="text"
+                            name="feature_name"
+                            placeholder="Example: Weight"
+                            class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                          />
+                        </td>
+                        <td class="hidden md:block">:</td>
+                        <td class="w-full md:w-1/3">
+                          <input
+                            type="text"
+                            name="feature_descr"
+                            placeholder="Example: 1.5kg"
+                            class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                          />
+                        </td>
+                        <td class="w-full md:w-auto">
+                          <button type="button" id="add_feature" class="flex items-center justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90">
+                            Add
+                          </button>
+                        </td>
+                      </tr>
+                    </table>
+                      <table id="features_table">
+                        @foreach ($product->features as $feature)
+                        <tr>
+                          <td>
+                            <input
+                            type="text"
+                            name="feature_names[]"
+                            value="{{$feature->name}}"
+                            placeholder="Enter product feature"
+                            class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                          />
+                          </td>
+
+                          <td>:</td>
+                          <td>
+                            <input
+                            type="text"
+                            name="feature_descrs[]"
+                            value="{{$feature->description}}"
+                            placeholder="Enter product feature"
+                            class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                          />
+                          </td>
+                          <td>
+                            <button type="button" class="remove_feature flex items-center justify-center rounded bg-red-500 p-3 font-medium text-danger hover:bg-opacity-90" data-feature-id="{{$feature->feature_id}}">
+                              Remove
+                            </button>
+                          </td>
+                        </tr>
+
+                          
+                        @endforeach
+                      </table>
+                  </div>
+                </div>
+                  
+
+
                     <div>
                       <label
                         class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -168,4 +239,54 @@
           </div>
         </main>
 
+@endsection
+
+@section('scripts')
+<script>
+
+$(document).on('click', '#add_feature', function(e){
+    e.preventDefault();
+    var feature_name = document.getElementsByName('feature_name')[0].value;
+    var feature_descr = document.getElementsByName('feature_descr')[0].value;
+    $('#features_table').append(`
+    
+      <tr>
+        <td>
+          <input
+            type="text"
+            name="feature_names[]"
+            value="${feature_name}"
+            class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+          />
+        </td>
+        <td>:</td>
+        <td>
+          <input
+            type="text"
+            name="feature_descrs[]"
+            value="${feature_descr}"
+            class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+          />
+        </td>
+        <td>
+          <button type="button" class="remove_feature flex items-center justify-center rounded bg-red-500 p-3 font-medium text-danger hover:bg-opacity-90">
+            Remove
+          </button>
+        </td>
+      </tr>
+    `);
+
+    document.getElementsByName('feature_name')[0].value = '';
+    document.getElementsByName('feature_descr')[0].value = '';
+  });
+
+  $(document).on('click', '.remove_feature', function(e){
+    e.preventDefault();
+    var featureId = $(this).data('feature-id');
+    var removedFeatures = $('#removed_features').val();
+    removedFeatures += featureId + ',';
+    $('#removed_features').val(removedFeatures);
+    $(this).closest('tr').remove();
+  });
+</script>
 @endsection

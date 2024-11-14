@@ -37,8 +37,8 @@
                   <form id="Pform" enctype="multipart/form-data">
                     @csrf
                     <div class="p-6.5">
-                      <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
-                        <div class="w-full xl:w-1/2">
+                      <div class="mb-4.5 flex flex-col gap-6 md:flex-row">
+                        <div class="w-full md:w-1/2">
                           <label
                             class="mb-3 block text-sm font-medium text-black dark:text-white"
                           >
@@ -51,10 +51,22 @@
                             class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                           />
                         </div>
+                        <div class="w-full md:w-1/2">
+                          <label
+                            class="mb-3 block text-sm font-medium text-black dark:text-white"
+                          >
+                            Product Price
+                          </label>
+                          <input
+                            type="number"
+                            name="price"
+                            placeholder="Enter product price"
+                            class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                          />
+                        </div>
                       </div>
-
-                      <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
-                        <div class="w-full xl:w-1/2">
+                      <div class="mb-4.5 flex flex-col gap-6 md:flex-row">
+                        <div class="w-full md:w-1/2">
                           <label
                             class="mb-3 block text-sm font-medium text-black dark:text-white"
                           >
@@ -70,127 +82,103 @@
                             @endforeach
                           </select>
                         </div>
-
-                      <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
-                        <div class="w-full xl:w-1/2">
+                        <div class="w-full md:w-1/2">
                           <label
                             class="mb-3 block text-sm font-medium text-black dark:text-white"
                           >
-                            Product Price
+                            Quantity
                           </label>
                           <input
                             type="number"
-                            name="price"
-                            placeholder="Enter product price"
+                            name="stock"
+                            placeholder="Enter product quantity"
                             class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                           />
                         </div>
+                      </div>
+                      <div class="mb-6">
+                        <label
+                          class="mb-3 block text-sm font-medium text-black dark:text-white"
+                        >
+                          Product Description
+                        </label>
+                        <textarea
+                          rows="6"
+                          name="description"
+                          placeholder="Enter product description"
+                          class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                        ></textarea>
+                      </div>
 
-                        <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
-                          <div class="w-full xl:w-1/2">
-                            <label
-                              class="mb-3 block text-sm font-medium text-black dark:text-white"
-                            >
-                              Quantity
-                            </label>
-                            <input
-                              type="number"
-                              name="stock"
-                              placeholder="Enter product quantity"
-                              class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                            />
-                          </div>
-                      
-                    <div class="mb-6">
-                      <label
-                        class="mb-3 block text-sm font-medium text-black dark:text-white"
-                      >
-                        Product Description
-                      </label>
-                      <textarea
-                        rows="6"
-                        name="description"
-                        placeholder="Enter product description"
-                        class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                      ></textarea>
-                    </div>
-
-                  <div class="mb-6">
-                    <label class="mb-3 block text-sm font-medium text-black dark:text-white">
-                      Product Features
-                    </label>
-                    <table>
-                      <tr>
-                        <td>
-                          <input
-                            type="text"
-                            name="feature_name"
-                            placeholder="Example: Weight"
-                            class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                          />
-                        </td>
-                        <td>:</td>
-                        <td>
-                          <input
-                            type="text"
-                            name="feature_descr"
-                            placeholder="Example: 1.5kg"
-                            class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                          />
-                        </td>
-                        <td>
-                          <button type="button" id="add_feature" class="flex items-center justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90">
-                            Add
-                          </button>
-                        </td>
-                      </tr>
-                    </table>
-
-                    <br>
-
-                    <table id="features_table">
-                      
-                    </table>
-                  </div>
-
-                    <div>
-                      <label
-                        class="mb-3 block text-sm font-medium text-black dark:text-white"
-                      >
-                        Attach file
-                      </label>
+                      <div class="mb-6">
+                        <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                          Product Features
+                        </label>
+                        <table class="w-full mb-5-4">
+                          <tr class="flex flex-row gap-4 md:flex-row md:items-center">
+                            <td class="w-full md:w-1/3">
+                              <input
+                                type="text"
+                                name="feature_name"
+                                placeholder="Example: Weight"
+                                class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              />
+                            </td>
+                            <td class="hidden md:block">:</td>
+                            <td class="w-full md:w-1/3">
+                              <input
+                                type="text"
+                                name="feature_descr"
+                                placeholder="Example: 1.5kg"
+                                class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              />
+                            </td>
+                            <td class="w-full md:w-auto">
+                              <button type="button" id="add_feature" class="flex items-center justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90">
+                                Add
+                              </button>
+                            </td>
+                          </tr>
+                        </table>
+                        <br>
+                        <table id="features_table">
+                        </table>
+                      </div>
+                      <div>
+                        <label
+                          class="mb-3 block text-sm font-medium text-black dark:text-white"
+                        >
+                          Attach file
+                        </label>
                         <input
-                        type="file"
-                        name="images[]"
-                        multiple
-                        class="w-full cursor-pointer rounded-lg border-[1.5px] border-stroke bg-transparent font-normal outline-none transition file:mr-5 file:border-collapse file:cursor-pointer file:border-0 file:border-r file:border-solid file:border-stroke file:bg-whiter file:px-5 file:py-3 file:hover:bg-primary file:hover:bg-opacity-10 focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:file:border-form-strokedark dark:file:bg-white/30 dark:file:text-white dark:focus:border-primary"
+                          type="file"
+                          name="images[]"
+                          multiple
+                          class="w-full cursor-pointer rounded-lg border-[1.5px] border-stroke bg-transparent font-normal outline-none transition file:mr-5 file:border-collapse file:cursor-pointer file:border-0 file:border-r file:border-solid file:border-stroke file:bg-whiter file:px-5 file:py-3 file:hover:bg-primary file:hover:bg-opacity-10 focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:file:border-form-strokedark dark:file:bg-white/30 dark:file:text-white dark:focus:border-primary"
                         />
+                      </div>
+                      <br>
+                      <button
+                        {{-- type="submit" --}}
+                        class="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90"
+                        id="save_product"
+                      >
+                        Save Product
+                      </button>
                     </div>
-                    <br>
-
-                    <button
-                    {{-- type="submit" --}}
-                    class="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90"
-                    id="save_product"
-                  >
-                    Save Product
-                  </button>
                   </form>
                 </div>
               </div>
-
               <div class="flex flex-col gap-9">
-               
               </div>
             </div>
           </div>
-        </main>
 
+          
+        </main>
 @endsection
 
-
 @section('scripts')
-
 <script>
   $(document).on('click', '#save_product', function(e){
       e.preventDefault();
@@ -215,47 +203,44 @@
       });
   });
 
-
   $(document).on('click', '#add_feature', function(e){
-                      e.preventDefault();
-                      var feature_name = document.getElementsByName('feature_name')[0].value;
-                      var feature_descr = document.getElementsByName('feature_descr')[0].value;
-                      $('#features_table').append(`
-                        <tr>
-                          <td>
-                            <input
-                              type="hidden"
-                              name="feature_names[]"
-                              value="${feature_name}"
-                            />
-                            ${feature_name}
-                          </td>
-                          <td>:</td>
-                          <td>
-                            <input
-                              type="hidden"
-                              name="feature_descrs[]"
-                              value="${feature_descr}"
-                            />
-                            ${feature_descr}
-                          </td>
-                          <td>
-                            <button type="button" class="remove_feature flex items-center justify-center rounded bg-red-500 p-3 font-medium text-gray hover:bg-opacity-90">
-                              Remove
-                            </button>
-                          </td>
-                        </tr>
-                      `);
+    e.preventDefault();
+    var feature_name = document.getElementsByName('feature_name')[0].value;
+    var feature_descr = document.getElementsByName('feature_descr')[0].value;
+    $('#features_table').append(`
+      <tr>
+        <td>
+          <input
+            type="hidden"
+            name="feature_names[]"
+            value="${feature_name}"
+          />
+          ${feature_name}
+        </td>
+        <td>:</td>
+        <td>
+          <input
+            type="hidden"
+            name="feature_descrs[]"
+            value="${feature_descr}"
+          />
+          ${feature_descr}
+        </td>
+        <td>
+          <button type="button" class="remove_feature flex items-center justify-center rounded bg-red-500 p-3 font-medium text-gray hover:bg-opacity-90">
+            Remove
+          </button>
+        </td>
+      </tr>
+    `);
 
-                      document.getElementsByName('feature_name')[0].value = '';
-                      document.getElementsByName('feature_descr')[0].value = '';
-                    });
+    document.getElementsByName('feature_name')[0].value = '';
+    document.getElementsByName('feature_descr')[0].value = '';
+  });
 
-                    $(document).on('click', '.remove_feature', function(e){
-                      e.preventDefault();
-                      $(this).closest('tr').remove();
-                    });
-
+  $(document).on('click', '.remove_feature', function(e){
+    e.preventDefault();
+    $(this).closest('tr').remove();
+  });
 </script>
-
 @endsection
