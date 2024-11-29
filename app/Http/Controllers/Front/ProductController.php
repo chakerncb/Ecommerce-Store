@@ -27,4 +27,8 @@ class ProductController extends Controller
 
         return view('front.product-details' , compact('product' , 'category'));
     }
+
+    public function addToCart($name) {
+        return 'add to cart ' . $name;
+    }
 }

@@ -15,18 +15,16 @@ use App\Http\Controllers\Front\HomeController;
 |
 */
 
-Route::group(['prefix' => LaravelLocalization::setLocale() , 'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function() {
+Route::group(['prefix' => LaravelLocalization::setLocale() ,'namespace' => 'App\Http\Controllers', 'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function() {
 
     Auth::routes();
-    Route::get('/', 'App\Http\Controllers\Front\HomeController@index')-> name('index');
+    Route::get('/', 'Front\HomeController@index')-> name('index');
 
     Route::group(['prefix' => 'product' , 'namespace' => 'App\Http\Controllers'], function() {
 
         Route::get('/{name}' , 'Front\ProductController@index') -> name('product.details');
-
+        Route::post('/{id}/add-to-cart' , 'Front\ProductController@addToCart') -> name('product.add.to.cart');
     });
 
-
-    
-    
+    Route::post('cart' , 'Front\CartController@store') -> name('cart.store');
 });
