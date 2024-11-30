@@ -8,7 +8,7 @@
             @break
           @endforeach                            
              <div class="button">
-                <a wire:click="addToCart({{$product->product_id}})" class="btn"><i class="lni lni-cart"></i> Add To Cart</a>
+                <button wire:click="addToCart({{$product->product_id}})" class="btn"><i class="lni lni-cart"></i> Add To Cart</button>
             </div>
         </div>
         <div class="product-info">

@@ -13,8 +13,9 @@ class CartPreview extends Component
     {
         $cartItems = Cart::content();
         $cartTotal = Cart::total();
+        $cartCount = Cart::content()->count();
 
-        return view('livewire.cart-preview', compact('cartItems' , 'cartTotal'));
+        return view('livewire.cart-preview', compact('cartItems' , 'cartTotal' , 'cartCount'));
     }
     
 

@@ -114,14 +114,7 @@
                                         
 
                                         <div class="m-2 cart-items">
-                                            @livewire('cart-counter')
-                                            <!-- Shopping Item -->
-                                            <div class="shopping-item">
-                                                <div class="dropdown-cart-header">
-                                                    <span>2 Items</span>
-                                                    <a href="cart.html">View Cart</a>
-                                                </div>
-                                                   @livewire('cart-preview')
+                                            @livewire('cart-preview')
                                             </div>
                                             <!--/ End Shopping Item -->
                                         </div>

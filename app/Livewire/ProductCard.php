@@ -38,6 +38,9 @@ class ProductCard extends Component
             0,
         );
         $this->dispatch('cartUpdated');
+        // make an alert
+        session()->flash('message', 'Product added to cart');
+        
     }
 
 }
