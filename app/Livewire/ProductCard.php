@@ -28,12 +28,16 @@ class ProductCard extends Component
     public function addToCart($product_id)
     {
         $product = Product::find($product_id);
+        $image = $product->images->first();
         Cart::add(
-            $product->id,
+            $product->product_id,
             $product->name,
             $this->quantity[$product_id],
-            $product->price
+            $product->price,
+            ['path' => $image->path],
+            0,
         );
-        $this->emit('productAdded');
+        $this->dispatch('cartUpdated');
     }
+
 }

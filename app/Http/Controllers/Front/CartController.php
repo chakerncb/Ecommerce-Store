@@ -10,8 +10,10 @@ class CartController extends Controller
 {
     
     
-    public function store() {
+    public function index() {
     
+        $items = Cart::content();
+        return $items;
         
     }
 }

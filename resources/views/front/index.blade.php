@@ -217,11 +217,7 @@
                     </div>
                 </div>
             </div>
-                
-                    <!-- Start Single Product -->
-                      @livewire('product-card')
-                    <!-- End Single Product -->
-
+               @livewire('product-card')
         </div>
     </section>
     <!-- End Trending Product Area -->

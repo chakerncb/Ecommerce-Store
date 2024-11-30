@@ -8,10 +8,7 @@
             @break
           @endforeach                            
              <div class="button">
-                <form wire:submit.prevent="addToCart({{$product->product_id}})" method="POST">
-                    <input wire:model="quantity.{{$product->product_id}}" type="hidden">
-                    <button type="submit" class="btn"><i class="lni lni-cart"></i> Add to Cart</button>
-                </form>
+                <a wire:click="addToCart({{$product->product_id}})" class="btn"><i class="lni lni-cart"></i> Add To Cart</a>
             </div>
         </div>
         <div class="product-info">

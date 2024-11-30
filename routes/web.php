@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\Front\HomeController;
 
@@ -15,16 +16,20 @@ use App\Http\Controllers\Front\HomeController;
 |
 */
 
+
+
 Route::group(['prefix' => LaravelLocalization::setLocale() ,'namespace' => 'App\Http\Controllers', 'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function() {
+
+    Livewire::setUpdateRoute(function ($handle) {
+        return Route::post('/livewire/update', $handle);
+    });
 
     Auth::routes();
     Route::get('/', 'Front\HomeController@index')-> name('index');
 
     Route::group(['prefix' => 'product'], function() {
-
         Route::get('/{name}' , 'Front\ProductController@index') -> name('product.details');
-        Route::post('/{id}/add-to-cart' , 'Front\ProductController@addToCart') -> name('product.add.to.cart');
     });
 
-    Route::post('cart' , 'Front\CartController@store') -> name('cart.store');
+    Route::get('cart' , 'Front\CartController@index') -> name('cart.store');
 });
