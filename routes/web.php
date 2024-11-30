@@ -20,7 +20,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale() ,'namespace' => 'App\
     Auth::routes();
     Route::get('/', 'Front\HomeController@index')-> name('index');
 
-    Route::group(['prefix' => 'product' , 'namespace' => 'App\Http\Controllers'], function() {
+    Route::group(['prefix' => 'product'], function() {
 
         Route::get('/{name}' , 'Front\ProductController@index') -> name('product.details');
         Route::post('/{id}/add-to-cart' , 'Front\ProductController@addToCart') -> name('product.add.to.cart');
