@@ -8,7 +8,7 @@ use Livewire\Component;
 class CartPreview extends Component
 {
 
-    protected $listeners = ['cartUpdated' => 'render'];
+    protected $listeners = ['cartUpdated' => 'render' , 'clearItem' => 'removefromCart' ];
     public function render()
     {
         $cartItems = Cart::content();

@@ -84,35 +84,9 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group quantity">
-                                        <label for="color">Quantity</label>
-                                        <select class="form-control">
-                                            @for ($i = 1; $i <= $product->stock; $i++)
-                                                <option value="{{ $i }}">{{ $i }}</option>
-                                            @endfor
-                                        </select>
-                                    </div>
-                                </div>
                             </div>
                             <div class="bottom-content">
-                                <div class="row align-items-end">
-                                    <div class="col-lg-4 col-md-4 col-12">
-                                        <div class="button cart-button">
-                                            <button class="btn" style="width: 100%;">Add to Cart</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-12">
-                                        <div class="wish-button">
-                                            <button class="btn"><i class="lni lni-reload"></i> Compare</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-12">
-                                        <div class="wish-button">
-                                            <button class="btn"><i class="lni lni-heart"></i> To Wishlist</button>
-                                        </div>
-                                    </div>
-                                </div>
+                                @livewire('product-details-card', ['product' => $product])
                             </div>
                         </div>
                     </div>
