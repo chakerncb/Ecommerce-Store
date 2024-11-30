@@ -19,7 +19,7 @@
 
             <div class="content">
                 <h4><a href="product-details.html">{{$item->name}}</a></h4>
-                <p class="quantity">1x - <span class="amount">{{$item->price}}</span></p>
+                <p class="quantity">{{$item->qty}}x - <span class="amount">{{$item->price}}</span></p>
             </div>
         </li>
         @endforeach

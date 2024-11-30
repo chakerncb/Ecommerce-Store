@@ -41,4 +41,5 @@ class ProductDetailsCard extends Component
         // make an alert
         session()->flash('message', 'Product added to cart');
     }
+
 }
