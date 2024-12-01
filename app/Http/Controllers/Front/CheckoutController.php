@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\front;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\OrderRequest;
+use App\Models\Order;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
@@ -27,5 +29,30 @@ class CheckoutController extends Controller
     
 
         return view('front.checkout', compact('Cart','cartItems'));
+    }
+
+    public function store(OrderRequest $request){
+
+        // if(!auth()->check()){
+        //     return redirect()->route('login');
+        // }
+
+        // $order = Order::create([
+        //     'user_id' => auth()->user()->id,
+        //     'total' => Cart::total(),
+        //     'status' => 'pending',
+        //     'payment_method' => $request->payment_method,
+        //     'shipping_fullname' => $request->shipping_fullname,
+        //     'shipping_address' => $request->shipping_address,
+        //     'shipping_city' => $request->shipping_city,
+        //     'shipping_phone' => $request->shipping_phone,
+        //     'notes' => $request->notes,
+        // ]);
+
+        return response()->json([
+            'status' => true,
+            'message' => $request->all(),
+        ]);
+
     }
 }

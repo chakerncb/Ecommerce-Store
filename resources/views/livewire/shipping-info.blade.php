@@ -14,7 +14,7 @@
     <div class="col-lg-4">
         <div class="mb-4 mb-lg-0">
             <label class="form-label">Municipality</label>
-            <select name="municipality" id="municipality" wire:model="selectedMunicipality">
+            <select name="municipality" id="municipality" wire:model="selectedMunicipality" wire:change="getZipCode" >
                 <option value="">Select a municipality</option>
                 @foreach($municipalities as $municipality)
                     <option value="{{ $municipality }}">{{ $municipality }}</option>
@@ -26,7 +26,7 @@
     <div class="col-lg-4">
         <div class="mb-0">
             <label class="form-label" for="zip-code">Zip / Postal code</label>
-            <input value="{{$postalCode}}" type="text" class="form-control" id="zip-code" placeholder="Enter Postal code" wire:model="postalCode">
+            <input name="zip-code" type="text" class="form-control" id="zip-code" placeholder="Postal code" wire:model="postalCode" value="{{$postalCode}}" readonly>
         </div>
     </div>
 </div>
