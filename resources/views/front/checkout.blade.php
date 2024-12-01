@@ -41,7 +41,7 @@
                                     <div class="feed-item-list">
                                         <div>
                                             <h5 class="font-size-16 mb-1">Billing Info</h5>
-                                            <p class="text-muted text-truncate mb-4">Sed ut perspiciatis unde omnis iste</p>
+                                            <p class="text-muted text-truncate mb-4">Enter your address info</p>
                                             <div class="mb-3">
                                                 <form>
                                                     <div>
@@ -71,37 +71,7 @@
                                                             <textarea class="form-control" id="billing-address" rows="3" placeholder="Enter full address"></textarea>
                                                         </div>
         
-                                                        <div class="row">
-                                                            <div class="col-lg-4">
-                                                                <div class="mb-4 mb-lg-0">
-                                                                    <label class="form-label">Country</label>
-                                                                    <select class="form-control form-select" title="Country">
-                                                                        <option value="0">Select Country</option>
-                                                                        <option value="AF">Afghanistan</option>
-                                                                        <option value="AL">Albania</option>
-                                                                        <option value="DZ">Algeria</option>
-                                                                        <option value="AS">American Samoa</option>
-                                                                        <option value="AD">Andorra</option>
-                                                                        <option value="AO">Angola</option>
-                                                                        <option value="AI">Anguilla</option>                                   
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-        
-                                                            <div class="col-lg-4">
-                                                                <div class="mb-4 mb-lg-0">
-                                                                    <label class="form-label" for="billing-city">City</label>
-                                                                    <input type="text" class="form-control" id="billing-city" placeholder="Enter City">
-                                                                </div>
-                                                            </div>
-        
-                                                            <div class="col-lg-4">
-                                                                <div class="mb-0">
-                                                                    <label class="form-label" for="zip-code">Zip / Postal code</label>
-                                                                    <input type="text" class="form-control" id="zip-code" placeholder="Enter Postal code">
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        @livewire('shipping-info')
                                                     </div>
                                                 </form>
                                             </div>
@@ -117,7 +87,7 @@
                                     <div class="feed-item-list">
                                         <div>
                                             <h5 class="font-size-16 mb-1">Shipping Info</h5>
-                                            <p class="text-muted text-truncate mb-4">Neque porro quisquam est</p>
+                                            <p class="text-muted text-truncate mb-4">Chose your shipping address</p>
                                             <div class="mb-3">
                                                 <div class="row">
                                                     <div class="col-lg-4 col-sm-6">
@@ -172,7 +142,7 @@
                                     <div class="feed-item-list">
                                         <div>
                                             <h5 class="font-size-16 mb-1">Payment Info</h5>
-                                            <p class="text-muted text-truncate mb-4">Duis arcu tortor, suscipit eget</p>
+                                            <p class="text-muted text-truncate mb-4">Select your payment method</p>
                                         </div>
                                         <div>
                                             <h5 class="font-size-14 mb-3">Payment method :</h5>
@@ -224,7 +194,7 @@
         
                     <div class="row my-4">
                         <div class="col">
-                            <a href="ecommerce-products.html" class="btn btn-link text-muted">
+                            <a href="{{route('index')}}" class="btn btn-link text-muted">
                                 <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping </a>
                         </div> <!-- end col -->
                         <div class="col">
@@ -251,10 +221,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($cartItems as $item )
                                         <tr>
-                                            <th scope="row"><img src="https://www.bootdey.com/image/280x280/FF00FF/000000" alt="product-img" title="product-img" class="avatar-lg rounded"></th>
+                                            <th scope="row"><img src="{{URL::asset('assets/src/images/product/'.$item->options->path)}}" alt="product-img" title="product-img" class="avatar-lg rounded"></th>
                                             <td>
-                                                <h5 class="font-size-16 text-truncate"><a href="#" class="text-dark">Waterproof Mobile Phone</a></h5>
+                                                <h5 class="font-size-16 text-truncate"><a href="#" class="text-dark">{{$item->name}}</a></h5>
                                                 <p class="text-muted mb-0">
                                                     <i class="bx bxs-star text-warning"></i>
                                                     <i class="bx bxs-star text-warning"></i>
@@ -262,11 +233,13 @@
                                                     <i class="bx bxs-star text-warning"></i>
                                                     <i class="bx bxs-star-half text-warning"></i>
                                                 </p>
-                                                <p class="text-muted mb-0 mt-1">$ 260 x 2</p>
+                                                <p class="text-muted mb-0 mt-1">{{$item->price}} x {{$item->qty}}</p>
                                             </td>
-                                            <td>$ 520</td>
+                                            <td>{{$item->subtotal}}</td>
                                         </tr>
-                                        <tr>
+                                        @endforeach
+
+                                        {{-- <tr>
                                             <th scope="row"><img src="https://www.bootdey.com/image/280x280/FF00FF/000000" alt="product-img" title="product-img" class="avatar-lg rounded"></th>
                                             <td>
                                                 <h5 class="font-size-16 text-truncate"><a href="#" class="text-dark">Smartphone Dual Camera</a></h5>
@@ -279,13 +252,13 @@
                                                 <p class="text-muted mb-0 mt-1">$ 260 x 1</p>
                                             </td>
                                             <td>$ 260</td>
-                                        </tr>
+                                        </tr> --}}
                                         <tr>
                                             <td colspan="2">
                                                 <h5 class="font-size-14 m-0">Sub Total :</h5>
                                             </td>
                                             <td>
-                                                $ 780
+                                                {{$Cart->subtotal}}
                                             </td>
                                         </tr>
                                         <tr>
@@ -293,7 +266,7 @@
                                                 <h5 class="font-size-14 m-0">Discount :</h5>
                                             </td>
                                             <td>
-                                                - $ 78
+                                                {{$Cart->discount}}
                                             </td>
                                         </tr>
         
@@ -302,7 +275,7 @@
                                                 <h5 class="font-size-14 m-0">Shipping Charge :</h5>
                                             </td>
                                             <td>
-                                                $ 25
+                                                Free
                                             </td>
                                         </tr>
                                         <tr>
@@ -310,7 +283,7 @@
                                                 <h5 class="font-size-14 m-0">Estimated Tax :</h5>
                                             </td>
                                             <td>
-                                                $ 18.20
+                                                {{$Cart->tax}}
                                             </td>
                                         </tr>                              
                                             
@@ -319,7 +292,7 @@
                                                 <h5 class="font-size-14 m-0">Total:</h5>
                                             </td>
                                             <td>
-                                                $ 745.2
+                                                {{$Cart->total}}
                                             </td>
                                         </tr>
                                     </tbody>
@@ -336,21 +309,3 @@
     </section>
     <!-- End Item Details -->
     @endsection
-
-@section('scripts')
-
-
-<script>
-    function openModal(src) {
-        var modal = document.getElementById("myModal");
-        var modalImg = document.getElementById("img01");
-        modal.style.display = "block";
-        modalImg.src = src;
-    }
-
-    function closeModal() {
-        var modal = document.getElementById("myModal");
-        modal.style.display = "none";
-    }
-</script>
-@endsection

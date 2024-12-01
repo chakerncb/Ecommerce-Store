@@ -16,8 +16,10 @@ return new class extends Migration
             $table->string('inv_status'); // paid, unpaid
             $table->string('inv_total');
             $table->string('inv_discount');
-            $table->foreign('inv_order_id')->references('order_id')->on('orders');
-            $table->foreign('inv_customer_id')->references('customer_id')->on('customers');
+            $table->unsignedBigInteger('inv_order_id');
+            $table->unsignedBigInteger('inv_customer_id');
+            $table->foreign('inv_order_id')->references('ord_id')->on('orders');
+            $table->foreign('inv_customer_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
