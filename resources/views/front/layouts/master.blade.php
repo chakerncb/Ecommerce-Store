@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="{{URL::asset('assets/css/tiny-slider.css')}}" />
     <link rel="stylesheet" href="{{URL::asset('assets/css/glightbox.min.css')}}" />
     <link rel="stylesheet" href="{{URL::asset('assets/css/main.css')}}" />
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" >
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
      @livewireStyles
 
@@ -40,6 +41,8 @@
         </div>
     </div>
     <!-- /End Preloader -->
+
+
 
     <!-- Start Header Area -->
     <header class="header navbar-area">
@@ -87,7 +90,7 @@
                                     <div class="nav-hotline">
                                         <i class="lni lni-phone"></i>
                                         <h3>Hotline:
-                                            <span>(+213) 07 777 722 18</span>
+                                            <span>07 777 722 18</span>
                                         </h3>
                                     </div>
                                     <div class="navbar-cart">
@@ -111,51 +114,91 @@
                                                 </a>
                                          @endforeach
                                             </div>
-                                          </div>
+                                        </div>
                                         
 
                                         <div class="m-2 cart-items">
                                             @livewire('cart-preview')
                                             </div>
-                                            <!--/ End Shopping Item -->
                                         </div>
-                                        
-                                            <ul class="user-login flex-md-row">
-                                            @guest
+                                         @guest
+                                        {{-- <div class="user-login d-flex gap-0">
+                                            
                                             @if (Route::has('login'))
-
                                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                             @endif
-                
-                                            @if (Route::has('register'))
+                                             @if (Route::has('register'))
                                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                             @endif
-                                        </ul>
+                                            @endif 
+                                        </div> --}}
 
                                         @else
-                                        <div class="m-2 wishlist">
-
-                                                <div class="dropdown show">
+                                        <div class="m-2">
+                                                {{-- <div class="dropdown show">
                                                     <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         <i class="lni lni-user"></i>
                                                     </a>
                                                   
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                        <a class="dropdown-item"">{{ Auth::user()->name }}</a>
+                                                        <a class="accout-item">{{ Auth::user()->name }}</a>
                                                         <hr>
-                                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                                        <a class="accout-item" href="{{ route('logout') }}"
                                                         onclick="event.preventDefault();
                                                                       document.getElementById('logout-form').submit();">
                                                          {{ __('Logout') }}
-                                                     </a>
+                                                         </a>
                  
-                                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                                         @csrf
-                                                     </form>
+                                                    
                                                     </div>
-                                                  </div>
-                                        @endguest
+                                                  </div> --}}
+
+                                            <div class="account-dropdown">
+                                                <div>
+                                                    <button class="account-icon">
+                                                        <i class="lni lni-user"></i>
+                                                      </button>
+                                                </div>
+                                          <div class="account-dropdown-content">
+                                            <div class="header">
+                                              <h4>{{ Auth::user()->name }}</h4>
+                                              <p>{{ Auth::user()->email }}</p>
+                                            </div>
+                                            <div class="account-switch1">
+                                              <p><b>Switch mode :</b></p>
+                                            <div class="account-switch-mode">
+                                              <div class="account-toggle-mode">
+                                                <button class="light-btn" onclick="setLightMode()"><img src="{{URL::asset('assets/images/header/light-theme.png')}}" alt="dark"></button>
+                                                <span>light</span>
+                                              </div>
+                                              <div class="account-toggle-mode">
+                                              <button class="dark-btn" onclick="setDarkMode()"><img src="{{URL::asset('assets/images/header/dark-theme.png')}}" alt="light"></button>
+                                              <span>dark</span>
+                                            </div>
+                                            </div>
+                                            </div>
+                                            <div class="account-items">
+                                                <a class="account-item" href="#"><p><b><i class="bi bi-collection"></i>  collections</b></p></a>
+                                                <a class="account-item" href="#"><p><b><i class="bi bi-credit-card"></i>  cards</b></p></a>
+                                                <a class="account-item" href="#"><p><b><i class="bi bi-gear-wide-connected"></i>  setting</b></p></a>
+                                                <a class="account-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" ><p><b><i class="bi bi-box-arrow-right"></i> {{ __('Logout') }}</b></p></a>
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                    @csrf
+                                                </form>
+                                            </div>
+                                            <div class="account-get-app">
+                                              <p><b>Get the app:</b></p>
+                                              <div class="account-store">
+                                                <a href="#">  <i class="bi bi-google-play"></i> G-play</a>
+                                                <a href="#"><i class="bi bi-apple"></i> App-store</a>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        
                                         </div>
+                                        @endguest
+                                        </div> 
+
+                                        
                                         
 
                                     </div>
@@ -326,10 +369,10 @@
     <script src="{{URL::asset('assets/js/tiny-slider.js')}}"></script>
     <script src="{{URL::asset('assets/js/glightbox.min.js')}}"></script>
     <script src="{{URL::asset('assets/js/main.js')}}"></script>
-    <script
-    src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     @yield('scripts')
     <script type="text/javascript">
         //========= Hero Slider 
@@ -370,6 +413,7 @@
                 }
             }
         });
+        
     </script>
 </body>
 

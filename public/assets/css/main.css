@@ -19,6 +19,208 @@ body {
   font-size: 14px;
 }
 
+
+/* messagees */
+
+.alert-message {
+  width: 300px;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #D4EDDA;
+  color: #1F5F2E;
+  padding: 20px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 16px;
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  z-index: 1000;
+  cursor: pointer;
+  -webkit-transition: all .3s ease-out 0s;
+  transition: all .3s ease-out 0s;
+  border-radius: 4px;
+}
+
+/*dropdown*/
+
+.account-icon {
+  margin-right: 0px ;
+  width: 41px ;
+  height: 41px ;
+  border-radius: 50% ;
+  border: 1px solid #eee;
+  background-color: #f9f9f900 ;
+  align-items: center ;
+  text-align: center ;
+  margin-top: -4px;
+}
+
+.account-icon:hover {
+  background-color: #0167F3 ;
+  color: #ffffff;
+}
+
+.account-dropdown {
+  width: 6% ;
+  height: 65% ;
+  padding: 4px ;
+}
+
+.account-dropdown-content {
+  display: none ;
+  position: fixed ;
+  background-color: #f9f9f9 ;
+  width: 230px ;
+  height: 400px ;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2) ;
+  z-index: 1000 ;
+  right: -5.9% ;
+  transform: translateX(-50%) ;
+  transition: all 1s ease ;
+  border-radius: 10px ;
+  padding-top: 10px ;
+  padding-bottom: 10px ;
+  color: #000000 ;
+  overflow: auto ;
+
+}
+
+.account-dropdown-content::-webkit-scrollbar {
+  width: 2px ;
+}
+
+.account-dropdown-content::-webkit-scrollbar-track {
+  background: transparent ; /* color of the tracking area */
+}
+
+.account-dropdown-content::-webkit-scrollbar-thumb {
+  background: #888 ; /* color of the scroll thumb */
+  border-radius: 50px ; /* roundness of the scroll thumb */
+}
+
+.account-dropdown-content::-webkit-scrollbar-thumb:hover {
+  background: #555 ;
+  border-radius: 50px ; /* color of the scroll thumb when hovering */
+}
+
+.account-dropdown-content .header {
+  width: 100% ;
+  padding: 10px ;
+  text-align: center ;
+  
+}
+
+.account-items {
+  width: 100% ;
+  padding: 10px ;
+  border-bottom: #b5b5b5 solid ;
+  border-top: #b5b5b5 solid ;
+}
+
+.account-items .account-item{
+  color: #000000 ;
+  padding: 8px ;
+  text-decoration: none ;
+  display: block ;
+  border-radius: 10px ;
+  transition: 0.1s ease ;
+}
+
+
+.account-dropdown-content a:hover {
+  background-color: #e7e7e7 ;
+  color: #000000 ;
+}
+.account-dropdown:hover .account-dropdown-content {
+  display: block ;
+}
+
+
+.account-get-app {
+  width: 100% ;
+  padding: 10px ;
+  text-align: center ;
+}
+
+.account-get-app a {
+  color: #000000 ;
+  font-size: 1rem ;
+  font-weight: 500 ;
+  text-decoration: none ;
+  transition: 0.1s ease ;
+  margin-left: 15px ;
+  border-radius: 10px ;
+  padding: 3px ;
+}
+
+.account-get-app a:hover {
+  color: #19e8ff ;
+}
+
+.account-get-app a:hover {
+  color: #19e8ff ;
+}
+
+.account-store {
+  width: 100% ;
+  display: flex ;
+}
+
+/* mode switch */
+
+.account-switch1 {
+  width: 100% ;
+  border-top: #b5b5b5 solid ;
+  padding: 15px ;
+}
+
+.account-switch-mode {
+  width: 100% ;
+  display: flex ;
+  padding-left: 15px ;
+  gap: 20% ;
+  text-align: center ;
+}
+
+.account-toggle-mode  {
+  margin-top: 10px ;
+  width: 30% ;
+  text-align: center ;
+  border: none ;
+}
+
+
+.account-toggle-mode img {
+  width: 60px ;
+  height: 50px ;
+  border-radius: 10px ;
+  border: 1px solid lightslategray ;
+  display: block ;
+  margin: 0 auto ;
+  margin-bottom: 20px ;
+}
+
+.dark-btn {
+  border: none ;
+  background-color: #F9F9F9 ;
+  height: 50% ;
+}
+
+.light-btn {
+  border: none ;
+  background-color: #F9F9F9 ;
+  height: 50% ;
+}
+
+
+
 /* /////////////////////// checkout ////////////////////////////// */
 
 .card {
@@ -2041,6 +2243,7 @@ top: -1px;
 .header .topbar .top-end .user-login {
   display: inline-block;
   white-space: nowrap;
+  
 }
 
 .header .topbar .top-end .user-login li {
@@ -2185,13 +2388,9 @@ top: -1px;
   height: 40px;
   width: 40px;
   line-height: 40px;
-  display: inline-block;
-  border-radius: 50%;
-  border: 1px solid #eee;
   color: #555;
   font-size: 18px;
   text-align: center;
-  position: relative;
 }
 
 .header .navbar-cart .wishlist a:hover {
@@ -3890,6 +4089,8 @@ top: 2px;
   display: inline-block;
 }
 
+
+
 /* End Single Product */
 .trending-product {
   background-color: #f9f9f9;
@@ -5377,3 +5578,6 @@ top: 2px;
     display: none;
   }
 }
+
+
+

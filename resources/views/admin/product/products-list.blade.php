@@ -26,8 +26,11 @@
               <div
   class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark"
 >
-  <div class="px-4 py-6 md:px-6 xl:px-7.5">
-    <h4 class="text-xl font-bold text-black dark:text-white">Top Products</h4>
+  <div class="px-4 py-6 md:px-6 xl:px-7.5 flex justify-between items-center">
+    <h4 class="text-xl font-bold text-black dark:text-white">All Products</h4>
+    <a href="{{route('admin.products.create')}}" class="flex items-center justify-center rounded bg-primary p-2 font-medium text-gray hover:bg-opacity-90">
+      new product
+    </a>
   </div>
 
   <div

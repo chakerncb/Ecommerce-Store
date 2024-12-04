@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 
+use Auth;
 use Livewire\Component;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
@@ -33,6 +34,13 @@ class CartPage extends Component
         Cart::destroy();
         $this->dispatch('cartUpdated');
     }
+
+    // public function goToCheckout(){
+    //     if(Auth::user()->check()){
+    //         return redirect()->route('checkout');
+    //     }
+    // }
+
 
     public function increment($rowId)
     {

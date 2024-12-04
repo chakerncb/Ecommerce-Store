@@ -56,7 +56,7 @@
                                                             <div class="col-lg-4">
                                                                 <div class="mb-3">
                                                                     <label class="form-label" for="billing-email-address">Email Address</label>
-                                                                    <input name="name" type="email" class="form-control" id="billing-email-address" placeholder="Enter email">
+                                                                    <input name="email" type="email" class="form-control" id="billing-email-address" placeholder="Enter email">
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-4">
@@ -69,7 +69,7 @@
         
                                                         <div class="mb-3">
                                                             <label class="form-label" for="billing-address">Address</label>
-                                                            <textarea name="Address" class="form-control" id="billing-address" rows="3" placeholder="Enter full address"></textarea>
+                                                            <textarea name="address" class="form-control" id="billing-address" rows="3" placeholder="Enter full address"></textarea>
                                                         </div>
         
                                                         @livewire('shipping-info')
@@ -149,7 +149,7 @@
                                                 <div class="col-lg-3 col-sm-6">
                                                     <div data-bs-toggle="collapse">
                                                         <label class="card-radio-label">
-                                                            <input type="radio" name="pay-method" value="card" class="card-radio-input">
+                                                            <input type="radio" name="pay_method" value="card" class="card-radio-input">
                                                             <span class="card-radio py-3 text-center text-truncate">
                                                                 <i class="bx bx-credit-card d-block h2 mb-3"></i>
                                                                 Credit / Debit Card
@@ -161,7 +161,7 @@
                                                 <div class="col-lg-3 col-sm-6">
                                                     <div>
                                                         <label class="card-radio-label">
-                                                            <input type="radio" name="pay-method" value="paypal" class="card-radio-input">
+                                                            <input type="radio" name="pay_method" value="paypal" class="card-radio-input">
                                                             <span class="card-radio py-3 text-center text-truncate">
                                                                 <i class="bx bxl-paypal d-block h2 mb-3"></i>
                                                                 Paypal
@@ -173,7 +173,7 @@
                                                 <div class="col-lg-3 col-sm-6">
                                                     <div>
                                                         <label class="card-radio-label">
-                                                            <input type="radio" name="pay-method" value="cash" class="card-radio-input" checked="">
+                                                            <input type="radio" name="pay_method" value="cash" class="card-radio-input" checked="">
         
                                                             <span class="card-radio py-3 text-center text-truncate">
                                                                 <i class="bx bx-money d-block h2 mb-3"></i>
@@ -326,14 +326,19 @@
           contentType: false,
           cache: false,
           success: function (response) {
+                 window.location.href = response.url;
               if(response.status == true){
                   $('#checkout_form').trigger('reset');
                   alert(response.message);
-              }else{
+                  location.window.href = "/invoice";
+              }
+              else{
                   alert(response.message);
               }
           },
       });
+
+      
   });
 </script>
 @endsection

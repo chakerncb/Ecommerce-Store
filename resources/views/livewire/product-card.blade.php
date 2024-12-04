@@ -1,4 +1,12 @@
 <div class="row">
+  {{--  @if (session()->has('message'))
+     <div class="alert-message gap-3" role="alert">
+        {{session('message')}}
+        <span wire:click="deleteMsg()"><b>&#10005;</b></span>
+      </div>
+    @endif --}}
+
+          
     @foreach ($products as $product)
     <div class="col-lg-3 col-md-6 col-12">
     <div class="single-product">

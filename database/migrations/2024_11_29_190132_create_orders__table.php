@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('ord_id');
             $table->foreignId('cart_id')->constrained('carts', 'cart_id');
             $table->foreignId('costumer_id')->constrained('users', 'id');
-            $table->decimal('total', 8, 2);
+            $table->decimal('total', 10, 2);
             $table->string('status'); // pending, processing, completed, cancelled
             $table->string('payment_method'); // cash, credit card, debit card, paypal
             $table->string('payment_status'); // pending, paid, failed

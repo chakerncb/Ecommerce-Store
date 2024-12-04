@@ -167,7 +167,7 @@
                     <h4
                       class="text-title-md font-bold text-black dark:text-white"
                     >
-                      2.450
+                      {{$productsCount}}
                     </h4>
                     <span class="text-sm font-medium">Total Product</span>
                   </div>
@@ -229,7 +229,7 @@
                     <h4
                       class="text-title-md font-bold text-black dark:text-white"
                     >
-                      3.456
+                      {{$usersCount}}
                     </h4>
                     <span class="text-sm font-medium">Total Users</span>
                   </div>

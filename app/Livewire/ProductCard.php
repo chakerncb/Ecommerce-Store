@@ -2,9 +2,12 @@
 
 namespace App\Livewire;
 
+use App\Mail\PaidInvoice;
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Livewire\Component;
+use Mail;
+use Symfony\Component\Mailer\DelayedEnvelope;
 
 class ProductCard extends Component
 {
@@ -38,9 +41,18 @@ class ProductCard extends Component
             0,
         );
         $this->dispatch('cartUpdated');
-        // make an alert
         session()->flash('message', 'Product added to cart');
-        
+        // $this->deleteMsg();
+
+    }  
+    
+    public function deleteMsg() {
+        sleep(2);
+        session()->forget('message');
     }
+
+    
+
+
 
 }
