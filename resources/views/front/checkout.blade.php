@@ -2,6 +2,16 @@
 
 @section('content')
 
+@if (session('success'))
+<div class="success alert-message">
+    {{ session('success') }}
+</div>
+ @elseif(session('error'))
+    <div class="danger alert-message">
+        {{ session('error') }}
+    </div>
+@endif
+
 <!-- Start Breadcrumbs -->
     <div class="breadcrumbs">
         <div class="container">
@@ -327,15 +337,18 @@
           cache: false,
           success: function (response) {
                  window.location.href = response.url;
+                 setTimeout();
               if(response.status == true){
                   $('#checkout_form').trigger('reset');
                   alert(response.message);
-                  location.window.href = "/invoice";
               }
               else{
                   alert(response.message);
               }
           },
+            error: function (error) {
+                setTimeout();
+            }
       });
 
       

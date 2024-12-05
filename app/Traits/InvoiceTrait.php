@@ -75,7 +75,7 @@ Trait InvoiceTrait {
           // generate a serial number
 
 
-          $serialCode = intval($this->RandomSerial($order->ord_id));
+          $serialCode = $this->RandomSerial($order->ord_id);
           
 
 
@@ -88,9 +88,18 @@ Trait InvoiceTrait {
               $invoice->addItem($invoiceItem);
           }
 
+          // search for the order_id in the invoices table
+
+          $invoice_exist = \App\Models\Invoice::where('inv_order_id', $order->ord_id)->first();
+
+            if($invoice_exist){
+                return false;
+            }
+
             $invoice->serialNumberFormat($serialCode)
-                    ->filename('invoice_'.$serialCode)
-                    ->save('invoices');
+                       ->filename('invoice_'.$serialCode)
+                       ->save('invoices');
+                   
 
           
           return $invoice;

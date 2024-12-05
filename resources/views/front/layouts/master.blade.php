@@ -42,6 +42,27 @@
     </div>
     <!-- /End Preloader -->
 
+    @if (session('success'))
+        <div class="success alert-message">
+            {{ session('success') }}
+        </div>
+    @elseif(session('error'))
+        <div class="danger alert-message">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                var alertMessages = document.querySelectorAll('.alert-message');
+                alertMessages.forEach(function(alert) {
+                    alert.style.display = 'none';
+                });
+            }, 3000);
+        });
+    </script>
+
 
 
     <!-- Start Header Area -->

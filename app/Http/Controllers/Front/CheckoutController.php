@@ -29,7 +29,7 @@ class CheckoutController extends Controller
 
 
         if ($cartItems->count() == 0) {
-            return redirect()->back()->with('error', 'Your cart is empty');
+            return redirect()->route('cart.store')->with('error', 'Your cart is empty');
         }
     
 
@@ -107,16 +107,25 @@ class CheckoutController extends Controller
 
         $order = Order::find($ord_id);
         if(!$order){
-            return redirect()->back()->with('error', 'Order not found');
+            return redirect()->route('checkout.index')->with('error', 'Order not found');
         }
 
        $invoice = $this->newInvoice($order);
+
+       if($invoice == false){
+           return redirect()->route('checkout.index')->with('error', 'Invoice not generated');
+       }
+
        $invoiceTable = \App\Models\Invoice::create([
            'inv_order_id' => $order->ord_id,
            'inv_costumer_id' => $order->costumer_id,
             'inv_path' => 'invoice_'.$invoice->getSerialNumber().'.pdf',
          ]);
 
-        return redirect()->back(); 
+        $invoice->save('invoices');
+
+        Cart::destroy();
+                  
+        return redirect()->route('index')->with('success', 'Order has been created successfully');
     }
 }

@@ -23,13 +23,11 @@ body {
 /* messagees */
 
 .alert-message {
-  width: 300px;
+  min-width: 300px;
   height: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: #D4EDDA;
-  color: #1F5F2E;
   padding: 20px;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
@@ -46,6 +44,16 @@ body {
   -webkit-transition: all .3s ease-out 0s;
   transition: all .3s ease-out 0s;
   border-radius: 4px;
+}
+
+.success {
+  background-color: #D4EDDA;
+  color: #1F5F2E;
+}
+
+.danger {
+  background-color: #F8D7DA;
+  color: #842029;
 }
 
 /*dropdown*/
