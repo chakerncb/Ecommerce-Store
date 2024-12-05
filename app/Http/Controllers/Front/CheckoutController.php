@@ -6,16 +6,15 @@ use App;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
 use App\Models\Order;
+use App\Traits\InvoiceTrait;
 use Auth;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
-use LaravelDaily\Invoices\Classes\Buyer;
-use LaravelDaily\Invoices\Classes\InvoiceItem;
-use LaravelDaily\Invoices\Facades\Invoice;
+
 
 class CheckoutController extends Controller
 {
+    use InvoiceTrait;
     //
     public function index()
     {
@@ -104,67 +103,20 @@ class CheckoutController extends Controller
    }
 
 
-    public function invoice($ord_id)
-    {
+    public function invoice($ord_id){
 
         $order = Order::find($ord_id);
         if(!$order){
             return redirect()->back()->with('error', 'Order not found');
         }
 
-        $costumer = $order->costumer_id == 0 ? 'Guest' : $order->costumer->name;
-        $shipping = new \stdClass();
-        $shipping->fullname = $order->shipping_fullname;
-        $shipping->address = $order->shipping_address;
-        $shipping->city = $order->shipping_city;
-        $shipping->municipality = $order->shipping_municipality;
-        $shipping->phone = $order->shipping_phone;
-        $shipping->email = $order->shipping_email;
+       $invoice = $this->newInvoice($order);
+       $invoiceTable = \App\Models\Invoice::create([
+           'inv_order_id' => $order->ord_id,
+           'inv_costumer_id' => $order->costumer_id,
+            'inv_path' => 'invoice_'.$invoice->getSerialNumber().'.pdf',
+         ]);
 
-
-        $cartItems = Cart::content();
-        $Cart = new \stdClass();
-        $Cart->total = Cart::total();
-        $Cart->count = Cart::count();
-        $Cart->subtotal = Cart::subtotal();
-        $Cart->tax = Cart::tax();
-        $Cart->discount = 0;
-
-          $data = [
-            'order' => $order,
-            'costumer' => $costumer,
-            'shipping' => $shipping,
-            'cartItems' => $cartItems,
-            'Cart' => $Cart,
-            ];
-         
-
-            $customer = new Buyer([
-                'name'          => $costumer,
-                'custom_fields' => [
-                    'email' => $shipping->email,
-                    'phone' => $shipping->phone,
-                    'address' => $shipping->address,
-                    'city' => $shipping->city,
-                    'municipality' => $shipping->municipality,
-                ],
-            ]);
-
-            $invoice = Invoice::make()
-                ->buyer($customer)
-                ->discountByPercent($Cart->discount)
-                ->taxRate($Cart->tax)
-                ->shipping(0);
-
-            foreach ($cartItems as $item) {
-                $invoiceItem = (new InvoiceItem())
-                    ->title($item->name)
-                    ->pricePerUnit($item->price)
-                    ->quantity($item->qty);
-
-                $invoice->addItem($invoiceItem);
-            }
-            
-            return $invoice->download();
+        return redirect()->back(); 
     }
 }

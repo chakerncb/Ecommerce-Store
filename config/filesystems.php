@@ -36,10 +36,10 @@ return [
             'throw' => false,
         ],
 
-        'public' => [
+        'invoices' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'root' => storage_path('app/invoices'),
+            'url' => env('APP_URL').'/invoices',
             'visibility' => 'public',
             'throw' => false,
         ],
