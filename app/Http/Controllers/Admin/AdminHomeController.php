@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,10 +14,10 @@ class AdminHomeController extends Controller
     
     public function index()
     {
-        $productsCount = Product::count();
+        $OrdersCount = Order::count();
         $usersCount = User::count();
 
-        return view('admin.dashboard' , compact('productsCount','usersCount'));
+        return view('admin.dashboard' , compact('OrdersCount','usersCount'));
     }
 
 

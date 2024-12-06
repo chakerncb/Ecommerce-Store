@@ -3,6 +3,11 @@
 >
   <div class="px-4 py-6 md:px-6 xl:px-7.5 flex justify-between items-center">
     <h4 class="text-xl font-bold text-black dark:text-white">All Orders</h4>
+    <div>
+        <a href="">&leftarrow;</a>
+        <span class="text-black dark:text-white">1</span>
+        <a href="">&rightarrow;</a>
+    </div>
     <a href="#" class="flex items-center justify-center rounded bg-primary p-2 font-medium text-gray hover:bg-opacity-90">
       new order
     </a>

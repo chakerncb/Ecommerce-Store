@@ -6,6 +6,7 @@ use App;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
 use App\Models\Order;
+use App\Models\Product;
 use App\Traits\InvoiceTrait;
 use Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -68,6 +69,8 @@ class CheckoutController extends Controller
             'shipping_status' => 'pending',
         ]);
 
+        $this->decreaseStock();
+
         return response()->json([
             'message' => 'Order has been placed successfully',
             'url' => '/invoice/'.$order->ord_id,	
@@ -98,8 +101,7 @@ class CheckoutController extends Controller
                 ]);
             }
 
-
-            
+            $this->decreaseStock();
 
             return response()->json([
                 'message' => 'Order has been placed successfully',
@@ -108,6 +110,16 @@ class CheckoutController extends Controller
         }
    }
 
+    private function decreaseStock() {
+        $cartItems = Cart::content();
+        foreach ($cartItems as $item) {
+            $product = Product::find($item->id);
+            if ($product) {
+                $product->stock -= $item->qty;
+                $product->save();
+            }
+        }
+    }
 
     public function invoice($ord_id){
 

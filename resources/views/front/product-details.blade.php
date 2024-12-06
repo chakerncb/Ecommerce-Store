@@ -55,8 +55,8 @@
                             <div class="row">
                                 <div class="col-lg-4 col-md-4 col-12">
                                     <div class="form-group color-option">
-                                        <label class="title-label" for="size">Choose color</label>
-                                        <div class="single-checkbox checkbox-style-1">
+                                        <label class="title-label" for="size">in Stock :</label>
+                                        {{-- <div class="single-checkbox checkbox-style-1">
                                             <input type="checkbox" id="checkbox-1" checked>
                                             <label for="checkbox-1"><span></span></label>
                                         </div>
@@ -71,7 +71,8 @@
                                         <div class="single-checkbox checkbox-style-4">
                                             <input type="checkbox" id="checkbox-4">
                                             <label for="checkbox-4"><span></span></label>
-                                        </div>
+                                        </div> --}}
+                                        <p style="font-size: 24px;">{{$product->stock}}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-12">

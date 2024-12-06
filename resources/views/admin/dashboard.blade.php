@@ -167,9 +167,9 @@
                     <h4
                       class="text-title-md font-bold text-black dark:text-white"
                     >
-                      {{$productsCount}}
+                      {{$OrdersCount}}
                     </h4>
-                    <span class="text-sm font-medium">Total Product</span>
+                    <span class="text-sm font-medium">Total Orders</span>
                   </div>
 
                   <span
@@ -498,7 +498,7 @@
     Top Channels
   </h4>
 
-  <div class="flex flex-col">
+  {{-- <div class="flex flex-col">
     <div
       class="grid grid-cols-3 rounded-sm bg-gray-2 dark:bg-meta-4 sm:grid-cols-5"
     >
@@ -661,7 +661,7 @@
         <p class="font-medium text-meta-5">1.9%</p>
       </div>
     </div>
-  </div>
+  </div> --}}
 </div>
 
               </div>
@@ -677,7 +677,7 @@
                   Chats
                 </h4>
 
-                <div>
+                {{-- <div>
                   <a
                     href="messages.html"
                     class="flex items-center gap-5 px-7.5 py-3 hover:bg-gray-3 dark:hover:bg-meta-4"
@@ -832,7 +832,7 @@
                       </div>
                     </div>
                   </a>
-                </div>
+                </div> --}}
               </div>
               <!-- ====== Chat Card End -->
             </div>
