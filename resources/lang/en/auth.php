@@ -8,6 +8,7 @@ return [
     'logout' => 'Logout',
     'email' => 'E-Mail Address',
     'mobile' => 'Mobile',
+    'address' => 'Address',
     'password' => 'Password',
     'remember_me' => 'Remember Me',
     'forgot_your_password?' => 'Forgot Your Password?',

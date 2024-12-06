@@ -10,6 +10,7 @@ return [
     'logout' => 'تسجيل الخروج',
     'email' => 'البريد الإلكتروني',
     'mobile' => 'رقم الهاتف',
+    'address' => 'العنوان',
     'password' => 'كلمة المرور',
     'remember_me' => 'تذكرني',
     'forgot_your_password?' => 'نسيت كلمة المرور؟',

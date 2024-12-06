@@ -33,6 +33,13 @@ Route::group(['prefix' => LaravelLocalization::setLocale() , 'middleware' => [ '
         /////////////////////////// Profile Routes ///////////////////////////
         Route::get('profile' , 'Admin\AdminProfileController@index') -> name('admin.profile.settings');
         Route::post('profile/update' , 'Admin\AdminProfileController@update') -> name('admin.profile.update');
+
+        ///////////////////////// Orders Routes //////////////////////////////
+        Route::get('orders' , 'Admin\OrdersController@index') -> name('admin.orders.index');
+        Route::get('order/show/{id}' , 'Admin\OrdersController@show') -> name('admin.orders.show');
+        Route::post('order/delete' , 'Admin\OrdersController@delete') -> name('admin.orders.delete');
+        Route::post('order/update' , 'Admin\OrdersController@update') -> name('admin.orders.update');
+        
     });
     
 });

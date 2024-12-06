@@ -31,6 +31,11 @@ class CheckoutController extends Controller
         if ($cartItems->count() == 0) {
             return redirect()->route('cart.store')->with('error', 'Your cart is empty');
         }
+
+        if (auth()->check()) {
+            $user = auth()->user();
+            return view('front.checkout', compact('Cart', 'cartItems', 'user'));
+        }
     
 
         return view('front.checkout', compact('Cart','cartItems'));
@@ -65,6 +70,7 @@ class CheckoutController extends Controller
 
         return response()->json([
             'message' => 'Order has been placed successfully',
+            'url' => '/invoice/'.$order->ord_id,	
         ]);
 
         }

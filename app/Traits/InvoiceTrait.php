@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Models\Store;
+use App\Models\User;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use LaravelDaily\Invoices\Classes\Buyer;
 use LaravelDaily\Invoices\Classes\InvoiceItem;
@@ -13,7 +14,7 @@ Trait InvoiceTrait {
 
    function newInvoice($order){
 
-      $costumer = $order->costumer_id == 0 ? 'Guest' : $order->costumer->name;
+      $costumer = $order->shipping_fullname;
       $shipping = new \stdClass();
       $shipping->fullname = $order->shipping_fullname;
       $shipping->address = $order->shipping_address;

@@ -165,10 +165,10 @@
                     <g id="icon" fill="#8A909C" transform="translate(64.000000, 34.346667)">
                         <path d="M192,7.10542736e-15 L384,110.851252 L384,332.553755 L192,443.405007 L1.42108547e-14,332.553755 L1.42108547e-14,110.851252 L192,7.10542736e-15 Z M127.999,206.918 L128,357.189 L170.666667,381.824 L170.666667,231.552 L127.999,206.918 Z M42.6666667,157.653333 L42.6666667,307.920144 L85.333,332.555 L85.333,182.286 L42.6666667,157.653333 Z M275.991,97.759 L150.413,170.595 L192,194.605531 L317.866667,121.936377 L275.991,97.759 Z M192,49.267223 L66.1333333,121.936377 L107.795,145.989 L233.374,73.154 L192,49.267223 Z" id="Combined-Shape">
             
-            </path>
+                 </path>
                     </g>
                 </g>
-            </svg>
+              </svg>
   
                 Products
   
@@ -205,7 +205,7 @@
                     >
                   </li>
                   <li>
-                    <a
+                    <a    
                       class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
                       href="{{route('admin.products.create')}}"
                       :class="page === 'formLayout' && '!text-white'"
@@ -215,9 +215,75 @@
                 </ul>
               </div>
           
-          </li>
+        </li>
 
-            <li>
+        <li>
+          <a
+            class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
+            href="#"
+            @click.prevent="selected = (selected === 'Orders' ? '':'Orders')"
+            :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Orders') || (page === 'Orders List' || page === 'Add New') }"
+          >
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="27px" viewBox="0 0 512 512" version="1.1">
+            <title>product</title>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="icon" fill="#8A909C" transform="translate(64.000000, 34.346667)">
+                    <path d="M192,7.10542736e-15 L384,110.851252 L384,332.553755 L192,443.405007 L1.42108547e-14,332.553755 L1.42108547e-14,110.851252 L192,7.10542736e-15 Z M127.999,206.918 L128,357.189 L170.666667,381.824 L170.666667,231.552 L127.999,206.918 Z M42.6666667,157.653333 L42.6666667,307.920144 L85.333,332.555 L85.333,182.286 L42.6666667,157.653333 Z M275.991,97.759 L150.413,170.595 L192,194.605531 L317.866667,121.936377 L275.991,97.759 Z M192,49.267223 L66.1333333,121.936377 L107.795,145.989 L233.374,73.154 L192,49.267223 Z" id="Combined-Shape">
+        
+             </path>
+                </g>
+            </g>
+          </svg>
+
+            Orders
+
+            <svg
+              class="absolute right-4 top-1/2 -translate-y-1/2 fill-current"
+              :class="{ 'rotate-180': (selected === 'Forms') }"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M4.41107 6.9107C4.73651 6.58527 5.26414 6.58527 5.58958 6.9107L10.0003 11.3214L14.4111 6.91071C14.7365 6.58527 15.2641 6.58527 15.5896 6.91071C15.915 7.23614 15.915 7.76378 15.5896 8.08922L10.5896 13.0892C10.2641 13.4147 9.73651 13.4147 9.41107 13.0892L4.41107 8.08922C4.08563 7.76378 4.08563 7.23614 4.41107 6.9107Z"
+                fill=""
+              />
+            </svg>
+          </a>
+
+          <!-- Dropdown Menu Start -->
+          <div
+            class="translate transform overflow-hidden"
+            :class="(selected === 'Orders') ? 'block' :'hidden'"
+          >
+            <ul class="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
+              <li>
+                <a
+                  class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
+                  href="{{route('admin.orders.index')}}"
+                  :class="page === 'formElements' && '!text-white'"
+                  >Orders List</a
+                >
+              </li>
+              <li>
+                <a    
+                  class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
+                  href="#"
+                  :class="page === 'formLayout' && '!text-white'"
+                  >Add New</a
+                >
+              </li>
+            </ul>
+          </div>
+      
+    </li>
+
+
+          <li>
             <a
               class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
               href="#"
@@ -287,6 +353,11 @@
             <!-- Dropdown Menu End -->
             </li>
           <!-- Menu Item Calendar -->
+
+          {{-- menu item orders --}}
+
+
+
 
           <!-- Menu Item Profile -->
           <li>
@@ -1052,7 +1123,7 @@
             </div>
 
             <ul class="flex h-auto flex-col overflow-y-auto">
-              <li>
+              {{-- <li>
                 <a
                   class="flex gap-4.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
                   href="messages.html"
@@ -1141,7 +1212,7 @@
                     <p class="text-xs">2min ago</p>
                   </div>
                 </a>
-              </li>
+              </li> --}}
             </ul>
           </div>
           <!-- Dropdown End -->
@@ -1315,6 +1386,6 @@
   integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
   crossorigin="anonymous"></script>
 @yield('scripts')
-<script defer src="{{URL::asset('assets/src/bundle.js')}}"></script>
+{{-- <script defer src="{{URL::asset('assets/src/bundle.js')}}"></script> --}}
 </body>
 </html>

@@ -8,6 +8,7 @@ return [
     'logout' => 'Déconnexion',
     'email' => 'Adresse E-mail',
     'mobile' => 'Mobile',
+    'address' => 'Adresse',
     'password' => 'Mot de passe',
     'remember_me' => 'Se souvenir de moi',
     'forgot_your_password?' => 'Mot de passe oublié ?',
