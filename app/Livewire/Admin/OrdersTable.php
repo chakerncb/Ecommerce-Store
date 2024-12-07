@@ -15,6 +15,8 @@ class OrdersTable extends Component
     public $subsetOrders;
 
     public $page = 1;
+
+    public $status = 'all';
     
 
     public function loadMore()
@@ -35,9 +37,16 @@ class OrdersTable extends Component
         }
     }
 
+    public function filterByStatus()
+    {
+        $this->start = 0;   
+        $this->page = 1;  
+        $this->dispatch('orderStatusUpdated');           
+     }
+
     public function render()
     {
-        $orders = Order::select([
+        $query = Order::select([
             'ord_id',
             'costumer_id',
             'total',
@@ -53,9 +62,14 @@ class OrdersTable extends Component
             'shipping_method',
             'shipping_status',
             'created_at'
-        ])->skip($this->start)->take($this->limits)->get();
+        ])->skip($this->start)
+          ->take($this->limits);
 
-        $this->subsetOrders = $orders;
+        if ($this->status !== 'all') {
+            $query->where('status', $this->status);
+        }
+
+        $this->subsetOrders = $query->get();
 
         return view('livewire.admin.orders-table', ['subsetOrders' => $this->subsetOrders]);
     }
