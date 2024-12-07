@@ -1,5 +1,15 @@
 <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
 
+  @if (session('success'))
+<div class="success alert-message">
+    {{ session('success') }}
+</div>
+ @elseif(session('error'))
+    <div class="danger alert-message">
+        {{ session('error') }}
+    </div>
+@endif
+
   <div class="px-4 py-6 md:px-6 xl:px-7.5 flex justify-between items-center">
     {{-- <h4 class="text-xl font-bold text-black dark:text-white">All Orders</h4> --}}
     <select wire:model="status" wire:change="filterByStatus" name="selectStatus" id="filter">
@@ -36,7 +46,7 @@
     <div class="col-span-1 flex items-center">
       <p class="font-medium">payment method</p>
     </div>
-    <div class="col-span-1 flex items-center">
+    <div class="col-span-2 flex items-center">
       <p class="font-medium">Date</p>
     </div>
     <div class="col-span-1 flex items-center">
@@ -64,11 +74,17 @@
     <div class="col-span-1 flex items-center">
       <p class="text-sm font-medium text-black dark:text-white">{{ $order->payment_method}}</p>
     </div>
-    <div class="col-span-1 flex items-center">
+    <div class="col-span-2 flex items-center">
       <p class="text-sm font-medium text-black dark:text-white">{{ $order->created_at}}</p>
     </div>
     <div class="col-span-1 flex items-center">
       <div class="flex gap-2">
+        <a wire:click="streamPdf('{{ $order->ord_id }}')" class="text-primary hover:text-primary-dark">
+          <i class="bi bi-eye"></i>
+        </a>
+        <a href="" class="text-primary hover:text-primary-dark">
+          <i class="bi bi-printer"></i>
+        </a>
         <a href="" class="text-primary hover:text-primary-dark">
           <i class="bi bi-pencil-square"></i>
         </a>

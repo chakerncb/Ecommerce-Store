@@ -29,3 +29,16 @@
 </main>
 
 @endsection
+
+@section('scripts')
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+         setTimeout(function() {
+             var alertMessages = document.querySelectorAll('.alert-message');
+             alertMessages.forEach(function(alert) {
+                 alert.style.display = 'none';
+             });
+         }, 3000);
+     });
+</script>
+@endsection

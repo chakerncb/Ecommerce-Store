@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin;
 
+use App\Models\Invoice;
 use Livewire\Component;
 use App\Models\Order;
 
@@ -44,6 +45,23 @@ class OrdersTable extends Component
         $this->dispatch('orderStatusUpdated');           
      }
 
+    public function streamPdf($order_id)
+    {
+
+            $invoice = Invoice::select(
+                'inv_path',
+                        'inv_order_id',
+                )->where('inv_order_id', $order_id)->first();
+
+            if ($invoice) {
+                return \Illuminate\Support\Facades\Storage::disk('invoices')->download('/' . $invoice->inv_path);                
+            } else {
+                session()->flash('error', 'Invoice not found');
+            }
+            
+            
+    }
+
     public function render()
     {
         $query = Order::select([
@@ -73,4 +91,11 @@ class OrdersTable extends Component
 
         return view('livewire.admin.orders-table', ['subsetOrders' => $this->subsetOrders]);
     }
+
+    // public function mount()
+    // {
+    //     $this->dispatchBrowserEvent('hide-alerts');
+    // }
+
+
 }
