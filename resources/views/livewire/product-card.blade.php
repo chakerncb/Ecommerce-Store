@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="product-info">
-                <span class="category">Watches</span>
+                <span class="category">{{$product->category_name}}</span>
                 <h4 class="title">
                     <a href="{{route('product.details', $product->name)}}">{{$product->name}}</a>
                 </h4>

@@ -1,7 +1,7 @@
 <div class="hidden sm:block">
-    <form action="https://formbold.com/s/unique_form_id" method="POST">
+    <form wire:submit="search">
       <div class="relative">
-        <button class="absolute left-0 top-1/2 -translate-y-1/2">
+        <button type="submit" class="absolute left-0 top-1/2 -translate-y-1/2">
           <svg
             class="fill-body hover:fill-primary dark:fill-bodydark dark:hover:fill-primary"
             width="20"
@@ -27,6 +27,7 @@
 
         <input
           type="text"
+          wire:model="content"
           placeholder="Type to search..."
           class="w-full bg-transparent pl-9 pr-4 focus:outline-none xl:w-125"
         />

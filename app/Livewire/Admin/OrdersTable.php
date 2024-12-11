@@ -14,11 +14,9 @@ class OrdersTable extends Component
     public $start = 0;
     public $limits = 10;
     public $subsetOrders;
-
     public $page = 1;
-
     public $status = 'all';
-    
+    public $searchContent = '';
 
     public function loadMore()
     {
@@ -45,6 +43,13 @@ class OrdersTable extends Component
         $this->dispatch('orderStatusUpdated');           
      }
 
+    public function search() {
+        $this->start = 0;
+        $this->page = 1;
+        $this->dispatch('orderStatusUpdated');
+    }
+
+//FIXME : make this function stream the pdf file not download it .
     public function streamPdf($order_id)
     {
 
@@ -54,7 +59,10 @@ class OrdersTable extends Component
                 )->where('inv_order_id', $order_id)->first();
 
             if ($invoice) {
-                return \Illuminate\Support\Facades\Storage::disk('invoices')->download('/' . $invoice->inv_path);                
+                // return \Illuminate\Support\Facades\Storage::disk('invoices')->streamDownload('/' . $invoice->inv_path);         
+                return response()->streamDownload(function () use ($invoice) {
+                    echo \Illuminate\Support\Facades\Storage::disk('invoices')->get($invoice->inv_path);
+                }, $invoice->inv_path);
             } else {
                 session()->flash('error', 'Invoice not found');
             }
@@ -87,15 +95,13 @@ class OrdersTable extends Component
             $query->where('status', $this->status);
         }
 
+        if ($this->searchContent) {
+            $query->where('shipping_fullname', 'like', '%' . $this->searchContent . '%');
+        }
+
         $this->subsetOrders = $query->get();
 
         return view('livewire.admin.orders-table', ['subsetOrders' => $this->subsetOrders]);
     }
-
-    // public function mount()
-    // {
-    //     $this->dispatchBrowserEvent('hide-alerts');
-    // }
-
 
 }

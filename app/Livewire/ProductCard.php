@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Mail\PaidInvoice;
+use App\Models\Category;
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Livewire\Component;
@@ -20,6 +21,12 @@ class ProductCard extends Component
         $this->products = Product::all();
         foreach ($this->products as $product) {
             $this->quantity[$product->product_id] = 1;
+        }
+
+        $categories = Category::select('category_id', 'name')->get()->keyBy('category_id');
+
+        foreach ($this->products as $product) {
+            $product->category_name = $categories->get($product->category_id)->name ?? 'Unknown';
         }
     }
 

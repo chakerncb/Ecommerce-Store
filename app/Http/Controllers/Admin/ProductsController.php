@@ -26,23 +26,7 @@ class ProductsController extends Controller
 
     public function index()
     {
-        $products = Product::with('images')->select(
-            'product_id',
-            'name',
-            'price',
-            'description',
-            'stock',
-            'category_id'
-        )->get();
-
-        $categories = Category::select('category_id', 'name')->get()->keyBy('category_id');
-
-
-        foreach ($products as $product) {
-            $product->category_name = $categories->get($product->category_id)->name ?? 'Unknown';
-        }
-
-        return view('admin.product.products-list', compact('products'));
+        return view('admin.product.products-list');
     }
 
 
