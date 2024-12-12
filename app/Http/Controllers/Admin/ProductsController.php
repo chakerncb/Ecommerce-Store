@@ -16,6 +16,12 @@ use App\Http\Requests\ProductRequest;
 class ProductsController extends Controller
 {
 
+    // TODO:
+      // 1. show the product images in the edit form
+      // 2. add the ability to remove images
+      // 3. add the ability to add new images
+
+
     use ImageTrait;
 
     //

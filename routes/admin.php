@@ -40,6 +40,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale() , 'middleware' => [ '
         Route::post('order/delete' , 'Admin\OrdersController@delete') -> name('admin.orders.delete');
         Route::post('order/update' , 'Admin\OrdersController@update') -> name('admin.orders.update');
         
+
+        ///////////////////////// Categories Routes //////////////////////////
+
+        Route::get('categories' , 'Admin\CategoriesController@index') -> name('admin.categories.index');
+        Route::post('category/create' , 'Admin\CategoriesController@create') -> name('admin.categories.create');
+        Route::post('category/update' , 'Admin\CategoriesController@update') -> name('admin.categories.update');
     });
     
 });
