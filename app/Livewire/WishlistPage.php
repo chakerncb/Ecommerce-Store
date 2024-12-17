@@ -4,10 +4,15 @@ namespace App\Livewire;
 
 use App\Models\Product;
 use App\Models\wishlist;
+use App\Traits\CartTrait;
+use App\Traits\WishlistTrait;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Livewire\Component;
 
 class WishlistPage extends Component
 {
+    use CartTrait;
+    use WishlistTrait;
     protected $listeners = ['refreshWishlist' => 'render'];
 
 
@@ -31,46 +36,49 @@ class WishlistPage extends Component
         return view('livewire.wishlist-page' , compact('products'));
     }
 
-    # FIXME: Implement the removeFromWishlist method
-
     public function removeFromWishlist($product_id)
     {
-        $wishlist = wishlist::where(
-            'user_id',
-            auth()->id()
-        )->where('product_id', $product_id)->first();
+        $deleted = $this->deleteFromWishlist($product_id);
 
-        $wishlist->delete();
-
-        $this->dispatch('refreshWishlist');
+        if($deleted == false) {
+            session()->flash('message', 'Product not found');
+            return;
+        }
+        else {
+            $this->dispatch('refreshWishlist');
+            session()->flash('message', 'Product removed from wishlist');
+        }
     }
 
 
 
 
-    public function addToCart($product_id)
+    public function ToCart($product_id)
     {
-        // $wishlist = wishlist::where(
-        //     'user_id',
-        //     auth()->id()
-        // )->where('product_id', $product_id)->first();
-
-        // $wishlist->delete();
-        // $this->render();
+        $added = $this->addToCart($product_id);
+        
+        if($added == false) {
+            session()->flash('message', 'Product not found');
+            return;
+        }
+        else {
+            $this->dispatch('cartUpdated');
+            session()->flash('message', 'Product added to cart');
+        }
     }
 
     public function clearWishlist()
     {
-        $wishlist = wishlist::where(
-            'user_id',
-            auth()->id()
-        )->get();
+        $cleared = $this->destroyWishlist();
 
-        foreach ($wishlist as $item){
-            $item->delete();
+        if($cleared != true) {
+            session()->flash('message', 'Wishlist is empty');
+            return;
         }
 
-        $this->render();
+        session()->flash('message', 'Wishlist cleared');
+        $this->dispatch('refreshWishlist');
+
     }
 
 }

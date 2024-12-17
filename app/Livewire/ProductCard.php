@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Mail\PaidInvoice;
 use App\Models\Category;
 use App\Models\Product;
+use App\Traits\CartTrait;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Livewire\Component;
 use Mail;
@@ -12,6 +13,7 @@ use Symfony\Component\Mailer\DelayedEnvelope;
 
 class ProductCard extends Component
 {
+    use CartTrait;
 
     public $products;
     public array $quantity = [];
@@ -51,20 +53,18 @@ class ProductCard extends Component
     //     }
     // }
 
-    public function addToCart($product_id)
+    public function ToCart($product_id)
     {
-        $product = Product::find($product_id);
-        $image = $product->images->first();
-        Cart::add(
-            $product->product_id,
-            $product->name,
-            $this->quantity[$product_id],
-            $product->price,
-            ['path' => $image->path ?? 'no-image.png'],
-            0,
-        );
-        $this->dispatch('cartUpdated');
-        session()->flash('message', 'Product added to cart');
+        $added = $this->addToCart($product_id);
+        
+        if($added == false) {
+            session()->flash('message', 'Product not found');
+            return;
+        }
+        else {
+            $this->dispatch('cartUpdated');
+            session()->flash('message', 'Product added to cart');
+        }
         // $this->deleteMsg();
 
     }  

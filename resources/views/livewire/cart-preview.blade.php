@@ -14,11 +14,11 @@
             <a wire:click="removefromCart({{$item->id}})" class="remove" title="Remove this item"><i
                     class="lni lni-close"></i></a>
             <div class="cart-img-head">
-                <a class="cart-img" href="product-details.html"><img src="{{URL::asset('assets/src/images/products/'.$item->options->path)}}" alt="#"></a>
+                <a class="cart-img" href="{{route('product.details', $item->name)}}"><img src="{{URL::asset('assets/src/images/products/'.$item->options->path)}}" alt="#"></a>
             </div>
 
             <div class="content">
-                <h4><a href="product-details.html">{{$item->name}}</a></h4>
+                <h4><a href="{{route('product.details', $item->name)}}">{{$item->name}}</a></h4>
                 <p class="quantity">{{$item->qty}}x - <span class="amount">{{$item->price}}</span></p>
             </div>
         </li>

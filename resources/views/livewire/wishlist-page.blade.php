@@ -33,7 +33,7 @@
                             </div>
 
                             <div class="col">
-                                <button wire:click="addToCart({{$product->product_id}})" class="btn">add To cart</button>
+                                <button wire:click="ToCart({{$item->product_id}})" class="btn">add To cart</button>
                             </div>
 
                         </div>

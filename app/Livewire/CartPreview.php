@@ -2,11 +2,13 @@
 
 namespace App\Livewire;
 
+use App\Traits\CartTrait;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Livewire\Component;
 
 class CartPreview extends Component
 {
+    use CartTrait;
 
     protected $listeners = ['cartUpdated' => 'render' , 'clearItem' => 'removefromCart' ];
     public function render()
@@ -21,10 +23,16 @@ class CartPreview extends Component
 
     public function removefromCart($product_id)
     {
-        $row = Cart::search(function ($cartItem, $rowId) use ($product_id) {
-            return $cartItem->id === $product_id;
-        })->first();
-        Cart::remove($row->rowId);
-        $this->dispatch('cartUpdated');        
+        $deleted = $this->deletefromCart($product_id);
+
+        if($deleted == false) {
+            session()->flash('message', 'Product not found');
+            return;
+        }
+        else {
+            $this->dispatch('cartUpdated');        
+            session()->flash('message', 'Product removed from cart');
+        }
+
     }
 }

@@ -4,11 +4,15 @@ namespace App\Livewire;
 
 use App\Models\Product;
 use App\Models\wishlist;
+use App\Traits\CartTrait;
+use App\Traits\WishlistTrait;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Livewire\Component;
 
 class ProductDetailsCard extends Component
 {
+    use CartTrait;
+    use WishlistTrait;
     public $product;
     public $quantity = [];
 
@@ -26,38 +30,34 @@ class ProductDetailsCard extends Component
         return view('livewire.product-details-card', ['product' => $this->product]);
     }
 
-    public function addToCart($product_id)
+    public function ToCart($product_id)
     {
-        $product = Product::find($product_id);
-        $image = $product->images->first();
-        Cart::add(
-            $product->product_id,
-            $product->name,
-            $this->quantity[$product_id] ?? 1,
-            $product->price,
-            ['path' => $image->path],
-            0,
-        );
-        $this->dispatch('cartUpdated');
-        // make an alert
-        session()->flash('message', 'Product added to cart');
+        $added = $this->addToCart($product_id);
+        
+        if($added == false) {
+            session()->flash('message', 'Product not found');
+            return;
+        }
+        else {
+            $this->dispatch('cartUpdated');
+            session()->flash('message', 'Product added to cart');
+        }
     }
 
 
-    public function addToWishlist($product_id)
+    public function ToWishlist($product_id)
     {
-        $product = Product::find($product_id);
-        // $image = $product->images->first();
-        
-        wishlist::create([
-            'user_id' => auth()->id(),
-            'product_id' => $product_id,
-            'quantity' => $this->quantity[$product_id] ?? 1,
-        ]);
+        $added = $this->addToWishlist($product_id);
 
-        $this->dispatch('cartUpdated');
-        session()->flash('message', 'Product added to wishlist');
-        // $this->deleteMsg();
+        if($added == false) {
+            session()->flash('message', 'Product not found');
+            return;
+        }
+        else {
+            $this->dispatch('cartUpdated');
+            session()->flash('message', 'Product added to wishlist');
+        }
+         // $this->deleteMsg();
     }
 
 }

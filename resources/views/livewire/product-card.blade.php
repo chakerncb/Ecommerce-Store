@@ -18,8 +18,8 @@
                 @else
                     <img src="{{URL::asset('assets/src/images/product/no-image.png')}}" alt="Default Product" />
                 @endif
-                 <div class="button">
-                    <button wire:click="addToCart({{$product->product_id}})" class="btn"><i class="lni lni-cart"></i> Add To Cart</button>
+                 <div class="button" >
+                    <button wire:click="ToCart({{$product->product_id}})" class="btn"><i class="lni lni-cart"></i> Add To Cart</button>
                 </div>
             </div>
             <div class="product-info">
