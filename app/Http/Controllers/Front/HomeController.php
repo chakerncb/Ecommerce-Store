@@ -21,10 +21,7 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
-        // Ensure products with stock equal to 0 are not shown
-        $products = Product::where('stock', '>', 0)->get();
-            
-        return view('front.index' , compact('products'));
+    {            
+        return view('front.index');
     }
 }

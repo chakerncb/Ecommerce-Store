@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Product;
+use App\Models\wishlist;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Livewire\Component;
 
@@ -40,6 +41,23 @@ class ProductDetailsCard extends Component
         $this->dispatch('cartUpdated');
         // make an alert
         session()->flash('message', 'Product added to cart');
+    }
+
+
+    public function addToWishlist($product_id)
+    {
+        $product = Product::find($product_id);
+        // $image = $product->images->first();
+        
+        wishlist::create([
+            'user_id' => auth()->id(),
+            'product_id' => $product_id,
+            'quantity' => $this->quantity[$product_id] ?? 1,
+        ]);
+
+        $this->dispatch('cartUpdated');
+        session()->flash('message', 'Product added to wishlist');
+        // $this->deleteMsg();
     }
 
 }

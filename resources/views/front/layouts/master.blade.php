@@ -84,15 +84,18 @@
                                     <!-- navbar search start -->
                                     <div class="navbar-search search-style-5">
                                          <div class="search-select">
-                                           <div class="select-position">
-                                                <select id="select1">
-                                                    <option selected>All</option>
-                                                    <option value="1">option 01</option>
-                                                    <option value="2">option 02</option>
-                                                    <option value="3">option 03</option>
-                                                    <option value="4">option 04</option>
-                                                    <option value="5">option 05</option>
-                                                </select>
+                                            <div class="dropdown show">
+                                                <a class="m-2" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="lni lni-world"></i>
+                                                </a>
+                                            
+                                                <div class="dropdown-menu p-2" aria-labelledby="dropdownMenuLink">
+                                                    @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                                        <a class="nav-link" rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                                            {{ $properties['native'] }}
+                                                        </a>
+                                                    @endforeach
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="search-input">
@@ -123,19 +126,7 @@
                                             </a> 
                                         </div>--}}
 
-                                        <div class="dropdown show">
-                                            <a class="m-2" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="lni lni-world"></i>
-                                            </a>
-                                          
-                                            <div class="dropdown-menu p-2" aria-labelledby="dropdownMenuLink">
-                                                @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                                                <a class="nav-link" rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-                                                    {{ $properties['native'] }}
-                                                </a>
-                                         @endforeach
-                                            </div>
-                                        </div>
+
                                         
 
                                         <div class="m-2 cart-items">

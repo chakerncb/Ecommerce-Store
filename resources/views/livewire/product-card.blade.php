@@ -6,14 +6,18 @@
       </div>
     @endif --}}
     @foreach ($products as $product)
-     @if ($product->stock != 0)
+     @if ($product->stock != 0) 
      <div class="col-lg-3 col-md-6 col-12">
         <div class="single-product">
             <div class="product-image">
-                @foreach ($product->images as $image)   
-                <img src="{{URL::asset('assets/src/images/product/'.$image->path)}}" alt="Product" />
-                @break
-              @endforeach                            
+                @if ($product->images->isNotEmpty())
+                    @foreach ($product->images as $image)   
+                        <img src="{{URL::asset('assets/src/images/product/'.$image->path)}}" alt="Product" />
+                        @break
+                    @endforeach
+                @else
+                    <img src="{{URL::asset('assets/src/images/product/no-image.png')}}" alt="Default Product" />
+                @endif
                  <div class="button">
                     <button wire:click="addToCart({{$product->product_id}})" class="btn"><i class="lni lni-cart"></i> Add To Cart</button>
                 </div>

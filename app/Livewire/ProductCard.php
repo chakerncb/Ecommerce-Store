@@ -16,24 +16,40 @@ class ProductCard extends Component
     public $products;
     public array $quantity = [];
 
-    public function mount()
+
+    public function render()
     {
-        $this->products = Product::all();
+
+        $this->products = Product::where('stock', '>', 0)
+                    ->latest()
+                    ->take(12)
+                    ->get();
+
         foreach ($this->products as $product) {
-            $this->quantity[$product->product_id] = 1;
-        }
+                    $this->quantity[$product->product_id] = 1;
+                }
 
         $categories = Category::select('category_id', 'name')->get()->keyBy('category_id');
 
         foreach ($this->products as $product) {
             $product->category_name = $categories->get($product->category_id)->name ?? 'Unknown';
         }
-    }
 
-    public function render()
-    {
         return view('livewire.product-card');	
     }
+
+    // public function mount()
+    // {
+    //     foreach ($this->products as $product) {
+    //         $this->quantity[$product->product_id] = 1;
+    //     }
+
+    //     $categories = Category::select('category_id', 'name')->get()->keyBy('category_id');
+
+    //     foreach ($this->products as $product) {
+    //         $product->category_name = $categories->get($product->category_id)->name ?? 'Unknown';
+    //     }
+    // }
 
     public function addToCart($product_id)
     {
@@ -44,7 +60,7 @@ class ProductCard extends Component
             $product->name,
             $this->quantity[$product_id],
             $product->price,
-            ['path' => $image->path],
+            ['path' => $image->path ?? 'no-image.png'],
             0,
         );
         $this->dispatch('cartUpdated');

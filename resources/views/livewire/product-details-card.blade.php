@@ -11,7 +11,7 @@
     </div>
     <div class="col-lg-4 col-md-4 col-12">
         <div class="button cart-button">
-            <button class="btn"><i class="lni lni-heart"></i> To Wishlist</button>
+            <button wire:click="addToWishlist({{$product->product_id}})" class="btn"><i class="lni lni-heart"></i> To Wishlist</button>
         </div>
     </div>
 </div>
