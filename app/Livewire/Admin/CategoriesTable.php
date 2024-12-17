@@ -35,7 +35,7 @@ class CategoriesTable extends Component
 
     public function updateCategory()
     {
-       $this->render();
+       $this->dispatch('updateCategory');
     }
 
     public function delete($id)

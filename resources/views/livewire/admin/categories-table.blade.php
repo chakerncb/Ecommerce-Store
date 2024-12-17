@@ -202,6 +202,8 @@
             }
           }
         });
+
+        updateBtn.style.display = 'none';
       });
     });
   });

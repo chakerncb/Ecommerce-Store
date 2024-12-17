@@ -134,7 +134,8 @@
                                             </div>
                                         </div>
                                          @guest
-                                        {{-- <div class="user-login d-flex gap-0">
+
+                                        <div class="user-login d-flex gap-0">
                                             
                                             @if (Route::has('login'))
                                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -142,7 +143,7 @@
                                              @if (Route::has('register'))
                                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                             @endif 
-                                        </div> --}}
+                                        </div>
 
                                         @else
                                         <div class="m-2">
@@ -189,7 +190,7 @@
                                             </div>
                                             </div>
                                             <div class="account-items">
-                                                <a class="account-item" href="#"><p><b><i class="bi bi-collection"></i>  collections</b></p></a>
+                                                <a class="account-item" href="{{route('wishlist.index')}}"><p><b><i class="bi bi-heart"></i>  wishlist</b></p></a>
                                                 <a class="account-item" href="#"><p><b><i class="bi bi-credit-card"></i>  cards</b></p></a>
                                                 <a class="account-item" href="#"><p><b><i class="bi bi-gear-wide-connected"></i>  setting</b></p></a>
                                                 <a class="account-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" ><p><b><i class="bi bi-box-arrow-right"></i> {{ __('Logout') }}</b></p></a>

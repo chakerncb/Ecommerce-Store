@@ -23,7 +23,6 @@ class WishlistPage extends Component
         $products = [];
         foreach ($wishlist as $item){
             $product = Product::find($item->product_id);
-            $product->qty = $item->quantity;
             $products[] = $product;
         } 
 
@@ -40,6 +39,8 @@ class WishlistPage extends Component
             'user_id',
             auth()->id()
         )->where('product_id', $product_id)->first();
+
+        $wishlist->delete();
 
         $this->dispatch('refreshWishlist');
     }
@@ -60,16 +61,16 @@ class WishlistPage extends Component
 
     public function clearWishlist()
     {
-        // $wishlist = wishlist::where(
-        //     'user_id',
-        //     auth()->id()
-        // )->get();
+        $wishlist = wishlist::where(
+            'user_id',
+            auth()->id()
+        )->get();
 
-        // foreach ($wishlist as $item){
-        //     $item->delete();
-        // }
+        foreach ($wishlist as $item){
+            $item->delete();
+        }
 
-        // $this->render();
+        $this->render();
     }
 
 }
