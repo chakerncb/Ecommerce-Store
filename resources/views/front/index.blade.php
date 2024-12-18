@@ -10,7 +10,10 @@
                         <div class="mega-category-menu">
                             <span class="cat-button"><i class="lni lni-menu"></i>All Categories</span>
                             <ul class="sub-category">
-                                <li><a href="product-grids.html">Electronics <i class="lni lni-chevron-right"></i></a>
+                                @foreach ($categories as $category )
+                                <li><a href="{{route('category.index', $category->name)}}">{{$category->name}}</a></li>
+                                @endforeach
+                                {{-- <li><a href="product-grids.html">Electronics <i class="lni lni-chevron-right"></i></a>
                                     <ul class="inner-sub-category">
                                         <li><a href="product-grids.html">Digital Cameras</a></li>
                                         <li><a href="product-grids.html">Camcorders</a></li>
@@ -35,6 +38,7 @@
                                 <li><a href="product-grids.html">Computers & Tablets </a></li>
                                 <li><a href="product-grids.html">Video Games </a></li>
                                 <li><a href="product-grids.html">Home Appliances </a></li>
+                                 --}}
                             </ul>
                         </div>
                         <!-- End Mega Category Menu -->

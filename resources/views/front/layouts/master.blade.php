@@ -133,19 +133,7 @@
                                             @livewire('cart-preview')
                                             </div>
                                         </div>
-                                         @guest
 
-                                        <div class="user-login d-flex gap-0">
-                                            
-                                            @if (Route::has('login'))
-                                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                            @endif
-                                             @if (Route::has('register'))
-                                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                            @endif 
-                                        </div>
-
-                                        @else
                                         <div class="m-2">
                                                 {{-- <div class="dropdown show">
                                                     <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -172,6 +160,22 @@
                                                       </button>
                                                 </div>
                                           <div class="account-dropdown-content">
+
+                                            @guest
+
+                                            <div class="account-items">
+                                                
+                                                @if (Route::has('login'))
+                                                        <a class="account-item" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                                @endif
+                                                 @if (Route::has('register'))
+                                                        <a class="account-item" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                                @endif 
+                                            </div>
+                                          
+    
+                                            @else
+
                                             <div class="header">
                                               <h4>{{ Auth::user()->name }}</h4>
                                               <p>{{ Auth::user()->email }}</p>

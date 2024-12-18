@@ -43,9 +43,15 @@ Route::group(['prefix' => LaravelLocalization::setLocale() , 'middleware' => [ '
 
         ///////////////////////// Categories Routes //////////////////////////
 
-        Route::get('categories' , 'Admin\CategoriesController@index') -> name('admin.categories.index');
+        Route::get('categories' , 'Admin\CategoriesController@index') -> name('admin.categories');
         Route::post('category/create' , 'Admin\CategoriesController@create') -> name('admin.categories.create');
         Route::post('category/update' , 'Admin\CategoriesController@update') -> name('admin.categories.update');
+
+        ///////////////////////// Brands Routes //////////////////////////
+
+        Route::get('brands' , 'Admin\BrandsController@index') -> name('admin.brands');
+        Route::post('brand/create' , 'Admin\BrandsController@create') -> name('admin.brands.create');
+        Route::post('brand/update' , 'Admin\BrandsController@update')->name('admin.brands.update');
     });
     
 });

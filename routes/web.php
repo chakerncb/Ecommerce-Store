@@ -38,4 +38,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale() ,'namespace' => 'App\
     Route::post('checkout' , 'Front\CheckoutController@store') -> name('checkout.store');
     // Route::get('checkout/success' , 'Front\CheckoutController@success') -> name('checkout.success');
     Route::get('invoice/{id}' , 'Front\CheckoutController@invoice') -> name('invoice');
+
+
+    Route::get('category/{name}' , 'Front\CategoryController@index') -> name('category.index');
 });

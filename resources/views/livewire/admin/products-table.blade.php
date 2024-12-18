@@ -12,6 +12,7 @@
       <form wire:submit="search">
         <div class="gap-2 flex justify-between items-center">
           <input
+            wire:model.debounce.500ms="searchContent"
             id="search"
             type="text"
             wire:model="searchContent"
