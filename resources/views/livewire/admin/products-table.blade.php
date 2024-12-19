@@ -12,11 +12,11 @@
       <form wire:submit="search">
         <div class="gap-2 flex justify-between items-center">
           <input
-            wire:model.debounce.500ms="searchContent"
             id="search"
             type="text"
             wire:model="searchContent"
-            placeholder="Search ...."
+            wire:keydown.enter="search"
+            placeholder="Search by product name ...."
             class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
           />
           <br>

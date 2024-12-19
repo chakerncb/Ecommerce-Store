@@ -1,6 +1,8 @@
 @extends('front.layouts.master')
 
 @section('content')
+</header>
+<main>
 
 <!-- Start Breadcrumbs -->
     <div class="breadcrumbs">
@@ -26,5 +28,7 @@
     <section class="item-details section">
       @livewire('cart-page')
     </section>
+
+</main>
     <!-- End Item Details -->
     @endsection

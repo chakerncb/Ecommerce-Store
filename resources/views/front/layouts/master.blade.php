@@ -70,7 +70,7 @@
                 <!-- Start Header Middle -->
                 <div class="header-middle">
                     <div class="container">
-                        <div class="row align-items-center">
+                        <div class="row align-items-center" style="border-bottom: 1px solid #ebebeb;">
                             <div class="col-lg-3 col-md-3 col-7">
                                 <!-- Start Header Logo -->
                                 <a class="navbar-brand" href="index.html">
@@ -114,7 +114,7 @@
                                     <div class="nav-hotline">
                                         <i class="lni lni-phone"></i>
                                         <h3>Hotline:
-                                            <span>07 777 722 18</span>
+                                            <span>{{$store->phone}}</span>
                                         </h3>
                                     </div>
                                     <div class="navbar-cart">
@@ -237,8 +237,8 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-4 col-12">
                             <div class="footer-logo">
-                                <a href="index.html">
-                                    <img src="assets/images/logo/white-logo.svg" alt="#">
+                                <a href="{{route('index')}}">
+                                    <img src="{{URL::asset('assets/images/logo/'.$store->logo)}}" alt="logo">
                                 </a>
                             </div>
                         </div>
@@ -272,13 +272,13 @@
                             <!-- Single Widget -->
                             <div class="single-footer f-contact">
                                 <h3>Get In Touch With Us</h3>
-                                <p class="phone">Phone: +213 (07) 00 00 0000</p>
+                                <p class="phone">Phone: +213 {{$store->phone}}</p>
                                 <ul>
                                     <li><span>Monday-Friday: </span> 9.00 am - 8.00 pm</li>
                                     <li><span>Saturday: </span> 10.00 am - 6.00 pm</li>
                                 </ul>
                                 <p class="mail">
-                                    <a href="mailto:support@chaker.com">support@chaker.com</a>
+                                    <a href="mailto:{{$store->email}}">{{$store->email}}</a>
                                 </p>
                             </div>
                             <!-- End Single Widget -->

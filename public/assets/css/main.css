@@ -480,6 +480,7 @@ a {
   }
 }
 .summary{
+  height: auto;
   background-color: #ddd;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
@@ -2291,7 +2292,7 @@ top: -1px;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  padding: 0.6% 0;
+  padding: 0.4% 0;
   border-bottom: 1px solid #eee;
 }
 
@@ -5584,6 +5585,19 @@ top: 2px;
   .footer .footer-bottom .socila li span {
     display: none;
   }
+}
+
+.top-area {
+  display: flex;
+  gap: 0px; /* Ensure no gap between elements */
+}
+
+.cart {
+  margin-right: 0; /* Remove any right margin */
+}
+
+.summary {
+  margin-left: 0; /* Remove any left margin */
 }
 
 
