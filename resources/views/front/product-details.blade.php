@@ -1,6 +1,7 @@
 @extends('front.layouts.master')
 
 @section('content')
+</header>
 
 <!-- Start Breadcrumbs -->
     <div class="breadcrumbs">
@@ -50,7 +51,8 @@
                             <h2 class="title">{{$product->name}}</h2>
                             <p class="category"><i class="lni lni-tag"></i>  {{$category}} :<a href="javascript:void(0)">Action
                                     cameras</a></p>
-                            <h3 class="price">{{$product->price}} DZ<span>$945</span></h3>
+                            {{-- <h3 class="price">{{$product->price}} DA<span>$945</span></h3> --}}
+                            <h3 class="price">{{$product->price}} DA</h3>
                             <p class="info-text">{{$product->description}}.</p>
                             <div class="row">
                                 <div class="col-lg-4 col-md-4 col-12">

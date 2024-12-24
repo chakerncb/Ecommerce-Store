@@ -1,6 +1,7 @@
 @extends('front.layouts.master')
 
 @section('content')
+</header>
 
 @if (session('success'))
 <div class="success alert-message">

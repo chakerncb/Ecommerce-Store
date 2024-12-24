@@ -89,7 +89,7 @@
             </p>
         </div>
       <div class="col-span-1 flex items-center">
-        <p class="text-sm font-medium text-black dark:text-white">{{ $product->price}} DZ</p>
+        <p class="text-sm font-medium text-black dark:text-white">{{ $product->price}} DA</p>
       </div>
       <div class="col-span-1 flex items-center">
         <p class="text-sm font-medium text-black dark:text-white">{{ $product->stock}}</p>

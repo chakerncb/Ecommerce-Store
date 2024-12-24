@@ -36,7 +36,7 @@
                     <li><span>4.0 Review(s)</span></li>
                 </ul>
                 <div class="price">
-                    <span>${{$product->price}}</span>
+                    <span>{{$product->price}} DA</span>
                 </div>
             </div>
         </div>

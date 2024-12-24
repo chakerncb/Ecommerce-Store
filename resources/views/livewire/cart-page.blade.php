@@ -7,6 +7,13 @@
                     <div class="col text-right"><a wire:click="clearCart" style="color: #0167F3;"><u>Clear All</u></a></div>
                 </div>
             </div>    
+            @if ($cartCount == 0)
+            <div class="row border-top border-bottom">
+                <div class="row main text-center">
+                    <h4 class="text-muted" >No Items</h4>
+                </div>
+            </div>
+            @endif
             @foreach ($cartItems as $item )
                 <div class="row border-top border-bottom">
                     <div class="row main align-items-center">

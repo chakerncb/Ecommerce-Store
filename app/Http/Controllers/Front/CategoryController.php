@@ -9,7 +9,7 @@ class CategoryController extends Controller
 {
     //
 
-    public function index() {
-        return view('front.category');
+    public function index($ctgName) {
+        return view('front.categoryPage' , ['ctgName' => $ctgName]);
     }
 }

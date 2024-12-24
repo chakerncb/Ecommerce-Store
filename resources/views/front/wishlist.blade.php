@@ -1,6 +1,7 @@
 @extends('front.layouts.master')
 
 @section('content')
+</header>
 
 <!-- Start Breadcrumbs -->
     <div class="breadcrumbs">
