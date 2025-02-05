@@ -1,4 +1,7 @@
 <section class="trending-product section d-flex">
+
+ {{-- FIXME: fix the filtering by the brand  --}}
+
     <div class="filter-category-card">
         <h3>Filter :</h3>
         <div class="filter-category">
@@ -16,13 +19,15 @@
         <div class="filter-category">
             <br>
             <div class="filter-category-title">
-                <h6>Rating</h6>
+                <h6>Rating <i class="lni lni-star-filled" style="color: #fbff17"></i></h6>
             </div>
             <select name="rating" id="rating" class="filter-category-select">
                 <option value="all">All</option>
-                {{-- @foreach ($brands as $brand)
-                    <option value="{{$brand->id}}">{{$brand->name}}</option>
-                @endforeach --}}
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
             </select>
         </div>
     </div>

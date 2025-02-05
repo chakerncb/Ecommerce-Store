@@ -5618,3 +5618,72 @@ top: 2px;
 
 
 
+.search-result-card {
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  width: 90%;
+  height: fit-content;
+  z-index: 100;
+  margin-top: 10%;
+  left: 10%;
+  border-radius: 10px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+  padding: 5px;
+}
+
+.search-result-card .card-body {
+  padding: 15px;
+}
+
+.search-result-card .card-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.search-result-card .list-group-item {
+  padding: 10px 15px;
+  border: none;
+  border-bottom: 1px solid #eee;
+}
+
+.search-result-card .list-group-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-card .list-group-item a {
+  color: #333;
+  text-decoration: none;
+}
+
+.search-result-card .list-group-item a:hover {
+  color: #0167F3;
+  text-decoration: underline;
+}
+
+
+.list{
+
+  padding-top: 20px;
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+
+}
+
+.border-bottom{
+
+  border-bottom: 2px solid #eee;
+}
+
+.list i{
+  font-size: 19px;
+  color: red;
+}
+
+.list small{
+
+  color:#dedddd;
+}

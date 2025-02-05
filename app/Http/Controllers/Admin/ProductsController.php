@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\ProductFeatures;
 use App\Models\ProductImage;
@@ -40,8 +41,9 @@ class ProductsController extends Controller
     {
 
         $categories = Category::select('category_id', 'name')->get();
+        $brands = Brand::select('brand_id', 'name')->get();
 
-        return view('admin.product.add-product', compact('categories'));
+        return view('admin.product.add-product', compact('categories' , 'brands'));
     }
 
 
@@ -64,7 +66,8 @@ class ProductsController extends Controller
             'price' => $request->price,
             'description' => $request->description ?? '',
             'stock' => $request->stock,
-            'category_id' => $request->category_id
+            'category_id' => $request->category_id,
+            'brand_id' => $request->brand_id
         ]);
 
         if ($request->hasFile('images')) {
