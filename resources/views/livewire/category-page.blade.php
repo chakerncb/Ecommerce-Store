@@ -1,7 +1,4 @@
 <section class="trending-product section d-flex">
-
- {{-- FIXME: fix the filtering by the brand  --}}
-
     <div class="filter-category-card">
         <h3>Filter :</h3>
         <div class="filter-category">
@@ -9,7 +6,7 @@
             <div class="filter-category-title">
                 <h6>by Brand</h6>
             </div>
-            <select name="brand" id="brand" class="filter-category-select" wire:model="brandId">
+            <select name="brand" id="brand" class="filter-category-select" wire:model="brandId" wire:change="filterByBrand">
                 <option value="0">All</option>
                 @foreach ($brands as $brand)
                     <option value="{{$brand->brand_id}}">{{$brand->name}}</option>
@@ -35,7 +32,6 @@
     <div class="container" style="background-color: #ffffff;">
         <div class="row">
             @foreach ($products as $product)
-                @if ($product->stock != 0)
                     <div class="col-lg-3 col-md-6 col-12">
                         <div class="single-product">
                             <div class="product-image">
@@ -70,7 +66,6 @@
                             </div>
                         </div>
                     </div>
-                @endif
             @endforeach
         </div>
     </div>

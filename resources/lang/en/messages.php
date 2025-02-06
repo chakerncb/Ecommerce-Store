@@ -171,5 +171,18 @@ return [
     'remember_me' => 'Remember me',
     'forgot_your_password?' => 'Forgot your password?',
 
-    'You are logged in!' => 'You are logged in!'
+    'You are logged in!' => 'You are logged in!',
+
+
+    // checkout messages
+
+    'shipping_address_required' => 'Shipping address is required',
+    'shipping_city_required' => 'Shipping city is required',
+    'chip_method_required' => 'Shipping method is required',
+    'pay_method_required' => 'Payment method is required',
+    'email_email' => 'The email must be a valid email address',
+    'phone_required' => 'Phone number is required',
+    'phone_min' => 'Phone number must be 10 digits',
+    'wilaya_required' => 'Wilaya is required',
+    'municipality_required' => 'Municipality is required',
 ];

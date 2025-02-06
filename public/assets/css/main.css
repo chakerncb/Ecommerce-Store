@@ -3626,11 +3626,15 @@ top: 2px;
   border-radius: 4px 0px 0px 4px;
 }
 
+.slider-row {
+  width: 100% !important;
+}
+
 .hero-area .hero-slider .single-slider {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 500px;
+  height: 400px;
   position: relative;
 }
 
@@ -3649,6 +3653,7 @@ top: 2px;
 }
 
 .hero-area .hero-slider .single-slider .content {
+  width: 80%;
   padding: 20px 365px 20px 50px;
   position: absolute;
   left: 0;

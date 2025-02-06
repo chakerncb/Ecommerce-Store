@@ -169,4 +169,20 @@ return [
     'password' => 'Mot de passe',
     'remember_me' => 'Se souvenir de moi',
     'forgot_your_password?' => 'Mot de passe oublié?',
+
+
+
+
+
+    // checkout messages
+
+    'shipping_address_required' => 'L\'adresse de livraison est requise',
+    'shipping_city_required' => 'La ville de livraison est requise',
+    'chip_method_required' => 'La méthode de puce est requise',
+    'pay_method_required' => 'La méthode de paiement est requise',
+    'email_email' => 'L\'e-mail doit être une adresse e-mail valide',
+    'phone_required' => 'Le numéro de téléphone est requis',
+    'phone_min' => 'Le numéro de téléphone doit comporter 10 chiffres',
+    'wilaya_required' => 'La wilaya est requise',
+    'municipality_required' => 'La municipalité est requise',
 ];

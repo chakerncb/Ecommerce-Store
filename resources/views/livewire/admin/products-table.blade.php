@@ -15,12 +15,12 @@
             id="search"
             type="text"
             wire:model="searchContent"
-            wire:keydown.enter="search"
+            wire:keydown.debounce.300ms="search"
             placeholder="Search by product name ...."
             class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
           />
           <br>
-          <button style="background-color: green;" class="flex justify-center rounded px-6 py-2 font-medium text-gray hover:bg-opacity-90" type="submit">
+          <button style="background-color: green;" wire:click="search" class="flex justify-center rounded px-6 py-2 font-medium text-gray hover:bg-opacity-90" type="submit">
             Search
         </button>
         </div>

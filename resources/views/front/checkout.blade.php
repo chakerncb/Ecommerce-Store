@@ -61,26 +61,46 @@
                                                             <div class="col-lg-4">
                                                                 <div class="mb-3">
                                                                     <label class="form-label" for="billing-name">Name</label>
-                                                                    <input name="name" type="text" class="form-control" id="billing-name" placeholder="Enter name">
+                                                                    <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" id="billing-name" placeholder="Enter name" value="{{ old('name') }}">
+                                                                    @error('name')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-4">
                                                                 <div class="mb-3">
                                                                     <label class="form-label" for="billing-email-address">Email Address</label>
-                                                                    <input name="email" type="email" class="form-control" id="billing-email-address" placeholder="Enter email">
+                                                                    <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" id="billing-email-address" placeholder="Enter email" value="{{ old('email') }}">
+                                                                    @error('email')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-4">
                                                                 <div class="mb-3">
                                                                     <label class="form-label" for="billing-phone">Phone</label>
-                                                                    <input name="phone" type="text" class="form-control" id="billing-phone" placeholder="Enter Phone no.">
+                                                                    <input name="phone" type="text" class="form-control @error('phone') is-invalid @enderror" id="billing-phone" placeholder="Enter Phone no." value="{{ old('phone') }}">
+                                                                    @error('phone')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
                                                                 </div>
                                                             </div>
                                                         </div>
         
                                                         <div class="mb-3">
                                                             <label class="form-label" for="billing-address">Address</label>
-                                                            <textarea name="address" class="form-control" id="billing-address" rows="3" placeholder="Enter full address"></textarea>
+                                                            <textarea name="address" class="form-control @error('address') is-invalid @enderror" id="billing-address" rows="3" placeholder="Enter full address">{{ old('address') }}</textarea>
+                                                            @error('address')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
         
                                                         @livewire('shipping-info')
@@ -112,11 +132,11 @@
                                                                     </div>
                                                                 </div>
                                                             </label>
-                                                            {{-- <div class="edit-btn bg-light  rounded">
-                                                                <a href="#" data-bs-toggle="tooltip" data-placement="top" title="" data-bs-original-title="Edit">
-                                                                    <i class="bx bx-pencil font-size-16"></i>
-                                                                </a>
-                                                            </div> --}}
+                                                            @error('chip_method')
+                                                                <span class="invalid-feedback d-block" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
         
@@ -131,11 +151,11 @@
                                                                     </div>
                                                                 </div>
                                                             </label>
-                                                            {{-- <div class="edit-btn bg-light  rounded">
-                                                                <a href="#" data-bs-toggle="tooltip" data-placement="top" title="" data-bs-original-title="Edit">
-                                                                    <i class="bx bx-pencil font-size-16"></i>
-                                                                </a>
-                                                            </div> --}}
+                                                            @error('chip_method')
+                                                                <span class="invalid-feedback d-block" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                 </div>
@@ -166,6 +186,11 @@
                                                                 Credit / Debit Card
                                                             </span>
                                                         </label>
+                                                        @error('pay_method')
+                                                            <span class="invalid-feedback d-block" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 
@@ -178,6 +203,11 @@
                                                                 Paypal
                                                             </span>
                                                         </label>
+                                                        @error('pay_method')
+                                                            <span class="invalid-feedback d-block" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
         
@@ -191,6 +221,11 @@
                                                                 <span>Cash on Delivery</span>
                                                             </span>
                                                         </label>
+                                                        @error('pay_method')
+                                                            <span class="invalid-feedback d-block" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 
@@ -337,22 +372,27 @@
           contentType: false,
           cache: false,
           success: function (response) {
-                 window.location.href = response.url;
-                 setTimeout();
-              if(response.status == true){
-                  $('#checkout_form').trigger('reset');
-                  alert(response.message);
-              }
-              else{
+              if(response.url) {
+                  window.location.href = response.url;
+              } else {
                   alert(response.message);
               }
           },
-            error: function (error) {
-                setTimeout();
-            }
+          error: function (error) {
+              if (error.status === 422) {
+                  var errors = error.responseJSON.errors;
+                  $('.is-invalid').removeClass('is-invalid');
+                  $('.invalid-feedback').remove();
+                  $.each(errors, function (key, value) {
+                      var input = $('[name=' + key + ']');
+                      input.addClass('is-invalid');
+                      input.after('<div class="invalid-feedback">' + value[0] + '</div>');
+                  });
+              } else {
+                  alert('An error occurred. Please try again.');
+              }
+          }
       });
-
-      
   });
 </script>
 @endsection

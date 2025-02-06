@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\front;
+namespace App\Http\Controllers\Front;
 
 use App;
 use App\Http\Controllers\Controller;
@@ -11,6 +11,7 @@ use App\Traits\InvoiceTrait;
 use Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 
 class CheckoutController extends Controller
@@ -76,6 +77,7 @@ class CheckoutController extends Controller
             'url' => '/invoice/'.$order->ord_id,	
         ]);
 
+
         }
 
         else {
@@ -107,6 +109,8 @@ class CheckoutController extends Controller
                 'message' => 'Order has been placed successfully',
                 'url' => '/invoice/'.$order->ord_id,
             ]);
+
+
         }
    }
 

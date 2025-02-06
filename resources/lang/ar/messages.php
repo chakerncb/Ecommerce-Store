@@ -185,6 +185,16 @@ return [
     'forgot_your_password?' => 'نسيت كلمة المرور؟',
     
 
+    // checkout messages
 
+    'shipping_address_required' => 'عنوان الشحن مطلوب',
+    'shipping_city_required' => 'مدينة الشحن مطلوبة',
+    'chip_method_required' => 'طريقة الشحن مطلوبة',
+    'pay_method_required' => 'طريقة الدفع مطلوبة',
+    'email_email' => 'البريد الالكتروني غير صحيح',
+    'phone_required' => 'رقم الهاتف مطلوب',
+    'phone_min' => 'رقم الهاتف يجب ان يتكون من 10 ارقام بالضبط',
+    'wilaya_required' => 'الولاية مطلوبة',
+    'municipality_required' => 'البلدية مطلوبة',
 
 ];

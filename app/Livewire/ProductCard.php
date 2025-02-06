@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Traits\CartTrait;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Mail;
 use Symfony\Component\Mailer\DelayedEnvelope;
@@ -14,6 +15,7 @@ use Symfony\Component\Mailer\DelayedEnvelope;
 class ProductCard extends Component
 {
     use CartTrait;
+    use LivewireAlert;
 
     public $products;
     public array $quantity = [];
@@ -66,6 +68,8 @@ class ProductCard extends Component
             session()->flash('message', 'Product added to cart');
         }
         // $this->deleteMsg();
+
+        $this->alert('success', 'Product added to cart');
 
     }  
     
