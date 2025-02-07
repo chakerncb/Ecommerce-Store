@@ -78,8 +78,10 @@
                                 </a>
                                 <!-- End Header Logo -->
                             </div>
-                           
-                            @livewire('SearchBar')
+
+                            <div class="desktop-searchBar col-lg-5 col-md-7 ">
+                            @livewire('SearchBar')   
+                            </div>                         
 
                             <div class="col-lg-4 col-md-2 col-5">
                                 <div class="middle-right-area">

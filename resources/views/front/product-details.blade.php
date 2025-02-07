@@ -140,7 +140,7 @@
 
     <!-- Image Modal -->
     <div id="myModal" class="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
+        <span class="close" onclick="closeModal()" style="color: white" >&times;</span>
         <img class="modal-content" id="img01">
     </div>
 

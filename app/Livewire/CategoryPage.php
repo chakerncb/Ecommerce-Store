@@ -16,6 +16,9 @@ class CategoryPage extends Component
     public $ctgName;
     public $brandId = 0;
 
+    public $minPrice = 0;
+    public $maxPrice;
+
     public function mount($ctgName)
     {
         $this->ctgName = $ctgName;
@@ -24,6 +27,11 @@ class CategoryPage extends Component
     public function filterByBrand()
     {
         $this->dispatch('update'); 
+    }
+
+    public function filterByPrice()
+    {
+        $this->dispatch('update');
     }
 
     public function ToCart($product_id)
@@ -46,6 +54,7 @@ class CategoryPage extends Component
 
     public function render()
     {
+
         $query = Product::whereHas('category', function($query) {
             $query->where('name', $this->ctgName)->where('stock', '>', 0);
         });

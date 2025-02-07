@@ -1,4 +1,4 @@
-<div class="col-lg-5 col-md-7 d-xs-none">
+<div>
     <!-- Start Main Menu Search -->
     <div class="main-menu-search"> 
         <!-- navbar search start -->

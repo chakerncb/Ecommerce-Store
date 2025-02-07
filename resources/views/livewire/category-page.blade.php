@@ -27,6 +27,18 @@
                 <option value="1">1</option>
             </select>
         </div>
+        <div class="filter-category">
+            <br>
+            <div class="filter-category-title">
+                <h6>Filter By Price :</h6>
+            </div>
+            <input type="range" class="form-range" min="{{$minPrice}}" max="{{$maxPrice}}" step="100" id="customRange3" wire:model="maxPrice" wire:change="filterByPrice">    
+            <div class="price-range">
+                <span>${{$minPrice}}</span>
+                <span>${{$maxPrice}}</span>
+            </div>     
+        </div>
+        
     </div>
     <br>
     <div class="container" style="background-color: #ffffff;">

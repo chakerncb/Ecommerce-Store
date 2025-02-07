@@ -373,7 +373,7 @@
           <!-- Menu Item Profile -->
 
           <!-- Menu Item Forms -->
-          <li>
+          {{-- <li>
             <a
               class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
               href="#"
@@ -455,11 +455,11 @@
               </ul>
             </div>
             <!-- Dropdown Menu End -->
-          </li>
+          </li> --}}
           <!-- Menu Item Forms -->
 
           <!-- Menu Item Tables -->
-          <li>
+          {{-- <li>
             <a
               class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
               href="tables.html"
@@ -494,7 +494,7 @@
 
               Tables
             </a>
-          </li>
+          </li> --}}
           <!-- Menu Item Tables -->
 
           <!-- Menu Item Settings -->
@@ -544,7 +544,7 @@
       </div>
 
       <!-- Others Group -->
-      <div>
+      {{-- <div>
         <h3 class="mb-4 ml-4 text-sm font-medium text-bodydark2">OTHERS</h3>
 
         <ul class="mb-6 flex flex-col gap-1.5">
@@ -768,12 +768,12 @@
           </li>
           <!-- Menu Item Auth Pages -->
         </ul>
-      </div>
+      </div> --}}
     </nav>
     <!-- Sidebar Menu -->
 
     <!-- Promo Box -->
-    <div
+    {{-- <div
       class="mx-auto mb-10 w-full max-w-60 rounded-sm border border-strokedark bg-boxdark px-4 py-6 text-center shadow-default"
     >
       <h3 class="mb-1 font-semibold text-white">TailAdmin Pro</h3>
@@ -786,7 +786,7 @@
       >
         Purchase Now
       </a>
-    </div>
+    </div> --}}
     <!-- Promo Box -->
   </div>
 </aside>
