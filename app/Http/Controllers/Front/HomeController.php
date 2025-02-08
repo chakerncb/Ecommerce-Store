@@ -44,4 +44,9 @@ class HomeController extends Controller
                         'store' => $store
                          ]);
     }
+
+    public function shop(){
+
+        return view('front.shop');
+    }
 }

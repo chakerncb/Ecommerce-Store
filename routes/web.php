@@ -43,4 +43,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale() ,'namespace' => 'App\
     Route::get('category/{name}' , 'Front\CategoryController@index') -> name('category.index');
 
     Route::get('search/{search}' , 'Front\SearchController@search') -> name('search');
+
+    Route::get('shop' , 'Front\HomeController@shop') -> name('shop.index');
 });

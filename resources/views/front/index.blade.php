@@ -91,7 +91,7 @@
                                         </ul>
                                     </li> --}}
                                     <li class="nav-item">
-                                        <a href="#" aria-label="Toggle navigation">Shop</a>
+                                        <a href="{{route('shop.index')}}" aria-label="Toggle navigation">Shop</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="#" aria-label="Toggle navigation">About</a>
