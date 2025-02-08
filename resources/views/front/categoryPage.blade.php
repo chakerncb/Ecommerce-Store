@@ -22,7 +22,7 @@
     </div>
 
     <!-- Start Trending Product Area -->
-    @livewire('category-page', ['ctgName' => $ctgName])
+    @livewire('category-page', ['categoryId' => $categoryId])
     <!-- End Trending Product Area -->
 
     <!-- Start Call Action Area -->
@@ -46,7 +46,6 @@
         </div>
     </section> --}}
     <!-- End Call Action Area -->
-
 
 @endsection
 

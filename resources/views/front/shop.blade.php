@@ -22,7 +22,7 @@
     </div>
 
     <!-- Start Trending Product Area -->
-    @livewire('shop-page')
+    @livewire('ShopPage')
     <!-- End Trending Product Area -->
 
     <!-- Start Call Action Area -->

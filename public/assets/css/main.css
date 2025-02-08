@@ -5779,3 +5779,18 @@ top: 2px;
   }
 
 }
+
+
+.row-top {
+  width: 100%;
+  height: 50px;
+  background-color: #dad9d9;
+}
+
+
+.row-bottom {
+  width: 100%;
+  height: 50px;
+  background-color: #dad9d9;
+  margin-top: 20px;
+}

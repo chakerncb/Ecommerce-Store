@@ -3,25 +3,30 @@
 namespace App\Livewire;
 
 use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
 use App\Traits\CartTrait;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Livewire\WithPagination;
 use Livewire\Component;
 
 class SearchPage extends Component
 {
     use CartTrait;
     use LivewireAlert;
+    use WithPagination;
     protected $listeners = ['update' , 'render'];
     public $search;
     public $brandId = 0;
 
-    public $products;
+    public $categoryId = 0;
 
     public $minPrice = 0;
     public $maxPrice = 0;
 
     public $selectedPrice = 0;
+
+    public $paginationNumber = 5;
 
 
     public function mount($search)
@@ -29,14 +34,10 @@ class SearchPage extends Component
         $this->search = $search;
     }
 
-    public function filterByBrand()
+    public function filter()
     {
+        $this->resetPage();
         $this->dispatch('update'); 
-    }
-
-    public function filterByPrice()
-    {
-        $this->dispatch('update');
     }
 
     public function ToCart($product_id)
@@ -76,15 +77,21 @@ class SearchPage extends Component
             $query->where('brand_id', '=', $this->brandId);
         }
 
-        $this->products = $query->get();
-        $brands = Brand::all();
+        if ($this->categoryId != 0) {
+            $query->where('category_id', '=', $this->categoryId);
+        }
 
-        if ($this->products) {
-           return view('livewire.category-page', ['brands' => $brands]);
+        $products = $query->paginate($this->paginationNumber);
+        $brands = Brand::all();
+        $categories = Category::all();
+
+
+        if ($products) {
+           return view('livewire.search-page', ['brands' => $brands , 'categories' => $categories , 'products' => $products]);
         }
         else {
             $message = 'No products found';
-            return view('livewire.category-page', ['message' => $message , 'brands' => $brands]);
+            return view('livewire.search-page', ['message' => $message , 'brands' => $brands]);
         }
     }
 }

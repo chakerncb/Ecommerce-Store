@@ -7,16 +7,19 @@ use App\Models\Product;
 use App\Traits\CartTrait;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class CategoryPage extends Component
 {
+    use WithPagination;
     use CartTrait;
     use LivewireAlert;
     protected $listeners = ['update' , 'render'];
-    public $ctgName;
+    public $categoryId;
     public $brandId = 0;
 
-    public $products;
+    public $paginationNumber = 5;
+
 
     public $minPrice = 0;
     public $maxPrice = 0;
@@ -24,19 +27,15 @@ class CategoryPage extends Component
     public $selectedPrice = 0;
 
 
-    public function mount($ctgName)
+    public function mount($categoryId)
     {
-        $this->ctgName = $ctgName;
+        $this->categoryId = $categoryId;
     }
 
-    public function filterByBrand()
+    public function filter()
     {
+        $this->resetPage();
         $this->dispatch('update'); 
-    }
-
-    public function filterByPrice()
-    {
-        $this->dispatch('update');
     }
 
     public function ToCart($product_id)
@@ -60,9 +59,7 @@ class CategoryPage extends Component
     public function render()
     {
 
-        $query = Product::whereHas('category', function($query) {
-            $query->where('name', $this->ctgName)->where('stock', '>', 0);
-        });
+        $query = Product::where('category_id' , '=' , $this->categoryId)->where('stock', '>', 0);
 
         if ($this->maxPrice == 0) {
             $this->maxPrice = Product::max('price');
@@ -78,11 +75,11 @@ class CategoryPage extends Component
             $query->where('brand_id', '=', $this->brandId);
         }
 
-        $this->products = $query->get();
+        $products = $query->paginate($this->paginationNumber);
         $brands = Brand::all();
 
-        if ($this->products) {
-           return view('livewire.category-page', ['brands' => $brands]);
+        if ($products) {
+           return view('livewire.category-page', ['brands' => $brands , 'products' => $products]);
         }
         else {
             $message = 'No products found';

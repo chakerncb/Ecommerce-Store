@@ -3,33 +3,32 @@
 namespace App\Livewire;
 
 use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
 use App\Traits\CartTrait;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ShopPage extends Component
 {
     use CartTrait;
     use LivewireAlert;
+    use WithPagination;
+
     protected $listeners = ['update' , 'render'];
     public $brandId = 0;
-
-    public $products;
-
+    public $categoryId = 0;
     public $minPrice = 0;
     public $maxPrice = 0;
-
     public $selectedPrice = 0;
 
+    public $paginationNumber = 5;
 
-    public function filterByBrand()
-    {
-        $this->dispatch('update'); 
-    }
 
-    public function filterByPrice()
+    public function filter()
     {
+        $this->resetPage();
         $this->dispatch('update');
     }
 
@@ -41,21 +40,18 @@ class ShopPage extends Component
             session()->flash('message', 'Product not found');
             return;
         }
-        
+
         $this->dispatch('cartUpdated');
         $this->alert('success', 'Product added to cart');
-
     }  
 
     public function render()
     {
-
         $query = Product::where('stock', '>', 0);
 
         if ($this->maxPrice == 0) {
             $this->maxPrice = Product::max('price');
             $this->selectedPrice = $this->maxPrice;
-
         }
 
         if ($this->maxPrice != 0) {
@@ -66,15 +62,14 @@ class ShopPage extends Component
             $query->where('brand_id', '=', $this->brandId);
         }
 
-        $this->products = $query->get();
-        $brands = Brand::all();
+        if ($this->categoryId != 0) {
+            $query->where('category_id', '=', $this->categoryId);
+        }
 
-        if ($this->products) {
-           return view('livewire.category-page', ['brands' => $brands]);
-        }
-        else {
-            $message = 'No products found';
-            return view('livewire.category-page', ['message' => $message , 'brands' => $brands]);
-        }
+        $products = $query->paginate($this->paginationNumber);
+        $brands = Brand::all();
+        $categories = Category::all();
+
+        return view('livewire.shop-page', ['products' => $products, 'brands' => $brands, 'categories' => $categories]);
     }
 }
