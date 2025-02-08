@@ -101,12 +101,7 @@
                                     </li>
                                 </ul>
                             </div> <!-- navbar collapse -->
-                            <div class="mobile-searchBar ">
-                                @livewire('SearchBar')                            
-                            </div>
                         </nav>
-
-                        
                         <!-- End Navbar -->
                     </div>
                 </div>

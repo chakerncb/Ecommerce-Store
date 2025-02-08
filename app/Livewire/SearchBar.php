@@ -14,6 +14,12 @@ class SearchBar extends Component
 
     public $products = [];
 
+
+    public function searchGo()
+    {
+        return redirect()->route('search', ['search' => $this->searchContent]);
+    }
+
     public function search()
     {
         if ($this->searchContent) {

@@ -193,9 +193,13 @@
                                         
 
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="mobile-searchBar ">
+                        @livewire('SearchBar')                            
                     </div>
                 </div>
                 <!-- End Header Middle -->

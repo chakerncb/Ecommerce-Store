@@ -16,8 +16,13 @@ class CategoryPage extends Component
     public $ctgName;
     public $brandId = 0;
 
+    public $products;
+
     public $minPrice = 0;
-    public $maxPrice;
+    public $maxPrice = 0;
+
+    public $selectedPrice = 0;
+
 
     public function mount($ctgName)
     {
@@ -59,15 +64,25 @@ class CategoryPage extends Component
             $query->where('name', $this->ctgName)->where('stock', '>', 0);
         });
 
+        if ($this->maxPrice == 0) {
+            $this->maxPrice = Product::max('price');
+            $this->selectedPrice = $this->maxPrice;
+
+        }
+
+        if ($this->maxPrice != 0) {
+            $query->where('price', '>=', $this->minPrice)->where('price', '<=', $this->selectedPrice);
+        }
+
         if ($this->brandId != 0) {
             $query->where('brand_id', '=', $this->brandId);
         }
 
-        $products = $query->get();
+        $this->products = $query->get();
         $brands = Brand::all();
 
-        if ($products) {
-           return view('livewire.category-page', ['products' => $products, 'brands' => $brands]);
+        if ($this->products) {
+           return view('livewire.category-page', ['brands' => $brands]);
         }
         else {
             $message = 'No products found';

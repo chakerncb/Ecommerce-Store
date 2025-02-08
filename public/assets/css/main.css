@@ -2678,7 +2678,7 @@ top: -1px;
   }
 
   .social-container {
-    display: none;
+    display: block;
   }
 }
 
@@ -2740,6 +2740,21 @@ top: -1px;
 
 .header .main-menu-search .search-input {
   width: 100%;
+}
+
+
+.search-select {
+  border: 1px solid #e2e2e2;
+  background-color: #fff;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  height: 45px;
+  border-right: none;
+}
+
+.search-select a {
+  color: #000;
+
 }
 
 .header .main-menu-search .search-input input {
@@ -3238,6 +3253,10 @@ top: 2px;
     display: block;
     text-align: left;
     padding: 0;
+  }
+
+  .header .nav-social ul li a {
+    
   }
 }
 
@@ -4141,9 +4160,12 @@ top: 2px;
   background-color: #f9f9f9;
 }
 
-.trending-product .section-title {
-  margin-bottom: 20px;
-}
+
+
+
+
+
+
 
 /*======================================
     Banner CSS
@@ -5637,21 +5659,6 @@ top: 2px;
   margin-left: 0; /* Remove any left margin */
 }
 
-/*======================================
-  Filter Category card CSS
-========================================*/
-
-.filter-category-card {
-  width: 25% !important;
-  height: fit-content !important;
-  margin-left: 20px;
-  margin-right: 20px;
-  background-color: #ffffff;
-  border-radius: 7px;
-  padding: 20px;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
-}
- 
 
 
 
@@ -5725,4 +5732,50 @@ top: 2px;
 
 .list small{
   color:#dedddd;
+}
+
+
+/* filter page */
+
+.products-filter-page {
+  background-color: #f9f9f9;
+  display: flex;
+}
+
+
+
+
+
+  /* Filter Category card CSS */
+
+.filter-category-card {
+  width: 30% !important;
+  height: fit-content !important;
+  margin-left: 20px;
+  margin-right: 20px;
+  background-color: #ffffff;
+  border-radius: 7px;
+  padding: 20px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+}
+ 
+
+.products-filter-page .section-title {
+  margin-bottom: 20px;
+}
+
+
+@media (max-width: 767px) {
+  .products-filter-page {
+    display: block;
+  }
+
+
+  .filter-category-card {
+    width: 90% !important;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 20px;
+  }
+
 }

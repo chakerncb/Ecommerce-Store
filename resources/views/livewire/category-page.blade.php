@@ -1,4 +1,4 @@
-<section class="trending-product section d-flex">
+<section class="products-filter-page section">
     <div class="filter-category-card">
         <h3>Filter :</h3>
         <div class="filter-category">
@@ -32,10 +32,10 @@
             <div class="filter-category-title">
                 <h6>Filter By Price :</h6>
             </div>
-            <input type="range" class="form-range" min="{{$minPrice}}" max="{{$maxPrice}}" step="100" id="customRange3" wire:model="maxPrice" wire:change="filterByPrice">    
+            <input type="range" class="form-range" min="{{$minPrice}}" max="{{$maxPrice}}" step="100" id="customRange3" wire:model="selectedPrice" wire:change="filterByPrice">    
             <div class="price-range">
                 <span>${{$minPrice}}</span>
-                <span>${{$maxPrice}}</span>
+                <span>${{$selectedPrice}}</span>
             </div>     
         </div>
         

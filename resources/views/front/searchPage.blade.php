@@ -8,13 +8,13 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="breadcrumbs-content">
-                        <h1 class="page-title">{{$ctgName}}</h1>
+                        <h1 class="page-title">Search Reasult : "{{$search}}"</h1>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-nav">
                         <li><a href="{{route('index')}}"><i class="lni lni-home"></i> Home</a></li>
-                        <li><a href="{{route('category.index', $ctgName)}}">{{$ctgName}}</a></li>
+                        <li><a href="#">Search</a></li>
                     </ul>
                 </div>
             </div>
@@ -22,7 +22,7 @@
     </div>
 
     <!-- Start Trending Product Area -->
-    @livewire('category-page', ['ctgName' => $ctgName])
+    @livewire('search-page', ['search' => $search])
     <!-- End Trending Product Area -->
 
     <!-- Start Call Action Area -->

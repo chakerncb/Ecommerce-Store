@@ -18,10 +18,10 @@
                 </div>
             </div>
             <div class="search-input">
-                <input type="text" placeholder="Search" wire:model="searchContent" wire:keydown.debounce.300ms="search"/>
+                <input type="text" wire:keydown.enter="searchGo" placeholder="Search ..." wire:model="searchContent" wire:keydown.debounce.300ms="search"/>
             </div>
             <div class="search-btn">
-                <button wire:click="search"><i class="lni lni-search-alt"></i></button>
+                <button wire:click="searchGo"><i class="lni lni-search-alt"></i></button>
             </div>
             @if ($products)
             <div class="search-result-card">
