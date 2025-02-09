@@ -20,6 +20,7 @@ class Store extends Model
         'website',
         'facebook',
         'instagram',
-        'logo'
+        'logo_light',
+        'logo_dark',
     ];
 }

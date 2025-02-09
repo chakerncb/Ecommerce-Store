@@ -37,7 +37,7 @@
     <section class="item-details section">
         <div class="container">
 
-            <div class="row">
+            <div class="checkout-container row">
                 <div class="col-xl-8">
         
                     <div class="card">

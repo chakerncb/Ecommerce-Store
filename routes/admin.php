@@ -31,8 +31,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale() , 'middleware' => [ '
         Route::Post('product/delete' , 'Admin\ProductsController@delete') -> name('admin.products.delete');
 
         /////////////////////////// Profile Routes ///////////////////////////
-        Route::get('profile' , 'Admin\AdminProfileController@index') -> name('admin.profile.settings');
-        Route::post('profile/update' , 'Admin\AdminProfileController@update') -> name('admin.profile.update');
+        Route::get('settings' , 'Admin\SettingsController@index') -> name('admin.settings');
+        Route::post('settings/update' , 'Admin\SettingsController@update') -> name('admin.profile.update');
+        Route::post('settings/shop/update' , 'Admin\SettingsController@shop') -> name('admin.settings.shop');
 
         ///////////////////////// Orders Routes //////////////////////////////
         Route::get('orders' , 'Admin\OrdersController@index') -> name('admin.orders.index');

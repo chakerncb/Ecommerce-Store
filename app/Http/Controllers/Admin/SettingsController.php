@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminUpdateRequest;
 use App\Models\Admin;
+use App\Models\Store;
 use App\Traits\ImageTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class AdminProfileController extends Controller
+class SettingsController extends Controller
 {
     //
     use ImageTrait;
@@ -22,7 +23,9 @@ class AdminProfileController extends Controller
 
        $admin = Admin::find(auth()->guard('admin')->user()->id);
 
-         return view('admin.profile.profile-settings' , compact('admin'));
+       $store = Store::first();
+
+         return view('admin.settings.settings' , compact('admin' , 'store'));
     }
 
     public function update(Request $request) {
@@ -62,4 +65,25 @@ class AdminProfileController extends Controller
 
         return redirect()->back()->with('success', 'Profile Updated Successfully');
     }
+
+    // public function shop(Request $request) {
+
+    //     $store = Store::first();
+
+    //     $filename = $store->logo;
+
+    //     if($request->hasFile('logo')) {
+    //         $filename = $this->saveImage($request->logo, 'assets/src/images/store');
+    //     }
+
+    //     $store->update([
+    //         'name' => $request->name,
+    //         'email' => $request->email,
+    //         'phone' => $request->phone,
+    //         'address' => $request->address,
+    //         'logo' => $filename,
+    //     ]);
+
+    //     return redirect()->back()->with('success', 'Shop Updated Successfully');
+    // }
 }

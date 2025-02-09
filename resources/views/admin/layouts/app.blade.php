@@ -39,6 +39,8 @@
   :class="sidebarToggle ? 'translate-x-0' : '-translate-x-full'"
   class="absolute left-0 top-0 z-9999 flex h-screen w-50.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0"
   @click.outside="sidebarToggle = false"
+  style="width: 19%;"
+
 >
   <!-- SIDEBAR HEADER -->
   <div class="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
@@ -329,6 +331,14 @@
                 >Brands</a
                 >
               </li>
+              <li>
+                <a
+                class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
+                {{-- href="{{route('')}}" --}}
+                :class="page === 'Add New Category' && '!text-white'"
+                >Banners</a
+                >
+              </li>
               </ul>
             </div>
             <!-- Dropdown Menu End -->
@@ -341,7 +351,7 @@
 
 
           <!-- Menu Item Profile -->
-          <li>
+          {{-- <li>
             <a
               class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
               href="{{route('admin.profile.settings')}}"
@@ -369,7 +379,7 @@
 
               Profile
             </a>
-          </li>
+          </li> --}}
           <!-- Menu Item Profile -->
 
           <!-- Menu Item Forms -->
@@ -501,7 +511,7 @@
           <li>
             <a
               class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
-              href="settings.html"
+              href="{{route('admin.settings')}}"
               @click="selected = (selected === 'Settings' ? '':'Settings')"
               :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Settings') && (page === 'settings') }"
               :class="page === 'settings' && 'bg-graydark'"
@@ -1216,7 +1226,7 @@
           >
             <li>
               <a
-                href="{{route('admin.profile.settings')}}"
+                href="#"
                 class="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
               >
                 <svg
@@ -1262,7 +1272,7 @@
             </li>
             <li>
               <a
-                href="#"
+                href="{{route('admin.settings')}}"
                 class="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
               >
                 <svg

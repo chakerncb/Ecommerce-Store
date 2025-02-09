@@ -4,10 +4,11 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Chaker_Shop</title>
+    <title>BotikShop</title>
+    {{-- <link rel="icon" href="{{URL::asset('assets/images/logo/icon-2.png')}}"> --}}
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    {{-- <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" /> --}}
+    <link rel="shortcut icon" type="image/x-icon" href="{{URL::asset('assets/images/logo/icon-2.png')}}" />
 
     <!-- ========================= CSS here ========================= -->
     <link rel="stylesheet" href="{{URL::asset('assets/css/bootstrap.min.css')}}" />
@@ -34,10 +35,11 @@
     <!-- Preloader -->
     <div class="preloader">
         <div class="preloader-inner">
-            <div class="preloader-icon">
+            {{-- <div class="preloader-icon">
                 <span></span>
                 <span></span>
-            </div>
+            </div> --}}
+            <img style="width: 100%;" src="{{URL::asset('assets/images/logo/preloader.gif')}}" alt="">
         </div>
     </div>
     <!-- /End Preloader -->
@@ -74,7 +76,7 @@
                             <div class="col-lg-3 col-md-3 col-7">
                                 <!-- Start Header Logo -->
                                 <a class="navbar-brand" href="index.html">
-                                    <img src="assets/images/logo/logo.svg" alt="Logo">
+                                    <img src="{{URL::asset('assets/images/logo/'.$store->logo_dark)}}" alt="Logo">
                                 </a>
                                 <!-- End Header Logo -->
                             </div>
@@ -216,7 +218,7 @@
                         <div class="col-lg-3 col-md-4 col-12">
                             <div class="footer-logo">
                                 <a href="{{route('index')}}">
-                                    <img src="{{URL::asset('assets/images/logo/'.$store->logo)}}" alt="logo">
+                                    <img src="{{URL::asset('assets/images/logo/'.$store->logo_light)}}" alt="logo">
                                 </a>
                             </div>
                         </div>
