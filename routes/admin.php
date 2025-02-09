@@ -33,7 +33,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale() , 'middleware' => [ '
         /////////////////////////// Profile Routes ///////////////////////////
         Route::get('settings' , 'Admin\SettingsController@index') -> name('admin.settings');
         Route::post('settings/update' , 'Admin\SettingsController@update') -> name('admin.profile.update');
-        Route::post('settings/shop/update' , 'Admin\SettingsController@shop') -> name('admin.settings.shop');
+        Route::post('settings/shop/update' , 'Admin\SettingsController@shop') -> name('admin.shop.update');
 
         ///////////////////////// Orders Routes //////////////////////////////
         Route::get('orders' , 'Admin\OrdersController@index') -> name('admin.orders.index');

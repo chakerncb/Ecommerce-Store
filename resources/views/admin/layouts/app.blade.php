@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     @yield('title')
   <link rel="icon" href="favicon.ico">
-  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+  {{-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> --}}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link href="{{URL::asset('assets/src/style.css')}}" rel="stylesheet">
   
@@ -44,8 +44,8 @@
 >
   <!-- SIDEBAR HEADER -->
   <div class="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
-    <a href="index.html">
-      <img src="src/images/logo/logo.svg" alt="Logo" />
+    <a href="{{route('admin.index')}}">
+      <img src="{{URL::asset('assets/images/logo/logo-no-backgroun-white.png')}}" alt="Logo" />
     </a>
 
     <button
@@ -849,7 +849,7 @@
       </button>
       <!-- Hamburger Toggle BTN -->
       <a class="block flex-shrink-0 lg:hidden" href="index.html">
-        <img src="src/images/logo/logo-icon.svg" alt="Logo" />
+        <img width="20%" src="{{URL::asset('assets/images/logo/logo-no-backgroun.png')}}" alt="Logo" />
       </a>
     </div>
           @livewire('admin.search-bar')
@@ -1341,6 +1341,9 @@
   src="https://code.jquery.com/jquery-3.7.1.min.js"
   integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
   crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <x-livewire-alert::scripts />
+    <x-livewire-alert::flash />
 @yield('scripts')
 {{-- <script defer src="{{URL::asset('assets/src/bundle.js')}}"></script> --}}
 </body>

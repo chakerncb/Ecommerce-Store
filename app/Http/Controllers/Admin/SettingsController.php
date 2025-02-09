@@ -21,11 +21,7 @@ class SettingsController extends Controller
 
     public function index() {
 
-       $admin = Admin::find(auth()->guard('admin')->user()->id);
-
-       $store = Store::first();
-
-         return view('admin.settings.settings' , compact('admin' , 'store'));
+         return view('admin.settings.settings');
     }
 
     public function update(Request $request) {
@@ -63,27 +59,31 @@ class SettingsController extends Controller
             'image' => $filename,
         ]);
 
-        return redirect()->back()->with('success', 'Profile Updated Successfully');
+        return response()->json(['status' => true, 'message' => 'Profile Updated Successfully']);
     }
 
-    // public function shop(Request $request) {
+    public function shop(Request $request) {
 
-    //     $store = Store::first();
+        $store = Store::first();
 
-    //     $filename = $store->logo;
+        $filename1 = $store->logo_light;
+        $filename2 = $store->logo_dark;
 
-    //     if($request->hasFile('logo')) {
-    //         $filename = $this->saveImage($request->logo, 'assets/src/images/store');
-    //     }
 
-    //     $store->update([
-    //         'name' => $request->name,
-    //         'email' => $request->email,
-    //         'phone' => $request->phone,
-    //         'address' => $request->address,
-    //         'logo' => $filename,
-    //     ]);
+        if($request->hasFile('logo')) {
+            $filename1 = $this->saveImage($request->logo_light, 'assets/images/logo');
+            $filename2 = $this->saveImage($request->logo_dark, 'assets/images/logo');
+        }
 
-    //     return redirect()->back()->with('success', 'Shop Updated Successfully');
-    // }
+        $store->update([
+            'name' => $request->S_name,
+            'email' => $request->S_email,
+            'phone' => $request->S_phone,
+            'address' => $request->S_address,
+            'logo_light' => $filename1,
+            'logo_dark' => $filename2,
+        ]);
+
+        return response()->json(['status' => true, 'message' => 'Shop Updated Successfully']);
+    }
 }
