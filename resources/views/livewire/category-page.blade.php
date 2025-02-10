@@ -103,8 +103,8 @@
                     <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing {{ $products->firstItem() }} to {{ $products->lastItem() }} of {{ $products->total() }}</p>
                 </div>
                 <div class="col-md-6">
-                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                        {{ $products->links('pagination::bootstrap-4') }}
+                    <nav class="justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                        {{ $products->links() }}
                     </nav>
                 </div>
             </div>

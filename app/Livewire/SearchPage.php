@@ -81,7 +81,7 @@ class SearchPage extends Component
             $query->where('category_id', '=', $this->categoryId);
         }
 
-        $products = $query->paginate($this->paginationNumber);
+        $products = $query->paginate(5);
         $brands = Brand::all();
         $categories = Category::all();
 

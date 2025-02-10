@@ -106,6 +106,21 @@
          
     </div>
     </div>
+
     @endforeach
+
+    <div class="flex justify-between items-center mt-4">
+      {{-- <div>
+        <p class="text-sm text-gray-700 dark:text-gray-300">Showing {{ $products->firstItem() }} to {{ $products->lastItem() }} of {{ $products->total() }}</p>
+      </div> --}}
+      <div>
+        <nav class="flex justify-end">
+          {{ $products->links() }}
+        </nav>
+      </div>
+    </div>
+    <br>
+    <br>
   </div>
+
 </div>

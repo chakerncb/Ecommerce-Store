@@ -73,6 +73,6 @@ class Kernel extends HttpKernel
         'localeCookieRedirect'    => \Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect::class,
         'localeViewPath'          => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
         'auth.admin' => \App\Http\Middleware\AdminLogin::class,
-
+        'setAdminPaginationTheme' => \App\Http\Middleware\SetAdminPaginationTheme::class,
     ];
 }

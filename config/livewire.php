@@ -156,5 +156,18 @@ return [
     |
     */
 
-    'pagination_theme' => 'tailwind',
+    'pagination_theme' => 'bootstrap',
+
+    /*
+    |---------------------------------------------------------------------------
+    | Admin Pagination Theme
+    |---------------------------------------------------------------------------
+    |
+    | When enabling Livewire's pagination feature for admin routes, you can
+    | specify a different theme. For example, you can use Tailwind templates
+    | for admin routes by specifying: "tailwind"
+    |
+    */
+
+    'admin_pagination_theme' => 'tailwind',
 ];
