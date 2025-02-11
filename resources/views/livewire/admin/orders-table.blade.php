@@ -48,11 +48,7 @@
       <option  value="completed">Completed</option>
       <option  value="cancelled">Cancelled</option>
     </select>
-    <div>
-        <button wire:click="loadLess"><b>&leftarrow;</b></button>
-        <span class="text-black dark:text-white">{{ $page }}</span>
-        <button wire:click="loadMore"><b>&rightarrow;</b></button>
-    </div>
+   
     <a href="#" class="flex items-center justify-center rounded bg-primary p-2 font-medium text-gray hover:bg-opacity-90">
       new order
     </a>
@@ -95,8 +91,13 @@
     <div class="col-span-1 flex items-center">
         <p class="text-sm font-medium text-black dark:text-white">{{ $order->shipping_fullname }}</p>
     </div>
-    <div class="col-span-1 flex items-center">
-      <p class="text-sm font-medium text-black dark:text-white">{{ $order->status }}</p>
+    <div class="col-span-1 flex items-center" style="margin-left: -10px;">
+      <select wire:model="orderStatus.{{ $order->ord_id }}" class="text-sm font-medium text-black dark:text-white bg-transparent border border-stroke rounded-lg px-2 py-1 focus:outline-none focus:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+      <option value="pending" @selected($order->status == 'pending')>Pending</option>
+      <option value="completed" @selected($order->status == 'completed')>Completed</option>
+      <option value="cancelled" @selected($order->status == 'cancelled')>Cancelled</option>
+      </select>
+      <br>
     </div>
     <div class="col-span-1 flex items-center">
       <p class="text-sm font-medium text-black dark:text-white">{{ $order->total}} DZ</p>
@@ -112,19 +113,31 @@
         <a wire:click="streamPdf('{{ $order->ord_id }}')" class="text-primary hover:text-primary-dark">
           <i class="bi bi-eye"></i>
         </a>
-        <a href="javascript:window.print();" class="text-primary hover:text-primary-dark">
+        {{-- <a href="javascript:window.print();" class="text-primary hover:text-primary-dark">
           <i class="bi bi-printer"></i>
-        </a>
-        <a href="" class="text-primary hover:text-primary-dark">
+        </a> --}}
+        <a wire:click="updateOrderStatus({{ $order->ord_id }})" class="text-primary hover:text-primary-dark">
           <i class="bi bi-pencil-square"></i>
         </a>
         {{-- <link rel=alternate media=print href="storage\app\invoices\invoice_20241209_137.pdf"> --}}
-        <a order_id="{{$order->order_id}}" id="delete_btn" class="text-red-500 hover:text-red-700">
+        <a wire:click="deleteOrder({{$order->ord_id}})" id="delete_btn" class="text-red-500 hover:text-red-700">
           <i class="bi bi-trash3"></i>
         </a>
       </div>
   </div>
   </div>
   @endforeach
+
+  <div class="row">
+    <div class="col-md-6 align-self-center">
+        <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing {{ $subsetOrders->firstItem() }} to {{ $subsetOrders->lastItem() }} of {{ $subsetOrders->total() }}</p>
+    </div>
+    <div class="col-md-6">
+        <nav class="justify-content-lg-end dataTables_paginate paging_simple_numbers">
+            {{ $subsetOrders->links() }}
+        </nav>
+    </div>
+</div>
+
 </div>
 </div>

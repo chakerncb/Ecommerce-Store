@@ -21,41 +21,15 @@ class ProductsTable extends Component
 
     public $searchContent = '';
 
-    // public $path;
-    
-
-    public function loadMore()
-    {
-        $this->reset();
-        // if($this->start + $this->limits < Product::count()) {
-        //     $this->start += 10;
-        //     $this->page++;
-        //     $this->render();  
-        // }
-    }
-
-    public function loadLess()
-    {
-        $this->reset();
-        if($this->start > 0) {
-            $this->start -= 10;
-            $this->page--;
-            $this->render();
-        }
-    }
 
     public function filterByCtg()
     {
-        $this->reset();
-        // $this->start = 0;   
-        // $this->page = 1;  
+        $this->resetPage();
         $this->dispatch('updateTable');         
      }
 
     public function search() {
-        $this->reset();
-        // $this->start = 0;
-        // $this->page = 1;
+        $this->resetPage();
         $this->dispatch('updateTable');
     }
 
@@ -69,8 +43,7 @@ class ProductsTable extends Component
             'stock',
             'category_id'
         );
-        // ->skip($this->start)
-        // ->take($this->limits);
+
 
          if ($this->filter !== 'all') {
             $query->where('category_id', $this->filter);

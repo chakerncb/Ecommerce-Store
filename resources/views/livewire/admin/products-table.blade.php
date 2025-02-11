@@ -37,11 +37,6 @@
                 <option  value="{{$categorie->category_id}}">{{$categorie->name}}</option>
             @endforeach
           </select>
-          <div>
-              <button wire:click="loadLess"><b>&leftarrow;</b></button>
-              <span class="text-black dark:text-white">{{ $page }}</span>
-              <button wire:click="loadMore"><b>&rightarrow;</b></button>
-          </div>
       <a href="{{route('admin.products.create')}}" class="flex items-center justify-center rounded bg-primary p-2 font-medium text-gray hover:bg-opacity-90">
         new product
       </a>
@@ -109,16 +104,19 @@
 
     @endforeach
 
+    <nav class="isolate inline-flex -space-x-px rounded-md shadow-xs" aria-label="Pagination">
+
     <div class="flex justify-between items-center mt-4">
-      {{-- <div>
+      <div>
         <p class="text-sm text-gray-700 dark:text-gray-300">Showing {{ $products->firstItem() }} to {{ $products->lastItem() }} of {{ $products->total() }}</p>
-      </div> --}}
+      </div>
       <div>
         <nav class="flex justify-end">
           {{ $products->links() }}
         </nav>
       </div>
     </div>
+  </nav>
     <br>
     <br>
   </div>
