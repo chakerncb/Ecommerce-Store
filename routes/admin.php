@@ -13,9 +13,9 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
-Route::group(['prefix' => LaravelLocalization::setLocale() , 'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' , 'web']], function() {
+Route::group(['prefix' => LaravelLocalization::setLocale() , 'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' , 'web' , 'setAdminPaginationTheme']], function() {
 
-    Route::group(['prefix' => 'admin' , 'namespace' => 'App\Http\Controllers', 'middleware' => 'setAdminPaginationTheme'] , function() {
+    Route::group(['prefix' => 'admin' , 'namespace' => 'App\Http\Controllers'] , function() {
         Route::get('/dashboard' , 'Admin\AdminHomeController@index') -> name('admin.index') -> middleware('auth:admin');
 
         Route::get('/login' , 'Auth\AdminLoginController@adminLogin');

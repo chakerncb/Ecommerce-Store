@@ -37,7 +37,7 @@
                 <option  value="{{$categorie->category_id}}">{{$categorie->name}}</option>
             @endforeach
           </select>
-      <a href="{{route('admin.products.create')}}" class="flex items-center justify-center rounded bg-primary p-2 font-medium text-gray hover:bg-opacity-90">
+      <a onclick="openForm()" class="flex items-center justify-center rounded bg-primary p-2 font-medium text-gray hover:bg-opacity-90">
         new product
       </a>
     </div>

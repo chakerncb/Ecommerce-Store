@@ -130,7 +130,7 @@
 
   <div class="row">
     <div class="col-md-6 align-self-center">
-        <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing {{ $subsetOrders->firstItem() }} to {{ $subsetOrders->lastItem() }} of {{ $subsetOrders->total() }}</p>
+        {{-- <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing {{ $subsetOrders->firstItem() }} to {{ $subsetOrders->lastItem() }} of {{ $subsetOrders->total() }}</p> --}}
     </div>
     <div class="col-md-6">
         <nav class="justify-content-lg-end dataTables_paginate paging_simple_numbers">

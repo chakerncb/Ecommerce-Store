@@ -3742,3 +3742,16 @@ body{
       padding: 10%;
     }
   }
+
+
+  .product-form {
+    position: absolute;
+    top: 100%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 500px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+  }

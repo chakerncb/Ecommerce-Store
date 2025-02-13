@@ -24,6 +24,14 @@
               <!-- ====== Table Two Start -->
             @livewire('admin.products-table')
               <!-- ====== Table Two End -->
+
+            <!-- New Product Form Start -->
+            <div class="hidden mt-6 product-form"  id="myForm" >
+              <div class="mt-4">
+                @livewire('admin.add-product')
+              </div>
+            </div>
+            <!-- New Product Form End -->
 </main>
 
 @endsection
@@ -31,27 +39,13 @@
 @section('scripts')
 
 <script>
-  $(document).on('click', '#delete_btn', function(e){
- e.preventDefault();
- console.log('delete');
- var product_id = $(this).attr('product_id');
- $.ajax({
-     type: "POST",
-     url: "{{route('admin.products.delete')}}",
-     data: {
-         product_id: product_id,
-         _token: "{{csrf_token()}}"
-     },
-     success: function (response) {
-         if(response.status == true){
-             alert(response.message);
-             $('.row'+product_id).remove();
-         }else{
-             alert(response.message);
-         }
-     }
- });
-});
-</script>
+  function openForm() {
+    document.getElementById("myForm").style.display = "block";
+  }
 
+  function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+  }
+
+</script>
 @endsection

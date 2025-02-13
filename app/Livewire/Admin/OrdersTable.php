@@ -54,7 +54,6 @@ class OrdersTable extends Component
         }
     }
 
-//FIXME : make this function stream the pdf file not download it .
     public function streamPdf($order_id)
     {
 
@@ -106,7 +105,7 @@ class OrdersTable extends Component
             $query->where('shipping_fullname', 'like', '%' . $this->searchContent . '%');
         }
 
-        $subsetOrders = $query->paginate(10);
+        $subsetOrders = $query->simplePaginate(10);
         foreach ($subsetOrders as $order) {
             $this->orderStatus[$order->ord_id] = $order->status;
         }
