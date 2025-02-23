@@ -347,6 +347,63 @@
 
           {{-- menu item orders --}}
 
+          <li>
+            <a
+              class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
+              href="#"
+              @click.prevent="selected = (selected === 'mangment_tools' ? '':'mangment_tools')"
+              :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'mangment_tools') || (page === 'Category List' || page === 'Add New Category') }"
+            >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#FFFFFF" width="28px" height="30px" viewBox="0 0 48 48" data-name="Layer 1" id="Layer_1"><title/><path d="M40,47H8a2,2,0,0,1-2-2V3A2,2,0,0,1,8,1H40a2,2,0,0,1,2,2V45A2,2,0,0,1,40,47ZM10,43H38V5H10Z"/><path d="M15,19a2,2,0,0,1-1.41-3.41l4-4a2,2,0,0,1,2.31-.37l2.83,1.42,5-4.16A2,2,0,0,1,30.2,8.4l4,3a2,2,0,1,1-2.4,3.2l-2.73-2.05-4.79,4a2,2,0,0,1-2.17.25L19.4,15.43l-3,3A2,2,0,0,1,15,19Z"/><circle cx="15" cy="24" r="2"/><circle cx="15" cy="31" r="2"/><circle cx="15" cy="38" r="2"/><path d="M33,26H22a2,2,0,0,1,0-4H33a2,2,0,0,1,0,4Z"/><path d="M33,33H22a2,2,0,0,1,0-4H33a2,2,0,0,1,0,4Z"/><path d="M33,40H22a2,2,0,0,1,0-4H33a2,2,0,0,1,0,4Z"/></svg>
+
+            Store Managment
+
+              <svg
+              class="absolute right-4 top-1/2 -translate-y-1/2 fill-current"
+              :class="{ 'rotate-180': (selected === 'mangment_tools') }"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M4.41107 6.9107C4.73651 6.58527 5.26414 6.58527 5.58958 6.9107L10.0003 11.3214L14.4111 6.91071C14.7365 6.58527 15.2641 6.58527 15.5896 6.91071C15.915 7.23614 15.915 7.76378 15.5896 8.08922L10.5896 13.0892C10.2641 13.4147 9.73651 13.4147 9.41107 13.0892L4.41107 8.08922C4.08563 7.76378 4.08563 7.23614 4.41107 6.9107Z"
+                fill=""
+              />
+              </svg>
+            </a>
+
+            <!-- Dropdown Menu Start -->
+            <div
+              class="translate transform overflow-hidden"
+              :class="(selected === 'mangment_tools') ? 'block' :'hidden'"
+            >
+              <ul class="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
+              <li>
+                <a
+                class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
+                href=""
+                :class="page === 'Category List' && '!text-white'"
+                >New Products</a
+                >
+              </li>
+              <li>
+                <a
+                class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
+                href="{{route('admin.brands')}}"
+                :class="page === 'Add New Category' && '!text-white'"
+                >Statistics</a
+                >
+              </li>
+           
+              </ul>
+            </div>
+            <!-- Dropdown Menu End -->
+            </li>
+
 
 
 

@@ -94,7 +94,7 @@
           <a href="{{route('admin.products.edit' , $product->product_id)}}" class="text-primary hover:text-primary-dark">
             <i class="bi bi-pencil-square"></i>
           </a>
-          <a product_id="{{$product->product_id}}" id="delete_btn" class="text-red-500 hover:text-red-700">
+          <a wire:click="deleteProduct({{$product->product_id}})" id="delete_btn" class="text-red-500 hover:text-red-700">
             <i class="bi bi-trash3"></i>
           </a>
         </div>

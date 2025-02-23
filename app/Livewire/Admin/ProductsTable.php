@@ -4,12 +4,14 @@ namespace App\Livewire\Admin;
 
 use App\Models\Category;
 use App\Models\Product;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class ProductsTable extends Component
 {
     use WithPagination;
+    use LivewireAlert;
     protected $listeners = ['updateTable' => 'render'];
 
     public $start = 0;
@@ -33,15 +35,32 @@ class ProductsTable extends Component
         $this->dispatch('updateTable');
     }
 
+    public function deleteProduct($product_id) {
+
+        if(!$product_id) {
+            $this->alert('error', 'Product Not Found');
+            return;
+        }
+
+        $product = Product::find($product_id);
+        $product->delete();
+        $this->alert('success', 'Product Deleted Successfully');
+        $this->dispatch('updateTable');	
+
+    }
+
     public function render()
     {
         $query = Product::with('images')->select(
             'product_id',
             'name',
+            'main_price',
             'price',
             'description',
             'stock',
-            'category_id'
+            'category_id',
+            'code',
+
         );
 
 
@@ -50,7 +69,7 @@ class ProductsTable extends Component
         }
 
         if ($this->searchContent) {
-            $query->where('name', 'like', '%' . $this->searchContent . '%');
+            $query->where('name', 'like', "%{$this->searchContent}%")->orWhere('code', 'like', "%{$this->searchContent}%");
         }
 
         $products = $query->paginate(10);
